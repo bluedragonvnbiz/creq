@@ -57,14 +57,14 @@
 						}
 						?>					
 						<div class="check-list" style="margin-bottom: 62px;">
-							<div class="d-flex align-items-center justify-content-between" style="margin-bottom:12px">
+							<div class="d-flex align-items-center justify-content-between" data-bs-toggle="modal" data-bs-target="#term-modal" style="margin-bottom:12px;cursor: pointer;">
 								<div class="form-check">
-								  <input class="form-check-input" type="checkbox" readonly >
+								  <input class="form-check-input" type="checkbox" disabled>
 								  <label class="form-check-label">개인정보 처리방침에 동의합니다.</label>
 								</div>
 								<svg  width="16" height="16"><use href="#icon-arrow-right-black"></use></svg>
 							</div>
-							<div class="d-flex align-items-center justify-content-between">
+							<div class="d-flex align-items-center justify-content-between" style="cursor: pointer;">
 								<div class="form-check">
 								  <input class="form-check-input" type="checkbox" readonly>
 								  <label class="form-check-label">서비스 이용약관에 동의합니다.</label>
@@ -81,4 +81,16 @@
 			</form>
 		</div>
 	</div>
+</div>
+
+
+<div class="modal fade pv-modal" id="term-modal" tabindex="-1" >
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+	  	<div class="modal-body">
+	    	<h6 class="modal-title">개인정보 처리방침</h6>
+	    	<div class="modal-btn"></div>
+	  	</div>
+    </div>
+  </div>
 </div>

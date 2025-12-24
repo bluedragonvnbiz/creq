@@ -29,6 +29,10 @@ function pv_styles() {
     wp_register_style( 'cus-style', THEME_URL. '/assets/global-css.css', 'all',STYLE_VER );
     wp_enqueue_style( 'cus-style' );
 
+    wp_register_script('pv-bootstrap-popper', THEME_URL. '/assets/lib/popper.min.js', array(),false, true);
+    wp_enqueue_script('pv-bootstrap-popper');
+    wp_register_script('pv-bootstrap-script', THEME_URL. '/assets/lib/bootstrap.min.js', array(),false, true);
+    wp_enqueue_script('pv-bootstrap-script');
     wp_register_script('tanpv-js', THEME_URL . '/assets/global-script.js', array(), STYLE_VER, true);
     wp_localize_script('tanpv-js', 'define', 
         array(
