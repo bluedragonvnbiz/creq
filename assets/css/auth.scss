@@ -1,0 +1,39 @@
+.auth-wp{min-height: 100vh;
+	>.left{background-color: #F8F8FA}
+	.list-url{
+		.dot{display: inline-block;height: 2px;width: 2px;border-radius: 100%;background-color: var(--black-color);}
+		a{color: var(--back-color);font-size: 12px;line-height: 18px;}
+	}
+	.status-box{margin-bottom: 64px;
+		.item{
+			&:first-child{
+				.line span:first-child{border-radius: 1000px 0 0 1000px}
+			}
+			&:last-child{
+				.line span:last-child{border-radius: 0 1000px 1000px 0}
+			}
+			&.current{
+				.line span{
+					&:first-child{background-color: var(--main-color);}
+				}
+			}
+			&.active{
+				.line span{background-color: var(--main-color);}
+			}
+			&.current,&.active{
+				.dot{
+					span{background: transparent url("../images/icons/step-dot.svg") no-repeat center;}
+					strong{color: var(--main-color);}
+				}
+			}
+		}
+		.line{
+			span{display: inline-block;height: 5px;background-color: #DFE5EF;width: 100%}
+		}
+
+		.dot{text-align: center;margin-top: -12px;
+			span{display: inline-block;height: 18px;width: 18px;border-radius: 100%;background-color: #DFE5EF;margin-bottom: 6px;}
+			strong{display: block;font-weight: 600;font-size: 10px;line-height: 16px;color: #D5D5D7}
+		}
+	}
+}
