@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo( 'charset' ); ?>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=no">
+	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+
+<?php get_template_part('template-parts/components/header-back'); ?>
+
 <div class="container-fluid d-flex auth-wp">
 	<div class="w-100 left d-none d-lg-flex align-items-center justify-content-center position-relative">
 		<p class="mb-0 text-black fs-14 fw-semibold">크리스 서비스에 대한 셀링 크레딧 및 서비스소개 스크롤로 제공 →모든 작업 마무리 후</p>
@@ -83,14 +96,10 @@
 	</div>
 </div>
 
+<?php get_template_part('template-parts/modals/term-modal'); ?>
 
-<div class="modal fade pv-modal" id="term-modal" tabindex="-1" >
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-	  	<div class="modal-body">
-	    	<h6 class="modal-title">개인정보 처리방침</h6>
-	    	<div class="modal-btn"></div>
-	  	</div>
-    </div>
-  </div>
-</div>
+<?php get_template_part('template-parts/components/svg-code'); ?>
+
+<?php wp_footer(); ?>
+</body>
+</html>
