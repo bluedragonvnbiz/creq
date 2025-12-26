@@ -78,14 +78,14 @@ function custom_admin_template_include( $template ) {
     if ( $custom_page ) {
 
         // Kiểm tra xem user có đăng nhập không
-        if ( !$user && $custom_page !== 'login' ) {
-            wp_safe_redirect( home_url( '/creq-admin/login' ) );
-            exit;
-        }
-        if ( $user && $custom_page !== 'login' && !in_array( 'administrator', (array) $user->roles ) && !in_array( 'editor', (array) $user->roles ) ) {
-            wp_safe_redirect( home_url( '/creq-admin/login' ) );
-            exit;
-        }
+        // if ( !$user && $custom_page !== 'login' ) {
+        //     wp_safe_redirect( home_url( '/creq-admin/login' ) );
+        //     exit;
+        // }
+        // if ( $user && $custom_page !== 'login' && !in_array( 'administrator', (array) $user->roles ) && !in_array( 'editor', (array) $user->roles ) ) {
+        //     wp_safe_redirect( home_url( '/creq-admin/login' ) );
+        //     exit;
+        // }
 
         if ( $user && $custom_page === 'login' && ( in_array( 'administrator', (array) $user->roles ) || in_array( 'editor', (array) $user->roles ) ) ) {
             wp_safe_redirect( home_url( '/creq-admin' ) );
