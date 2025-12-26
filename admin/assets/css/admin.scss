@@ -1,0 +1,85 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.btn{font-weight: 600;font-size: 13px;line-height: 20px;padding: 9px 11px;border-radius: 4px;
+	&.btn-outline-secondary{border-color: #D5D5D7 !important;color: #69696B !important;background-color: white;}
+}
+.form-control{border: 1px solid #DFE5EF !important;box-shadow: none !important;border-radius: 5px;font-size: 13px;line-height: 20px;height: 40px;padding: 10px 12px;transition: none;}
+.form-select{border-color: #DFE5EF !important;box-shadow: none !important;font-size: 14px;line-height: 20px;height: 40px;color: var(--black-color);}
+.input-group{
+	.form-control{border-right: none !important;}
+	.input-group-text{border: 1px solid #DFE5EF;
+		&:last-child{border-left: none;border-radius: 0 5px 5px 0;}
+	}
+}
+.card{
+	--bs-card-border-color:#DFE5EF;
+	--bs-card-inner-border-radius:4px;
+	.card-header{padding: 14px;background-color: white;
+		.title{font-size: 14px;line-height: 20px;font-weight: 600;color: var(--black-color);}
+	}
+	.card-body{padding: 15px;}
+}
+.gap-10{gap: 10px;}
+.auth-wp{min-height: 100vh;
+	>.left{background-color: var(--main-color);}
+}
+.admin-sidebar{min-height: 100vh;padding: 20px;background-color: var(--black-color);
+	box-shadow: 0px 0px 2px 0px #919EAB33,0px 12px 24px -4px #919EAB1F;
+	>div.position-sticky{width: 210px;}
+	ul{
+		li{margin-bottom: 10px}
+		a{display: flex;align-items: center;column-gap: 8px;padding: 10px 12px;border-radius: 5px;
+			&.active{background-color: rgba(255, 255, 255, 0.15)}
+			span{color: white;font-size: 14px;}
+		}
+	}
+}
+.admin-topbar{padding: 20px;}
+.admin-primary{background: #F8F8FA}
+.admin-section{padding-left: 20px;padding-right: 20px;}
+.admin-page-action{margin-bottom: 12px;
+	>strong{color: #333B54}
+}
+.admin-form-page{display: flex;flex-direction: column;gap: 12px;
+	.form-section{display: flex;flex-direction: column;row-gap: 15px;
+		.row-section{display: flex;column-gap: 5px;min-height: 42px;
+			.col-label{display: flex;align-items: center;flex-shrink: 0;min-width: 140px;column-gap: 2px;
+				.label{font-weight: 600;font-size: 14px;line-height: 20px;}
+			}
+			.col-input{display: flex;column-gap: 20px;align-items: center;
+				.form-check{min-width: 100px;
+					.form-check-label{font-size: 14px;line-height: 20px;font-weight: 400}
+				}
+			}
+		}
+	}
+	.input-group-text{background-color: white;}
+}
+.count-box{
+	&.textarea-group{width: 100%;border: 1px solid #DFE5EF;border-radius: 5px;
+		textarea{border: none !important;resize: none;}
+		.input-group-text{border: none;justify-content: end;padding-top: 5px;padding-bottom: 5px}
+	}
+	&.invalid{
+		.count-result{color: #FF383C;}
+		input,.input-group-text{border-color: #FF383C !important;}
+	}
+	.input-group-text{font-size: 14px;line-height: 20px;}
+	.count-result{color: var(--main-color);}
+}
+.date-input-wrapper {position: relative;cursor: pointer;
+    .text-label{display: flex;align-items: center; pointer-events: none; font-size: 12px;height: 40px;width: 165px;line-height: 20px;
+    	border-radius: 5px;padding-left: 12px;
+        background: white url("../images/icons/calendar.svg") no-repeat center right 12px;
+        border: 1px solid #DFE5EF;
+    }
+    input[type="date"] {position: absolute;left: 0;top: 0; width: 100%; height: 100%; opacity: 0;cursor: pointer;}
+}

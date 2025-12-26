@@ -9,10 +9,10 @@ function add_custom_scripts() {
     wp_enqueue_script('bootstrap', LIBS_URL . '/bootstrap/bootstrap.bundle.min.js', array(), false, true);
     wp_enqueue_script('popper', LIBS_URL . '/bootstrap/popper.min.js', array(), false, true);
 
+    wp_enqueue_style('global-css', ASSETS_URL . '/css/global-css.css', array(), STYLE_VER, false);
     // Enqueue only on front-end pages (not in admin area)
     if( empty( get_query_var( 'custom_admin_page' ) ) ){
 
-        wp_enqueue_style('global-css', ASSETS_URL . '/css/global-css.css', array(), STYLE_VER, false);
         wp_enqueue_script('global-script', ASSETS_URL . '/js/global-script.js', array('jquery'), STYLE_VER, true);
 
         if(is_page('login')) {
@@ -22,9 +22,9 @@ function add_custom_scripts() {
 
     } else {
 
-        // Admin Pages
-        //wp_enqueue_style('admin-global', ASSETS_ADMIN_URL . '/css/global.css', array(), false, false);
-        //wp_enqueue_script('main', ASSETS_ADMIN_URL . '/js/main.js', array('jquery'), false, true);
+        //Admin Pages
+        wp_enqueue_style('admin-global', ASSETS_ADMIN_URL . '/css/admin.css', array(), false, false);
+        wp_enqueue_script('admin', ASSETS_ADMIN_URL . '/js/admin.js', array('jquery'), false, true);
 
     }
 
