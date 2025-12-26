@@ -1,3 +1,25 @@
+#downloadBrochure {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background-color: var(--main-color);
+  padding: 0 16px;
+  width: auto;
+  height: 48px;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: -1.25%;
+  line-height: 20px;
+}
+
 .auth-wp {
   min-height: 100vh;
 }
