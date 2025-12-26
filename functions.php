@@ -1,81 +1,72 @@
 <?php
-define( 'BJ_NONCE_KEY', "BJWPN0fwrHSD" );
-define( 'THEME_URL', get_template_directory_uri() );
-define('STYLE_VER', 1.0);
-add_action( 'after_setup_theme', 'stylevook_setup' );
-function stylevook_setup(){
-    add_theme_support( 'title-tag' );
-    add_theme_support( 'post-thumbnails' );
-    define( 'CURRENT_USER_ID', get_current_user_id());
+
+add_action('after_setup_theme', function () {
+    $autoload = get_stylesheet_directory() . '/vendor/autoload.php';
+    if (file_exists($autoload)) {
+        require_once $autoload;
+    } else {
+		// Composer autoload file not found
+		error_log('Composer autoload not found at: ' . $autoload);
+	}
+});
+
+add_action( 'after_setup_theme', 'creq_setup', 10 );
+if ( ! function_exists( 'creq_setup' ) ) {
+
+	function creq_setup() {
+
+        if ( ! is_admin() ) {
+            show_admin_bar( false ); 
+        }
+
+		//load_theme_textdomain('creq', get_stylesheet_directory() . '/languages');
+
+		add_theme_support( 'title-tag' );
+		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'customize-selective-refresh-widgets' );
+		add_theme_support( 'wp-block-styles' );
+		add_theme_support( 'align-wide' );
+		add_theme_support( 'responsive-embeds' );
+		add_theme_support( 'custom-line-height' );
+		add_theme_support( 'link-color' );
+		add_theme_support( 'custom-spacing' );
+		// page template
+
+	}
+
 }
 
-include_once "framework/define.php";
-include_once "framework/setting.php";
-include_once "framework/lib.php";
-//include_once "inc/login/login.php";
-
-foreach ( glob( get_template_directory() . "/framework/ajax/*.php" ) as $file ) {
+/**
+ * load all file from themes/creq/config directory
+ */
+foreach ( glob( get_stylesheet_directory() . "/config/*.php" ) as $file ) {
     include_once( $file );
 }
 
-add_action( 'wp_enqueue_scripts', 'pv_styles' );
-function pv_styles() {
-    wp_enqueue_script('jquery');
-    wp_register_style( 'bootstrap-style',  THEME_URL.'/assets/lib/bootstrap.min.css', 'all' );
-    wp_enqueue_style( 'bootstrap-style' );
-    
-    wp_register_style( 'wp-style', THEME_URL. '/style.css', 'all',"4" );
-    wp_enqueue_style( 'wp-style' );
-    wp_register_style( 'cus-style', THEME_URL. '/assets/global-css.css', 'all',STYLE_VER );
-    wp_enqueue_style( 'cus-style' );
-
-    wp_register_script('pv-bootstrap-popper', THEME_URL. '/assets/lib/popper.min.js', array(),false, true);
-    wp_enqueue_script('pv-bootstrap-popper');
-    wp_register_script('pv-bootstrap-script', THEME_URL. '/assets/lib/bootstrap.min.js', array(),false, true);
-    wp_enqueue_script('pv-bootstrap-script');
-    wp_register_script('tanpv-js', THEME_URL . '/assets/global-script.js', array(), STYLE_VER, true);
-    wp_localize_script('tanpv-js', 'define', 
-        array(
-            'ajax_url' => admin_url('admin-ajax.php')
-        )
-    );
-    wp_enqueue_script('tanpv-js');
-    wp_dequeue_style( 'wp-block-library' );
-
+/**
+ * load all file from themes/creq/models directory
+ */
+foreach ( glob( get_stylesheet_directory() . "/Models/*.php" ) as $file ) {
+    include_once( $file );
 }
 
-
-// add_action( 'admin_enqueue_scripts', 'my_admin_style');
-// function my_admin_style() {
-//   wp_enqueue_style( 'admin-style', get_stylesheet_directory_uri() . '/assets/admin/assets/style.css?ver=2' );
-//   wp_enqueue_script('admin-script', get_stylesheet_directory_uri()  . '/assets/admin/assets/style.js');
-// }
-
-function wpb_disable_feed() {
-die( "Hello from pvt" );
+/**
+ * load all file from themes/creq/database directory
+ */
+foreach ( glob( get_stylesheet_directory() . "/database/*.php" ) as $file ) {
+    include_once( $file );
 }
- 
-add_action('do_feed', 'wpb_disable_feed', 1);
-add_action('do_feed_rdf', 'wpb_disable_feed', 1);
-add_action('do_feed_rss', 'wpb_disable_feed', 1);
-add_action('do_feed_rss2', 'wpb_disable_feed', 1);
-add_action('do_feed_atom', 'wpb_disable_feed', 1);
-add_action('do_feed_rss2_comments', 'wpb_disable_feed', 1);
-add_action('do_feed_atom_comments', 'wpb_disable_feed', 1);
 
-add_filter( 'rest_authentication_errors', function( $result ) {
-    if ( ! empty( $result ) ) {
-        return $result;
-    }
-    if ( ! is_user_logged_in() ) {
-        return new WP_Error( 'hello', 'from pvt', array( 'status' => '' ) );
-    }
-    return $result;
-});
+/**
+ * load all file from themes/creq/functions directory
+ */
+foreach ( glob( get_stylesheet_directory() . "/functions/*.php" ) as $file ) {
+    include_once( $file );
+}
 
-// function my_login_stylesheet() {
-//     wp_enqueue_style( 'custom-login', THEME_URL. 'inc/login/login.css','all', "1");
-// }
-// add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
-
-add_filter('use_block_editor_for_post', '__return_false');
+/**
+ * load all file from themes/creq/ajax directory
+ */
+foreach ( glob( get_stylesheet_directory() . "/ajax/*.php" ) as $file ) {
+    include_once( $file );
+}
