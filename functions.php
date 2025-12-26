@@ -1,14 +1,14 @@
 <?php
 
-add_action('after_setup_theme', function () {
-    $autoload = get_stylesheet_directory() . '/vendor/autoload.php';
-    if (file_exists($autoload)) {
-        require_once $autoload;
-    } else {
-		// Composer autoload file not found
-		error_log('Composer autoload not found at: ' . $autoload);
-	}
-});
+// add_action('after_setup_theme', function () {
+//     $autoload = get_stylesheet_directory() . '/vendor/autoload.php';
+//     if (file_exists($autoload)) {
+//         require_once $autoload;
+//     } else {
+// 		// Composer autoload file not found
+// 		error_log('Composer autoload not found at: ' . $autoload);
+// 	}
+// });
 
 add_action( 'after_setup_theme', 'creq_setup', 10 );
 if ( ! function_exists( 'creq_setup' ) ) {
