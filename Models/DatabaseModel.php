@@ -9,20 +9,7 @@ class DatabaseModel
     {
         // Khởi tạo danh sách các file schema
         $this->file_list = [
-            'clients.php',
-            'client_follow_up_dates.php',
-            'client_follow_up_notes.php',
-            'businesses.php',
-            'services.php',
-            'web_service_info.php',
-            'service_ownerships.php',
-            'orders.php',
-            'ordermeta.php',
-            'order_items.php',
-            'order_itemmeta.php',
-            'payments.php',
-            'paymentmeta.php',
-            'refunds.php',
+            'user_info.php',
             // Thêm các file schema khác nếu cần
         ];
     }
@@ -43,6 +30,8 @@ class DatabaseModel
                 call_user_func($function_name, $this);
             }
         }
+
+        $this->updateTables();
     }
 
     public function updateTables()
@@ -67,7 +56,7 @@ class DatabaseModel
     {
         // Check version và thực hiện cập nhật
         $current_version = get_option('custom_db_version', '0.0');
-        $target_version = '5.2'; // Cập nhật khi thay đổi schema
+        $target_version = '1.0'; // Cập nhật khi thay đổi schema
 
         if (version_compare($current_version, $target_version, '<')) {
             $this->initTables();
@@ -90,7 +79,7 @@ class DatabaseModel
 
         // Nếu chưa đặt tên constraint thì tự động đặt
         if (empty($constraint_name)) {
-            $constraint_name = "fk_{$column_name}_to_" . str_replace($wpdb->prefix, '', $referenced_table);
+            $constraint_name = "fk_creq_{$column_name}_to_" . str_replace($wpdb->prefix, '', $referenced_table);
         }
 
         // Kiểm tra constraint đã tồn tại chưa

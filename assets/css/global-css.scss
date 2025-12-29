@@ -8,6 +8,8 @@
 :root{
 	--main-color:#705CFF;
 	--black-color:#373739;
+  --error-color: #FF383C;
+  --text-gray-color: #69696B;
     --bs-danger-rgb:255, 56, 60;
 }
 
@@ -141,3 +143,5 @@ body{font-family: 'Pretendard', 'sans-serif';line-height: 1;letter-spacing: -0.0
             transform: rotate(360deg);
   }
 }
+
+@import 'components/alert-modals';

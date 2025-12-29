@@ -5,9 +5,12 @@ add_action('wp_enqueue_scripts', 'add_custom_scripts');
 function add_custom_scripts() {
     //Register CSS
     wp_enqueue_style('bootstrap', LIBS_URL . '/bootstrap/bootstrap.min.css', array(), STYLE_VER, false);
+    wp_enqueue_style('jquery-ui', LIBS_URL . '/jquery-ui/jquery-ui.min.css', array(), STYLE_VER, false);
     //Register JS
     wp_enqueue_script('bootstrap', LIBS_URL . '/bootstrap/bootstrap.bundle.min.js', array(), false, true);
     wp_enqueue_script('popper', LIBS_URL . '/bootstrap/popper.min.js', array(), false, true);
+    wp_enqueue_script('jquery-ui', LIBS_URL . '/jquery-ui/jquery-ui.min.js', array(), false, true);
+    wp_enqueue_script('jquery-ui-ko', LIBS_URL . '/jquery-ui/datepicker-ko_KR.js', array('jquery-ui'), false, true);
 
     wp_enqueue_style('global-css', ASSETS_URL . '/css/global-css.css', array(), STYLE_VER, false);
     // Enqueue only on front-end pages (not in admin area)
@@ -18,6 +21,11 @@ function add_custom_scripts() {
         if(is_page('login')) {
             wp_enqueue_style('auth', ASSETS_URL . '/css/auth.css', array(), STYLE_VER, false);
             wp_enqueue_script('login', ASSETS_URL . '/js/login.js', array('jquery'), STYLE_VER, true);
+        }
+
+        if(is_page('register')) {
+            wp_enqueue_style('auth', ASSETS_URL . '/css/auth.css', array(), STYLE_VER, false);
+            wp_enqueue_script('register', ASSETS_URL . '/js/register.js', array('jquery'), STYLE_VER, true);
         }
 
     } else {

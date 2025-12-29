@@ -1,0 +1,166 @@
+.field-group {
+    position: relative;
+    width: 100%;
+    border: 1px solid #DFE5EF;
+    border-radius: 8px;
+    padding: 6px 12px;
+
+    &.is-error {
+        border-color: var(--error-color);
+    }
+
+    .field-label {
+        position: relative;
+        display: inline-block;
+        color: #69696B;
+        font-size: 10px;
+        line-height: 16px;
+        margin-bottom: 0;
+        letter-spacing: -0.125px; // -1.25% của 10px
+
+        &.required {
+            &::after {
+                content: "";
+                display: block;
+                width: 4px;
+                height: 4px;
+                background-color: var(--main-color);
+                border-radius: 100%;
+                position: absolute;
+                top: 2px;
+                right: -8px;
+            }
+        }
+    }
+
+    .field-control {
+        position: relative;
+        width: 100%;
+        border: none;
+        box-shadow: none !important;
+        outline: none;
+        padding: 0;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: -0.175px; // -1.25% của 14px
+        color: var(--black-color);
+
+        &::placeholder {
+            color: #D5D5D7;
+        }
+    }
+
+    .btn-icon-input {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        background: transparent;
+        outline: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+
+        &.btn-show-password {
+            .icon {
+                width: 20px;
+                height: 20px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                
+                &.hide-password {
+                    background-image: url('../../assets/images/icons/eye-open.svg');
+                }
+                &.show-password {
+                    background-image: url('../../assets/images/icons/eye-closed.svg');
+                }
+            }
+        }
+    }
+}
+
+.field-datepicker {
+    cursor: pointer;
+    input {
+        pointer-events: none;
+    }
+}
+
+.field-check {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    padding-left: 0;
+    margin: 0;
+    min-height: inherit;
+
+	.field-check-input {
+        float: none;
+        margin:0;
+        box-shadow: none;
+        opacity: 1;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        cursor: pointer;
+        flex-shrink: 0;
+		&[type="checkbox"] {
+            height: 20px;
+            width: 20px;
+            border: 1px solid #DFE5EF;
+            border-radius: 4px;
+			&:checked {
+                background-image: url('data:image/svg+xml,<svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.44801 6.77468L1.13468 4.46135C1.01003 4.3367 0.840965 4.26667 0.66468 4.26667C0.488396 4.26667 0.319332 4.3367 0.19468 4.46135C0.0700286 4.586 0 4.75506 0 4.93135C0 5.01863 0.0171926 5.10507 0.0505959 5.18571C0.0839992 5.26635 0.132959 5.33963 0.19468 5.40135L2.98135 8.18801C3.24135 8.44802 3.66135 8.44802 3.92135 8.18801L10.9747 1.13468C11.0993 1.01003 11.1694 0.840965 11.1694 0.664681C11.1694 0.488396 11.0993 0.319332 10.9747 0.194681C10.85 0.0700288 10.681 0 10.5047 0C10.3284 0 10.1593 0.0700288 10.0347 0.194681L3.44801 6.77468Z" fill="white"/></svg>');
+				background-size: 13px;
+			}
+		}
+        &:checked {
+            background-color: var(--main-color);
+        }
+	}
+	.field-check-label{
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        display: inline-block;
+        cursor: pointer;
+        opacity: 1;
+        flex-grow: 1;
+        letter-spacing: -0.15px; // -1.25% của 12px
+    }
+    .field-check-link {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        height: 100%;
+    }
+}
+
+.error-feedback {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: -0.125; // -1.25% của 10px
+    color: var(--error-color);
+    margin-top: 2px;
+
+    &::before {
+        content: "";
+        display: inline-block;
+        width: 11px;
+        height: 11px;
+        background-image: url('../../assets/images/icons/error.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-right: 2px;
+        margin-bottom: 1px;
+    }
+}
