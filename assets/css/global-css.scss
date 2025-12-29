@@ -32,6 +32,7 @@ body{font-family: 'Pretendard', 'sans-serif';line-height: 1;letter-spacing: -0.0
 	--bs-btn-disabled-opacity:0.4;
 	&.btn-primary{background-color: var(--main-color) !important;border-color: var(--main-color) !important;}
 	&.btn-dark{background-color: var(--black-color) !important;border-color: var(--black-color) !important;}
+    &.btn-outline-light{color: var(--black-color) !important;border-color: #DFE5EF !important;background-color: white !important;}
 	&.btn-lg{font-weight: 600;font-size: 12px;line-height: 18px;height: 48px;padding: 11px 15px}
 }
 
@@ -39,7 +40,7 @@ body{font-family: 'Pretendard', 'sans-serif';line-height: 1;letter-spacing: -0.0
 	&::placeholder{color: #D5D5D7}
 	font-size: 14px;line-height: 20px;
 }
-.form-check{display: flex;align-items: center;column-gap: 10px;padding-left: 0;margin: 0;min-height: inherit;
+.form-check:not(.form-switch){display: flex;align-items: center;column-gap: 10px;padding-left: 0;margin: 0;min-height: inherit;
 	.form-check-input{float: none;margin:0;box-shadow: none;opacity: 1;height: 20px;width: 20px;
 		&:checked{background-color: var(--main-color);}
 		&[type="checkbox"]{border: 1px solid #DFE5EF;border-radius: 4px;

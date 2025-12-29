@@ -8,8 +8,8 @@
 			<button class="btn border-0 btn-dark" type="button">임시저장 불러오기</button>
 		</div>
 	</div>
-	<div class="d-flex admin-form-page">
-		<div class="admin-form-page _left">
+	<div class="d-flex d-flex gap-12">
+		<div class="admin-form-page _left w-100">
 			<div class="card">
 				<div class="card-header">
 					<span class="title">캠페인 정보</span>
@@ -52,7 +52,7 @@
 							<div class="col-label required"><span class="label">캠페인명</span> <span class="text-danger">*</span></div>
 							<div class="col-input w-100">
 								<div class="input-group count-box">
-									<input type="text" class="form-control count-input" data-max="20" placeholder="내용입력">
+									<input type="text" class="form-control count-input border-end-0" data-max="20" placeholder="내용입력">
 									<div class="input-group-text"><span class="count-result">0</span>/20</div>
 								</div>
 							</div>
@@ -83,15 +83,16 @@
 						<div class="row-section">
 							<div class="col-label required"><span class="label">업로드 기간</span> <span class="text-danger">*</span></div>
 							<div class="col-input w-100 column-gap-2">
-								<div class="date-input-wrapper">
+								<div class="date-input-wrapper invalid">
 									<span class="text-label">시작일</span>
 									<input type="date" class="form-control date-input" value="" required="">
 								</div>
 								<span style="color:#D5D5D7">~</span>
-								<div class="date-input-wrapper">
+								<div class="date-input-wrapper invalid">
 									<span class="text-label">마감일</span>
 									<input type="date" class="form-control date-input" value="" required="">
 								</div>
+								<p class="mb-0 fs-13 text-danger ps-2">You can set the upload period after the recruitment period ends.</p>
 							</div>
 						</div>
 						<div class="row-section">
@@ -205,7 +206,7 @@
 					<div class="row-section align-items-start">
 						<div class="col-label required"><span class="label">제품설명</span> <span class="text-danger">*</span></div>
 						<div class="col-input w-100">
-							<div class="textarea-group count-box">
+							<div class="textarea-group count-box _120">
 								<textarea id="textarea2" class="form-control count-input auto-height" data-max="1000" placeholder="내용입력"></textarea>
 								<label for="textarea2" class="input-group-text"><span class="count-result">0</span>/1000</label>
 							</div>
@@ -217,13 +218,106 @@
 				<div class="card-header">
 					<span class="title">콘텐츠 정보</span>
 				</div>
-				<div class="card-body"></div>
+				<div class="card-body form-section">
+					<div class="row-section">
+						<div class="col-label required"><span class="label">콘텐츠 검수 유무</span> <span class="text-danger">*</span></div>
+						<div class="col-input">
+						<?php  
+						foreach (["진행","미진행"] as $key => $value) { ?>
+							<div class="form-check">
+							  <input class="form-check-input" type="radio" name="input3[]" id="radioinput3<?= $key ?>">
+							  <label class="form-check-label" for="radioinput3<?= $key ?>">
+							    <?= $value ?>
+							  </label>
+							</div>
+						<?php
+						}
+						?>
+						</div>
+					</div>
+					<div class="row-section">
+						<div class="col-label required"><span class="label">콘텐츠 2차 활용 여부</span> <span class="text-danger">*</span></div>
+						<div class="col-input">
+						<?php  
+						foreach (["필수","상관없음"] as $key => $value) { ?>
+							<div class="form-check">
+							  <input class="form-check-input" type="radio" name="input4[]" id="radioinput4<?= $key ?>">
+							  <label class="form-check-label" for="radioinput4<?= $key ?>">
+							    <?= $value ?>
+							  </label>
+							</div>
+						<?php
+						}
+						?>
+						</div>
+					</div>
+					<div class="row-section">
+						<div class="col-label required"><span class="label">프로필 제품링크 업로드</span> <span class="text-danger">*</span></div>
+						<div class="col-input">
+						<?php  
+						foreach (["필수","상관없음"] as $key => $value) { ?>
+							<div class="form-check">
+							  <input class="form-check-input" type="radio" name="input5[]" id="radioinput5<?= $key ?>">
+							  <label class="form-check-label" for="radioinput5<?= $key ?>">
+							    <?= $value ?>
+							  </label>
+							</div>
+						<?php
+						}
+						?>
+						</div>
+					</div>
+					<div class="row-section align-items-start">
+						<div class="col-label required"><span class="label">콘텐츠 가이드 </span> <span class="text-danger">*</span></div>
+						<div class="col-input w-100">
+							<div class="textarea-group count-box _120">
+								<textarea id="textarea3" class="form-control count-input auto-height" data-max="1000" placeholder="내용입력"></textarea>
+								<label for="textarea3" class="input-group-text"><span class="count-result">0</span>/1000</label>
+							</div>
+						</div>
+					</div>
+					<div class="row-section align-items-start">
+						<div class="col-label required"><span class="label">콘텐츠 가이드 <br>(권장 및 안내사항) </span> <span class="text-danger">*</span></div>
+						<div class="col-input w-100 gap-05 flex-wrap">
+							<div class="textarea-group count-box w-100 _120">
+								<textarea id="textarea4" class="form-control count-input auto-height" data-max="1000" placeholder="내용입력"></textarea>
+								<label for="textarea4" class="input-group-text"><span class="count-result">0</span>/1000</label>
+							</div>
+							<div class="d-flex gap-05 upload-box _name w-100">
+								<input type="text" readonly class="form-control file-name" placeholder="파일 선택">
+								<label class="btn btn-dark text-nowrap" type="button">
+									PDF 업로드
+									<input type="file" class="d-none input-file-upload" name="" accept=".pdf">
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="row-section">
+						<div class="col-label"><span class="label">필수 해시태그</span> <span class="text-danger">*</span></div>
+						<div class="col-input w-100">
+							<input type="text" class="form-control" placeholder="#포함하여 입력, 예) #크리크 #CREQ #인플루언서 #브랜드">
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="admin-form-page _right">
-			<div class="wiget">
+		<div class="flex-shrink-0">
+			<div class="pv-wiget position-sticky" style="top: 12px;">
 				<span class="widget-title">예상 광고비</span>
-				<div class="wiget-body"></div>
+				<div class="wiget-body">
+					<ul class="list-unstyled mb-0 list-between">
+						<li><span>총 인원 수</span><span>0명</span></li>
+					</ul>
+					<hr>
+					<ul class="list-unstyled list-between mb-0">
+						<li><span>최저 금액</span><span>0명</span></li>
+						<li><span>예상값 금액</span><span>0명</span></li>
+						<li><span>최대 금액</span><span>0명</span></li>
+					</ul>
+				</div>
+				<div class="wiget-footer">
+					<button class="btn btn-primary w-100" type="submit" disabled>저장 및 캠페인 생성</button>
+				</div>
 			</div>
 		</div>
 	</div>

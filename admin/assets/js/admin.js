@@ -11,13 +11,30 @@ jQuery(document).ready(function ($) {
             $box.toggleClass('invalid', length > max);
         });
     });
+
+    $(".sidebar-collapsed-btn").click(function(){
+        $(".admin-sidebar").toggleClass("sidebar-collapsed");
+    })
+
     $('body').on('input', '.auto-height', function () {
         this.style.height = 'auto';
         this.style.height = (this.scrollHeight) + 'px';
     });
 
-    // custom input file
 
+    // custom input file 
+    $(".input-file-upload").on("change",function(){
+        let files = this.files;
+        if (!files || files.length === 0) {
+            return;
+        }
+        let el = $(this).closest(".upload-box._name");
+        let fileName = files[0].name;
+        el.find(".file-name").val(fileName);
+    })
+
+
+    // custom input file img
      $(".upload-single-file-wp input[type='file']").change(function(e){       
         let el = $(this).closest(".upload-single-file-wp");
         let file = e.target.files[0];
