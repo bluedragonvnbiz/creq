@@ -1,5 +1,5 @@
-<aside class="admin-sidebar flex-shrink-0">
-	<div class="position-sticky top-0">
+<aside class="admin-sidebar flex-shrink-0 sidebar-collapsed">
+	<div class="position-sticky top-0" style="padding-top: 20px;">
 		<div class="text-center mb-4">
 			<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path d="M16.7728 12C16.7728 11.8176 16.7824 11.6376 16.7944 11.46L11.9534 12C11.9534 18.6264 17.3487 24 24.0018 24V19.2C20.009 19.2 16.7728 15.9768 16.7728 12Z" fill="white"/>
@@ -24,7 +24,7 @@
 			$class = $value[0] == $custom_page ? "class='active' " : "";
 		?>
 			<li>
-				<a <?= $class ?> href="<?= $site_url."/creq-admin/".$value[0] ?>"><svg width="24" height="24"><use href="#admin-icon-<?= $stt ?>"></use></svg><span><?= $value[1] ?></span></a>
+				<a <?= $class ?> href="<?= $site_url."/creq-admin/".$value[0] ?>"><svg width="24" height="24"><use href="#admin-icon-<?= $stt ?>"></use></svg><span class="text-truncate"><?= $value[1] ?></span></a>
 			</li>
 		<?php
 		}

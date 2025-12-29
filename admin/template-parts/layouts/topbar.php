@@ -1,6 +1,6 @@
 <div class="admin-topbar d-flex align-items-center justify-content-between">
 	<div class="d-flex align-items-center gap-10">
-		<button class="btn p-0 border-0" type="button">
+		<button class="btn p-0 border-0 sidebar-collapsed-btn" type="button">
 			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path d="M3.25 17.625V16.125H20.75V17.625H3.25ZM3.25 12.75V11.25H20.75V12.75H3.25ZM3.25 7.875V6.375H20.75V7.875H3.25Z" fill="#373739"/>
 			</svg>
