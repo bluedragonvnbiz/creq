@@ -87,7 +87,6 @@ jQuery(document).ready(function($){
                 if (response.success) {
                     
                 } else {
-
                     // Hiển thị feedback lỗi cho trường cụ thể nếu có
                     if ( response.data.fields ) {
                         console.log(response.data.fields);

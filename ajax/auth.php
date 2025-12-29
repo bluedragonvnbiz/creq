@@ -47,9 +47,8 @@ function creq_user_login() {
     }
 
     // Đăng nhập người dùng
-    wp_set_current_user($user->ID);
-    wp_set_auth_cookie($user->ID, true); // true để nhớ đăng nhập
-    do_action('wp_login', $user->user_login, $user); // Thực hiện hành động đăng nhập
+    $user_model = new UserModel();
+    $user_model->login($user);
 
     wp_send_json_success();
 }
@@ -63,6 +62,8 @@ function handle_register_step1() {
             'debug' => 'Nonce verification failed.'
         ]);
     }
+
+    $user_model = new UserModel();
 
     $errors = []; // Mảng chứa lỗi
     $user_email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
@@ -124,11 +125,15 @@ function handle_register_step1() {
         $errors['phone_number'] = '핸드폰번호를 입력해주세요.'; // Please enter your phone number.
     } elseif ( !is_valid_korean_phone($phone_number) ) {
         $errors['phone_number'] = '올바른 핸드폰번호 형식이 아닙니다.'; // Invalid phone number format.
+    } elseif ( $user_model->is_phone_exists($phone_number) ) {
+        $errors['phone_number'] = '이미 사용 중인 핸드폰번호입니다.'; // Phone number already in use.
     }
 
-    // Validate Birth Date
+    // Validate Birth Date (생년월일)
     if ( empty($birth_date) ) {
         $errors['birth_date'] = '생년월일을 입력해주세요.'; // Please enter your birth date.
+    } elseif ( !is_valid_date($birth_date, 'Y.m.d') ) { // kiểm tra đúng định dạng yyyy.mm.dd và phải là hợp lệ
+        $errors['birth_date'] = '올바른 생년월일 형식이 아닙니다.'; // Invalid birth date format.
     }
 
     // Validate Agreements
