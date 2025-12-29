@@ -10,6 +10,7 @@
 	--black-color:#373739;
   --error-color: #FF383C;
   --text-gray-color: #69696B;
+    --bs-danger-rgb:255, 56, 60;
 }
 
 html{font-size: 16px;}
@@ -39,18 +40,23 @@ body{font-family: 'Pretendard', 'sans-serif';line-height: 1;letter-spacing: -0.0
 	font-size: 14px;line-height: 20px;
 }
 .form-check{display: flex;align-items: center;column-gap: 10px;padding-left: 0;margin: 0;min-height: inherit;
-	.form-check-input{float: none;margin:0;box-shadow: none;opacity: 1;
+	.form-check-input{float: none;margin:0;box-shadow: none;opacity: 1;height: 20px;width: 20px;
 		&:checked{background-color: var(--main-color);}
-		&[type="checkbox"]{height: 20px;width: 20px;border: 1px solid #DFE5EF;border-radius: 4px;
+		&[type="checkbox"]{border: 1px solid #DFE5EF;border-radius: 4px;
 			&:checked{background-image: url('data:image/svg+xml,<svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.44801 6.77468L1.13468 4.46135C1.01003 4.3367 0.840965 4.26667 0.66468 4.26667C0.488396 4.26667 0.319332 4.3367 0.19468 4.46135C0.0700286 4.586 0 4.75506 0 4.93135C0 5.01863 0.0171926 5.10507 0.0505959 5.18571C0.0839992 5.26635 0.132959 5.33963 0.19468 5.40135L2.98135 8.18801C3.24135 8.44802 3.66135 8.44802 3.92135 8.18801L10.9747 1.13468C11.0993 1.01003 11.1694 0.840965 11.1694 0.664681C11.1694 0.488396 11.0993 0.319332 10.9747 0.194681C10.85 0.0700288 10.681 0 10.5047 0C10.3284 0 10.1593 0.0700288 10.0347 0.194681L3.44801 6.77468Z" fill="white"/></svg>');
 				background-size: 13px;
 			}
 		}
+        &[type="radio"]{border: 2px solid #DFE5EF;background-color: white;
+            &:checked{background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="18" height="18" rx="9" stroke="%234C33FF" stroke-width="2"/><circle cx="10" cy="10" r="6" fill="%234C33FF"/></svg>');
+                border: none;
+            }
+        }
 	}
 	.form-check-label{font-weight: 600;font-size: 12px;line-height: 18px;display: inline-block;cursor: pointer !important;opacity: 1 !important}
 }
 .invalid-feedback{color: #FF383C;font-size: 10px;margin-top: 2px;position: relative;padding-left: 13px;
-	background: url("images/icons/error.svg") no-repeat left center;
+	background: url("../images/icons/error.svg") no-repeat left center;
 }
 .form-floating-custom{border: 1px solid #DFE5EF;border-radius: 8px;padding: 4px 12px 5px;
 	input{border: none;box-shadow: none !important;padding: 0}
