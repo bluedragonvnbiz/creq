@@ -1,6 +1,6 @@
 <?php get_admin_header(); ?>
 <?php get_template_part("admin/template-parts/layouts/topbar","",["title" => "새 캠페인"]) ?>
-<section class="admin-section">
+<section class="admin-section mb-12">
 	<div class="admin-page-action d-flex justify-content-between align-items-center">
 		<strong class="fs-18">캠페인 개설하기</strong>
 		<div class="d-flex gap-3 align-content-center">
@@ -103,7 +103,7 @@
 									<option>123</option>
 								</select>
 								<div class="input-group" style="max-width:144px">
-									<input type="number" class="form-control text-end pe-0" placeholder="0">
+									<input type="number" class="form-control text-end pe-0 border-end-0" placeholder="0">
 									<div class="input-group-text fs-14">명</div>
 								</div>
 							</div>
@@ -277,7 +277,7 @@
 						</div>
 					</div>
 					<div class="row-section align-items-start">
-						<div class="col-label required"><span class="label">콘텐츠 가이드 <br>(권장 및 안내사항) </span> <span class="text-danger">*</span></div>
+						<div class="col-label required"><span class="label">콘텐츠 가이드 <br>(권장 및 안내사항) </span></div>
 						<div class="col-input w-100 gap-05 flex-wrap">
 							<div class="textarea-group count-box w-100 _120">
 								<textarea id="textarea4" class="form-control count-input auto-height" data-max="1000" placeholder="내용입력"></textarea>

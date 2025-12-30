@@ -33,6 +33,7 @@ body{font-family: 'Pretendard', 'sans-serif';line-height: 1;letter-spacing: -0.0
 	&.btn-primary{background-color: var(--main-color) !important;border-color: var(--main-color) !important;}
 	&.btn-dark{background-color: var(--black-color) !important;border-color: var(--black-color) !important;}
     &.btn-outline-light{color: var(--black-color) !important;border-color: #DFE5EF !important;background-color: white !important;}
+    &.btn-outline-primary{color: var(--main-color) !important;border-color: var(--main-color) !important;background-color: white !important;}
 	&.btn-lg{font-weight: 600;font-size: 12px;line-height: 18px;height: 48px;padding: 11px 15px}
 }
 

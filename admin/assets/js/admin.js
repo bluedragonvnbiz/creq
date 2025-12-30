@@ -21,6 +21,10 @@ jQuery(document).ready(function ($) {
         this.style.height = (this.scrollHeight) + 'px';
     });
 
+    $('.auto-height').each(function () {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
 
     // custom input file 
     $(".input-file-upload").on("change",function(){
