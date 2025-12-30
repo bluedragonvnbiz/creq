@@ -1,0 +1,92 @@
+.term-modal {
+    .modal-dialog {
+        max-width: 335px;
+        .modal-content {
+            border-radius: 16px;
+            box-shadow: 0px 10px 10px 0px #0000001A;
+            border: 0;
+            .modal-title {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 24px;
+                letter-spacing: -0.225px; // -1.25% của 18px
+                text-align: center;
+                color: var(--error-color);
+                margin: 0;
+            }
+            .modal-header {
+                padding: 32px 16px 16px;
+                border: 0;
+                .modal-title {
+                    margin: 0 auto;
+                    text-align: center;
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 20px;
+                    letter-spacing: -0.2px; // -1.25% của 16px
+                    color: var(--black-color);
+                }
+            }
+            .modal-body {
+                margin: 0 16px;
+                padding: 0;
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: -0.175px; // -1.25% của 14px
+                color: var(--black-color);
+                max-height: 240px;
+                &::-webkit-scrollbar {
+                    width: 5px;
+                    background-color: #FFFFFF;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background-color: #DFE5EF;
+                    border-radius: 10px;
+                }
+                > *:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            .modal-footer {
+                padding: 16px 16px 32px;
+                border: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .btn-close-modal,
+            .btn-agree {
+                margin: 0;
+                width: auto;
+                min-width: 100px;
+                max-width: 100%;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--main-color);
+                border-radius: 8px;
+                padding: 0 8px;
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 18px;
+                letter-spacing: -0.15px; // -1.25% của 12px
+                color: #FFFFFF;
+                border: 0;
+                box-shadow: none;
+                outline: none;
+            }
+
+            .btn-close-modal {
+                background-color: #F8F8FA;
+                color: var(--text-gray-color)
+            }
+        }
+    }
+}

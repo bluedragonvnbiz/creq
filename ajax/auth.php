@@ -70,8 +70,8 @@ function handle_register_step1() {
     $user_pass  = isset($_POST['password']) ? $_POST['password'] : '';
     $user_confirm_pass  = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
     $user_login = isset($_POST['nickname']) ? sanitize_user($_POST['nickname']) : '';
-    $full_name = isset($_POST['full_name']) ? sanitize_text_field($_POST['full_name']) : '';
-    $phone_number = isset($_POST['phone_number']) ? sanitize_text_field($_POST['phone_number']) : '';
+    $full_name = isset($_POST['full_name']) ? sanitize_text_field(trim($_POST['full_name'])) : '';
+    $phone_number = isset($_POST['phone_number']) ? sanitize_text_field(trim($_POST['phone_number'])) : '';
     $birth_date = isset($_POST['birth_date']) ? sanitize_text_field($_POST['birth_date']) : '';
     $agree_privacy = isset($_POST['agree_privacy']) ? $_POST['agree_privacy'] : '';
     $agree_terms = isset($_POST['agree_terms']) ? $_POST['agree_terms'] : '';

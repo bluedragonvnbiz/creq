@@ -1,4 +1,4 @@
-<div class="modal fade pv-modal" id="pv-alert-modal" tabindex="-1" >
+<div class="modal fade" id="pv-alert-modal" tabindex="-1" >
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">

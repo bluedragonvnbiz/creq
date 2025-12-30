@@ -15,7 +15,7 @@ jQuery(document).ready(function($) {
     });
 
     // Xử lý sự kiện input để ẩn feedback lỗi
-    $(document).on('input', '#loginForm input, #loginForm textarea, #loginForm select', function() {
+    $(document).on('input change', '#loginForm input, #loginForm textarea, #loginForm select', function() {
         const $field = $(this);
         hideErrorFeedback($field);
         validateForm();

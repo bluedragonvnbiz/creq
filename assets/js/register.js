@@ -39,30 +39,37 @@ jQuery(document).ready(function($){
         }
     });
 
-    // Kiểm tra form đăng ký khi nhập liệu, không có field rỗng sẽ active nút submit
-    $(document).on('input change', '#registerForm', function() {
-        validateForm();
+    // Chặn click trực tiếp vào checkbox có .readonly-check
+    $(document).on('click', '.readonly-check', function(e) {
+        e.preventDefault();
+        const $this = $(this);
+        const $btnModal = $this.closest('.field-check').find('.field-check-link');
+        if ($btnModal.length > 0) {
+            $btnModal.trigger('click');
+        }
     });
 
-    // Hàm kiểm tra các input checkbox required của form đăng ký
-    function validateForm() {
-        let isValidStep1 = true;
-        $('#step1 [required]').each(function() {
-            const $field = $(this);
-            const type = $field.attr('type');
+    // 2. Xử lý khi bấm nút "Đồng ý" (동의) trong Modal
+    $(document).on('click', '.btn-agree', function() {
+        // Lấy tên ID mục tiêu từ data-name="agree_terms" hoặc "agree_privacy"
+        const targetId = $(this).data('name'); 
+        const $checkbox = $('#' + targetId);
 
-            if (type === 'checkbox') {
-                if (!$field.is(':checked')) {
-                    isValidStep1 = false;
-                }
-            } else {
-                if ($field.val().trim() === '') {
-                    isValidStep1 = false;
-                }
+        if ($checkbox.length > 0) {
+            $checkbox.prop('checked', true).trigger('change');
+            if (typeof hideErrorFeedback === 'function') {
+                hideErrorFeedback($checkbox);
             }
-        });
-        $('#step1 .btn-next-step').prop('disabled', !isValidStep1);
-    }
+            $(this).closest('.modal').modal('hide');
+        }
+    });
+
+    // Kiểm tra form đăng ký khi nhập liệu, không có field rỗng sẽ active nút submit
+    $(document).on('input change', '#registerForm input, #registerForm textarea, #registerForm select', function() {
+        const $field = $(this);
+        hideErrorFeedback($field);
+        validateForm();
+    });
 
     // Xử lý sự kiện submit step 1 form đăng ký
     $(document).on('click', '#step1 .btn-next-step', function(e) {
@@ -85,11 +92,10 @@ jQuery(document).ready(function($){
             },
             success: function(response) {
                 if (response.success) {
-                    
+                    activateStep(3);
                 } else {
                     // Hiển thị feedback lỗi cho trường cụ thể nếu có
                     if ( response.data.fields ) {
-                        console.log(response.data.fields);
                         // Loop qua từng key trong object fields (email, password)
                         $.each(response.data.fields, function(fieldName, errorMessage) {
                             const $field = $form.find(`input[name="${fieldName}"]`);
@@ -115,5 +121,60 @@ jQuery(document).ready(function($){
             }
         });
     });
+
+    // Hàm kiểm tra các input checkbox required của form đăng ký
+    function validateForm() {
+        let isValidStep1 = true;
+        $('#step1 [required]').each(function() {
+            const $field = $(this);
+            const type = $field.attr('type');
+
+            if (type === 'checkbox') {
+                if (!$field.is(':checked')) {
+                    isValidStep1 = false;
+                }
+            } else {
+                if ($field.val().trim() === '') {
+                    isValidStep1 = false;
+                }
+            }
+        });
+        $('#step1 .btn-next-step').prop('disabled', !isValidStep1);
+    }
+
+    // Hàm kích hoạt step cụ thể trong form đăng ký
+    function activateStep(stepNumber) {
+        // 1. Xử lý Progress Bar
+        // Lặp qua tất cả các step để set class tương ứng logic
+        $('.progess-bar .progress-step').each(function(index) {
+            const currentStep = index + 1;
+            const stepTitle = $(this).attr('data-title') || '';
+
+            // Cập nhật tiêu đề bước hiện tại
+            if (currentStep === stepNumber && stepTitle !== '') {
+                $('.step-title').text(stepTitle);
+            }
+
+            if (currentStep < stepNumber) {
+                $(this).removeClass('active').addClass('completed');
+            } else if (currentStep === stepNumber) {
+                // Bước HIỆN TẠI (VD: truyền 3 thì 3 là active)
+                $(this).removeClass('completed').addClass('active');
+            } else {
+                // Các bước SAU bước hiện tại (VD: 4, 5...) -> Reset trắng
+                $(this).removeClass('active completed');
+            }
+        });
+
+        // 2. Xử lý hiển thị Fieldset (Nội dung form)
+        // Ẩn tất cả các fieldset có id bắt đầu bằng "step"
+        $('fieldset[id^="step"]').addClass('d-none');
+        
+        // Chỉ hiện fieldset tương ứng
+        $('#step' + stepNumber).removeClass('d-none');
+
+        // 3. Scroll lên đầu trang (UX)
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+    }
 
 }) //end jquery

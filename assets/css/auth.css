@@ -101,7 +101,7 @@
 
 .progess-bar {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 0;
   margin-bottom: 64px;
 }
@@ -180,6 +180,47 @@
   background-image: url("../images/icons/step-dot-completed.svg");
 }
 
+#registerForm .channel-item {
+  position: relative;
+  width: 100%;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.0509803922);
+  border-radius: 8px;
+  padding: 16px 16px;
+  border: 0;
+}
+#registerForm .channel-item .connect-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#registerForm .channel-item .connect-box .channel-icon {
+  max-width: 100%;
+  height: auto;
+  flex-shrink: 0;
+}
+#registerForm .channel-item .connect-box .channel-name {
+  flex-grow: 1;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.175px;
+  color: var(--black-color);
+}
+#registerForm .channel-item .connect-box .btn-channel-connect {
+  background-color: rgba(112, 92, 255, 0.1490196078);
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+  height: 30px;
+  cursor: pointer;
+}
+#registerForm .channel-item .connect-box .btn-channel-connect:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
 #registerForm button[type=submit],
 #registerForm .btn-next-step {
   background-color: var(--main-color);
@@ -341,4 +382,93 @@
   background-position: center;
   margin-right: 2px;
   margin-bottom: 1px;
+}
+
+.term-modal .modal-dialog {
+  max-width: 335px;
+}
+.term-modal .modal-dialog .modal-content {
+  border-radius: 16px;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.1019607843);
+  border: 0;
+}
+.term-modal .modal-dialog .modal-content .modal-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.225px;
+  text-align: center;
+  color: var(--error-color);
+  margin: 0;
+}
+.term-modal .modal-dialog .modal-content .modal-header {
+  padding: 32px 16px 16px;
+  border: 0;
+}
+.term-modal .modal-dialog .modal-content .modal-header .modal-title {
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.2px;
+  color: var(--black-color);
+}
+.term-modal .modal-dialog .modal-content .modal-body {
+  margin: 0 16px;
+  padding: 0;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.175px;
+  color: var(--black-color);
+  max-height: 240px;
+}
+.term-modal .modal-dialog .modal-content .modal-body::-webkit-scrollbar {
+  width: 5px;
+  background-color: #FFFFFF;
+}
+.term-modal .modal-dialog .modal-content .modal-body::-webkit-scrollbar-thumb {
+  background-color: #DFE5EF;
+  border-radius: 10px;
+}
+.term-modal .modal-dialog .modal-content .modal-body > *:last-child {
+  margin-bottom: 0;
+}
+.term-modal .modal-dialog .modal-content .modal-footer {
+  padding: 16px 16px 32px;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.term-modal .modal-dialog .modal-content .btn-close-modal,
+.term-modal .modal-dialog .modal-content .btn-agree {
+  margin: 0;
+  width: auto;
+  min-width: 100px;
+  max-width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-color);
+  border-radius: 8px;
+  padding: 0 8px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.15px;
+  color: #FFFFFF;
+  border: 0;
+  box-shadow: none;
+  outline: none;
+}
+.term-modal .modal-dialog .modal-content .btn-close-modal {
+  background-color: #F8F8FA;
+  color: var(--text-gray-color);
 }/*# sourceMappingURL=auth.css.map */

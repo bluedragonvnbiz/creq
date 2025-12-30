@@ -111,7 +111,7 @@
 
 .progess-bar {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(5, 1fr);
 	gap: 0;
 	margin-bottom: 64px;
 	.progress-step {
@@ -206,6 +206,48 @@
 }
 
 #registerForm {
+	.channel-item {
+		position: relative;
+		width: 100%;
+		box-shadow: 0px 2px 8px 0px #0000000D;
+		border-radius: 8px;
+		padding: 16px 16px;
+		border: 0;
+		.connect-box {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			.channel-icon {
+				max-width: 100%;
+				height: auto;
+				flex-shrink: 0;
+			}
+			.channel-name {
+				flex-grow: 1;
+				font-weight: 600;
+				font-size: 14px;
+				line-height: 20px;
+				letter-spacing: -0.175px; // -1.25% của 14px
+				color: var(--black-color);
+			}
+			.btn-channel-connect {
+				background-color: #705CFF26;
+				border: none;
+				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 37px;
+				height: 30px;
+				cursor: pointer;
+				&:disabled {
+					opacity: 0.4;
+					pointer-events: none;
+				}	
+			}
+		}
+	}
+	
 	button[type="submit"],
 	.btn-next-step {
 		background-color: var(--main-color);
@@ -214,3 +256,4 @@
 }
 
 @import "components/form-fields";
+@import 'components/term-modals';
