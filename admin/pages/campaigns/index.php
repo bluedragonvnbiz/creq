@@ -1,6 +1,6 @@
 <?php get_admin_header(); ?>
 <?php get_template_part("admin/template-parts/layouts/topbar","",["title" => "캠페인 관리"]) ?>
-<div class="admin-toolbar admin-section d-flex justify-content-between align-items-center">
+<div class="admin-toolbar admin-section d-flex justify-content-between align-items-center mb-12">
 	<div class="d-flex gap-10 align-items-center">
 		<div class="social-group-btn d-flex column-gap-1">
 			<button class="btn border-0 active" type="button">
@@ -59,13 +59,13 @@
 			<tbody>
 				<tr>
 					<td>
-						<div class="campaign-item">
+						<a class="campaign-item" href="?edit_id=1">
 							<img src="<?= IMAGES_URL ?>/demo/demo-1.jpg" alt="">
 							<div class="d-flex flex-column fs-12 justify-content-center">
 								<strong class="fw-semibold">캠페인명</strong>
 								<span>제품명</span>
 							</div>
-						</div>
+						</a>
 					</td>
 					<td>임시저장</td>
 					<td>
@@ -86,13 +86,13 @@
 				</tr>
  				<tr>
 					<td>
-						<div class="campaign-item">
+						<a class="campaign-item" href="?edit_id=1">
 							<img src="<?= IMAGES_URL ?>/demo/demo-2.jpg" alt="">
 							<div class="d-flex flex-column fs-12 justify-content-center">
 								<strong class="fw-semibold">캠페인명</strong>
 								<span>제품명</span>
 							</div>
-						</div>
+						</a>
 					</td>
 					<td>
 						<div class="d-flex align-items-center gap-05">
@@ -131,13 +131,13 @@
 				</tr>
 				<tr>
 					<td>
-						<div class="campaign-item">
+						<a class="campaign-item" href="?edit_id=1">
 							<img src="<?= IMAGES_URL ?>/demo/demo-2.jpg" alt="">
 							<div class="d-flex flex-column fs-12 justify-content-center">
 								<strong class="fw-semibold">캠페인명</strong>
 								<span>제품명</span>
 							</div>
-						</div>
+						</a>
 					</td>
 					<td>임시저장</td>
 					<td>
@@ -158,13 +158,13 @@
 				</tr>
 				<tr>
 					<td>
-						<div class="campaign-item">
+						<a class="campaign-item" href="?edit_id=1">
 							<img src="<?= IMAGES_URL ?>/demo/demo-2.jpg" alt="">
 							<div class="d-flex flex-column fs-12 justify-content-center">
 								<strong class="fw-semibold">캠페인명</strong>
 								<span>제품명</span>
 							</div>
-						</div>
+						</a>
 					</td>
 					<td>임시저장</td>
 					<td>
