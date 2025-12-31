@@ -152,3 +152,154 @@ function handle_register_step1() {
 
     wp_send_json_success();
 }
+
+add_action('wp_ajax_handle_register_step4', 'handle_register_step4');
+add_action('wp_ajax_nopriv_handle_register_step4', 'handle_register_step4');
+function handle_register_step4() {
+    if ( empty($_POST['action_nonce']) || !wp_verify_nonce($_POST['action_nonce'], 'user_register_nonce') ) {
+        wp_send_json_error([
+            'message' => "잘못된 요청입니다.", // Invalid request.
+            'debug' => 'Nonce verification failed.'
+        ]);
+    }
+
+    $user_model = new UserModel();
+
+    $errors = []; // Mảng chứa lỗi
+
+    // dữ liệu ở bước 1
+    $user_email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+    $user_pass  = isset($_POST['password']) ? $_POST['password'] : '';
+    $user_confirm_pass  = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
+    $user_login = isset($_POST['nickname']) ? sanitize_user($_POST['nickname']) : '';
+    $full_name = isset($_POST['full_name']) ? sanitize_text_field(trim($_POST['full_name'])) : '';
+    $phone_number = isset($_POST['phone_number']) ? sanitize_text_field(trim($_POST['phone_number'])) : '';
+    $birth_date = isset($_POST['birth_date']) ? sanitize_text_field($_POST['birth_date']) : '';
+    $agree_privacy = isset($_POST['agree_privacy']) ? $_POST['agree_privacy'] : '';
+    $agree_terms = isset($_POST['agree_terms']) ? $_POST['agree_terms'] : '';
+
+    // dữ liệu ở bước 4
+    $exchange_entity = isset($_POST['exchange_entity']) ? sanitize_text_field($_POST['exchange_entity']) : '';
+    $bank = isset($_POST['bank']) ? sanitize_text_field($_POST['bank']) : '';
+    $account_number = isset($_POST['account_number']) ? sanitize_text_field(trim($_POST['account_number'])) : '';
+    $account_holder = isset($_POST['account_holder']) ? sanitize_text_field(trim($_POST['account_holder'])) : '';
+    $id_card_file = isset($_FILES['id_card_file']) ? $_FILES['id_card_file'] : null;
+    $bankbook_file = isset($_FILES['bankbook_file']) ? $_FILES['bankbook_file'] : null;
+
+    // Validate Exchange Entity
+    if ( empty($exchange_entity) || !in_array($exchange_entity, ['individual', 'business']) ) {
+        $errors['exchange_entity'] = '환전주체를 선택해주세요.'; // Please select exchange entity.
+    }
+
+    // Validate Bank
+    if ( empty($bank) ) {
+        $errors['bank'] = '은행을 선택해주세요.'; // Please select a bank.
+    }
+
+    // Validate Account Number
+    if ( empty($account_number) ) {
+        $errors['account_number'] = '계좌번호를 입력해주세요.'; // Please enter account number.
+    }
+
+    // Validate Account Holder
+    if ( empty($account_holder) ) {
+        $errors['account_holder'] = '예금주명을 입력해주세요.'; // Please enter account holder name.
+    }
+
+    // Validate ID Card File
+    if ( $id_card_file === null || $id_card_file['error'] === UPLOAD_ERR_NO_FILE ) {
+        $errors['id_card_file'] = '신분증 사본을 업로드해주세요.'; // Please upload a copy of your ID card.
+    }
+
+    // Validate Bankbook File
+    if ( $bankbook_file === null || $bankbook_file['error'] === UPLOAD_ERR_NO_FILE ) {
+        $errors['bankbook_file'] = '통장 사본을 업로드해주세요.'; // Please upload a copy of your bankbook.
+    }
+
+    if ( !empty($errors) ) {
+        wp_send_json_error([
+            'fields' => $errors
+        ]);
+    }
+
+    $data = [
+        'user_email' => $user_email,
+        'user_pass' => $user_pass,
+        'user_login' => $user_login,
+        'full_name' => $full_name,
+        'phone_number' => $phone_number,
+        'birth_date' => $birth_date,
+        'exchange_entity' => $exchange_entity,
+        'bank' => $bank,
+        'account_number' => $account_number,
+        'account_holder' => $account_holder,
+        'id_card_file' => $id_card_file,
+        'bankbook_file' => $bankbook_file,
+    ];
+
+    $allowed_mimes = [
+        'image/jpeg' => ['jpg', 'jpeg'],
+        'image/png'  => ['png'],
+        'application/pdf' => ['pdf'],
+    ];
+
+    $uploaded_id_card = null;
+    $uploaded_bankbook = null;
+
+    $res_id = creq_custom_store_files('id_card_file', [
+        'dest_subdir'   => 'id_cards',
+        'allowed_mimes' => $allowed_mimes,
+        'max_size'      => 5 * 1024 * 1024,
+        'required'      => true,
+        'rollback_on_fail' => true
+    ]);
+
+    if ( is_wp_error($res_id) ) {
+        $errors['id_card_file'] = $res_id->get_error_message();
+    } else {
+        $uploaded_id_card = $res_id['files'][0];
+    }
+
+    if ( empty($errors) ) {
+        $res_bank = creq_custom_store_files('bankbook_file', [
+            'dest_subdir'   => 'bankbooks', // Thư mục đích
+            'allowed_mimes' => $allowed_mimes,
+            'max_size'      => 5 * 1024 * 1024,
+            'required'      => true,
+            'rollback_on_fail' => true
+        ]);
+
+        if ( is_wp_error($res_bank) ) {
+            $errors['bankbook_file'] = $res_bank->get_error_message();
+            
+            // ROLLBACK
+            if ($uploaded_id_card && file_exists($uploaded_id_card['path'])) {
+                @unlink($uploaded_id_card['path']);
+            }
+        } else {
+            $uploaded_bankbook = $res_bank['files'][0];
+        }
+    }
+
+    if ( !empty($errors) ) {
+        wp_send_json_error([ 'fields' => $errors ]);
+    }
+
+    // Đăng ký user
+    $new_user_id = $user_model->register([
+        'username' => $user_login,
+        'password' => $user_pass,
+        'email'    => $user_email,
+        'full_name' => $full_name,
+        'phone_number' => $phone_number,
+        'birth_date' => $birth_date,
+        'exchange_entity' => $exchange_entity,
+        'bank' => $bank,
+        'account_number' => $account_number,
+        'account_holder' => $account_holder,
+        'id_card_url' => $uploaded_id_card['url'],
+        'bankbook_url' => $uploaded_bankbook['url'],
+    ]);
+
+    wp_send_json_success($data);
+}

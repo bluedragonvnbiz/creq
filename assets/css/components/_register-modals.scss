@@ -1,4 +1,5 @@
-.term-modal {
+.term-modal,
+.channel-modal {
     .modal-dialog {
         max-width: 335px;
         .modal-content {
@@ -61,7 +62,8 @@
             }
 
             .btn-close-modal,
-            .btn-agree {
+            .btn-agree,
+            .btn-confirm {
                 margin: 0;
                 width: auto;
                 min-width: 100px;
@@ -81,11 +83,97 @@
                 border: 0;
                 box-shadow: none;
                 outline: none;
+                cursor: pointer;
+                &:disabled {
+                    opacity: 0.4;
+                    pointer-events: none;
+                }
             }
 
             .btn-close-modal {
                 background-color: #F8F8FA;
                 color: var(--text-gray-color)
+            }
+        }
+    }
+}
+
+.channel-modal {
+    .option-list {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 8px;
+        &.grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        &.grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .option-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            height: 36px;
+            padding: 0 4px;
+            border: 1px solid #DFE5EF;
+            border-radius: 50rem;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: -0.175px; // -1.25% của 14px
+            color: var(--black-color);
+            input[type="checkbox"] {
+                display: none;
+            }
+            &:has(input[type="checkbox"]:checked) {
+                background-color: #705CFF26;
+                border-color: var(--main-color);
+                color: var(--main-color);
+            }
+        }
+    }
+    .other-option {
+        &:has(input:focus),
+        &:has(input:not(:placeholder-shown)) {
+            border: 1px solid var(--main-color);
+            .field-label {
+                color: var(--main-color);
+            }
+        }
+    }
+}
+
+#tax-info-modal {
+    .box-info {
+        position: relative;
+        width: 100%;
+        background-color: #F8F8FA;
+        border: 0;
+        border-radius: 8px;
+        padding: 8px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        .box-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            font-size: 12px;
+            line-height: 18px;
+            letter-spacing: -0.15px; // -1.25% của 12px
+            color: var(--black-color);
+            .label {
+                font-weight: 400;
+                width: 100%;
+                max-width: 100px;
+                flex-shrink: 0;
+            }
+            .value {
+                font-weight: 600;
+                width: 100%;
+                text-align: right;
+                flex-grow: 1;
             }
         }
     }

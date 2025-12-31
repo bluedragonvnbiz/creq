@@ -45,11 +45,24 @@ class UserModel {
 
     /**
      * Đăng nhập người dùng
+     * @param WP_User $user Đối tượng người dùng WordPress
      */
     public function login($user) {
         wp_set_current_user($user->ID);
         wp_set_auth_cookie($user->ID, true); // true để nhớ đăng nhập
         do_action('wp_login', $user->user_login, $user); // Thực hiện hành động đăng nhập
+    }
+
+    /**
+     * Đăng ký người dùng
+     * @param array $data Mảng dữ liệu bao gồm 'username', 'password', 'email', ...
+     */
+    public function register($data) {
+        $user_id = wp_create_user($data['username'], $data['password'], $data['email']);
+        if (is_wp_error($user_id)) {
+            return $user_id; // Trả về lỗi nếu có
+        }
+        return get_user_by('ID', $user_id);
     }
 
     /**
