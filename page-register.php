@@ -228,9 +228,9 @@
 						<div class="col-12">
 							<div class="field-group">
 								<label class="field-label required">입금은행</label>
-								<select class="field-select" name="bank" required>
+								<select class="field-select" name="bank_id" required>
 									<option value="" disabled selected></option>
-									<option value="OO은행">OO은행</option>
+									<option value="1">OO은행</option>
 								</select>
 							</div>
 						</div>

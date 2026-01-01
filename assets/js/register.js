@@ -478,7 +478,7 @@ jQuery(document).ready(function($){
     // Hàm kiểm tra các input required của step 4
     function validateStep4() {
         const exchangeEntity = $('input[name="exchange_entity"]:checked').val();
-        const bankName = $('select[name="bank"]').val();
+        const bankID = $('select[name="bank_id"]').val();
         const accNum = $('input[name="account_number"]').val().trim();
         const accHolder = $('input[name="account_holder"]').val().trim();
         
@@ -487,7 +487,7 @@ jQuery(document).ready(function($){
 
         const $btnSubmit = $('#step4 .btn-submit');
 
-        if (exchangeEntity && bankName && accNum && accHolder && hasIdFile && hasBankFile) {
+        if (exchangeEntity && bankID && accNum && accHolder && hasIdFile && hasBankFile) {
             $btnSubmit.prop('disabled', false);
         } else {
             $btnSubmit.prop('disabled', true);

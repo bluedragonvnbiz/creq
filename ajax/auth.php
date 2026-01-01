@@ -177,10 +177,11 @@ function handle_register_step4() {
     $birth_date = isset($_POST['birth_date']) ? sanitize_text_field($_POST['birth_date']) : '';
     $agree_privacy = isset($_POST['agree_privacy']) ? $_POST['agree_privacy'] : '';
     $agree_terms = isset($_POST['agree_terms']) ? $_POST['agree_terms'] : '';
+    $referral_code = isset($_POST['referral_code']) ? sanitize_text_field(trim($_POST['referral_code'])) : '';
 
     // dữ liệu ở bước 4
-    $exchange_entity = isset($_POST['exchange_entity']) ? sanitize_text_field($_POST['exchange_entity']) : '';
-    $bank = isset($_POST['bank']) ? sanitize_text_field($_POST['bank']) : '';
+    $exchange_entity = isset($_POST['exchange_entity']) ? sanitize_text_field($_POST['exchange_entity']) : null;
+    $bank_id = isset($_POST['bank_id']) ? intval($_POST['bank_id']) : 0;
     $account_number = isset($_POST['account_number']) ? sanitize_text_field(trim($_POST['account_number'])) : '';
     $account_holder = isset($_POST['account_holder']) ? sanitize_text_field(trim($_POST['account_holder'])) : '';
     $id_card_file = isset($_FILES['id_card_file']) ? $_FILES['id_card_file'] : null;
@@ -192,8 +193,8 @@ function handle_register_step4() {
     }
 
     // Validate Bank
-    if ( empty($bank) ) {
-        $errors['bank'] = '은행을 선택해주세요.'; // Please select a bank.
+    if ( empty($bank_id) || !is_numeric($bank_id) || $bank_id <= 0 ) {
+        $errors['bank_id'] = '은행을 선택해주세요.'; // Please select a bank.
     }
 
     // Validate Account Number
@@ -221,21 +222,6 @@ function handle_register_step4() {
             'fields' => $errors
         ]);
     }
-
-    $data = [
-        'user_email' => $user_email,
-        'user_pass' => $user_pass,
-        'user_login' => $user_login,
-        'full_name' => $full_name,
-        'phone_number' => $phone_number,
-        'birth_date' => $birth_date,
-        'exchange_entity' => $exchange_entity,
-        'bank' => $bank,
-        'account_number' => $account_number,
-        'account_holder' => $account_holder,
-        'id_card_file' => $id_card_file,
-        'bankbook_file' => $bankbook_file,
-    ];
 
     $allowed_mimes = [
         'image/jpeg' => ['jpg', 'jpeg'],
@@ -291,15 +277,30 @@ function handle_register_step4() {
         'password' => $user_pass,
         'email'    => $user_email,
         'full_name' => $full_name,
-        'phone_number' => $phone_number,
+        'phone' => $phone_number,
         'birth_date' => $birth_date,
+        'referral_code' => $referral_code,
         'exchange_entity' => $exchange_entity,
-        'bank' => $bank,
+        'bank_id' => $bank_id,
         'account_number' => $account_number,
         'account_holder' => $account_holder,
-        'id_card_url' => $uploaded_id_card['url'],
-        'bankbook_url' => $uploaded_bankbook['url'],
+        'id_card' => $uploaded_id_card['url'],
+        'bankbook' => $uploaded_bankbook['url'],
     ]);
+    if ( is_wp_error($new_user_id) ) {
+        // Xoá file đã upload khi đăng ký thất bại
+        if ($uploaded_id_card && file_exists($uploaded_id_card['path'])) {
+            @unlink($uploaded_id_card['path']);
+        }
+        if ($uploaded_bankbook && file_exists($uploaded_bankbook['path'])) {
+            @unlink($uploaded_bankbook['path']);
+        }
 
-    wp_send_json_success($data);
+        wp_send_json_error([
+            'message' => '회원가입에 실패했습니다. 다시 시도해주세요.', // Registration failed. Please try again.
+            'debug' => $new_user_id->get_error_message()
+        ]);
+    }
+
+    wp_send_json_success();
 }
