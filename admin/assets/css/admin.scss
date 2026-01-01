@@ -1,3 +1,6 @@
+:root{
+	--bs-border-color:#DFE5EF;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -8,9 +11,21 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+a{color: var(--black-color);}
+
 .fs-12{font-size: 12px;line-height: 18px}
 .fs-13{font-size: 13px;line-height: 20px}
 .text-gray{color: #69696B}
+.mb-12{margin-bottom: 12px;}
+.gap-05{gap: 5px;}
+.gap-10{gap: 10px;}
+.gap-12{gap: 12px;}
+.gap-15{gap: 15px;}
+
+.p-10{padding: 10px}
+.bg-gray{background-color: #F8F8FA}
+.w-140{width: 140px}
+
 .btn{font-weight: 600;font-size: 13px;line-height: 20px;padding: 9px 11px;border-radius: 4px;
 	&.btn-outline-secondary{border-color: #D5D5D7 !important;color: #69696B !important;background-color: white;}
 	&.btn-sm{padding: 6px 11px;font-size: 13px;line-height: 18px}
@@ -31,12 +46,24 @@ input[type=number] {
 	.card-header{padding: 14px;background-color: white;
 		.title{font-size: 14px;line-height: 20px;font-weight: 600;color: var(--black-color);}
 	}
-	.card-body{padding: 15px;}
+	.card-body{padding: 15px;
+		&:not(:last-child){border-bottom: 1px solid #DFE5EF;}
+	}
+	.info-list{display: flex;flex-direction: column;gap: 15px;font-size: 13px;line-height: 20px;margin-bottom: 0;
+		li{display: flex;align-items: center;column-gap: 8px;
+			.label{font-weight: 600;font-size: 14px;line-height: 20px;min-height: 40px;display: inline-block;display: flex; align-items: center;
+				min-width: 140px;flex-shrink: 0;
+			}
+		}
+	}
 }
-.gap-05{gap: 5px;}
-.gap-10{gap: 10px;}
-.gap-12{gap: 12px;}
-.gap-15{gap: 15px;}
+
+.badge{border-radius: 4px;padding: 5px 10px;font-size: 12px;line-height: 18px;font-weight: 400;
+	&.text-bg-secondary{background-color: #DFE5EF !important;color: #69696B !important}
+	&.text-bg-white{border:1px solid #69696B !important;color: var(--black-color) !important;padding: 4px 9px;}
+	&.text-bg-primary{background-color: rgba(112, 92, 255, 0.15) !important;color: var(--main-color) !important;}
+	&.text-bg-light{background-color: #F8F8FA !important;color: #69696B !important}
+}
 
 .max-content{width: max-content !important}
 .auth-wp{min-height: 100vh;
@@ -59,7 +86,7 @@ input[type=number] {
 }
 .admin-topbar{padding: 20px;}
 .admin-primary{background: #F8F8FA;border-bottom: 70px solid white;}
-.admin-section{padding-left: 20px;padding-right: 20px;padding-bottom: 12px}
+.admin-section{padding-left: 20px;padding-right: 20px;}
 .admin-page-action{margin-bottom: 12px;
 	>strong{color: #333B54}
 }
@@ -111,7 +138,7 @@ input[type=number] {
 	--bs-table-border-color:#DFE5EF;
 	--bs-table-striped-bg:#F8F8FA;
 	--bs-table-striped-color:var(--black-color);
-	&.table-borderless{
+	&.table-borderless{vertical-align: middle;
 		thead{
 			th{font-weight: 600;font-size: 14px;line-height: 20px;background-color: #F8F8FA;padding: 5px 10px;border-bottom: 5px solid transparent;}
 		}
@@ -186,10 +213,39 @@ input[type=number] {
 }
 .admin-modal{
 	.modal-dialog{max-width: 400px}
-	.modal-content{border-radius: 12px}
-	.modal-body{padding: 30px 16px}
+	.modal-content{border-radius: 12px;border: none}
+	.modal-body{padding: 30px 15px}
 	.modal-footer{justify-content: center;column-gap: 10px;
 		.btn{margin: 0;min-width: 100px;}
+	}
+	.table{
+		&.table-borderless{
+			thead th{padding: 4px}
+			tbody td{padding: 5px}
+		}
+	} 
+}
+
+.camp-header{padding: 9px 20px}
+.camp-nav{border-bottom: 2px solid #DFE5EF;margin-bottom: 20px;
+	a{width: 100%;text-align: center;color: #D5D5D7;font-weight: 600;font-size: 14px;line-height: 20px;padding-top: 9px;padding-bottom: 9px;
+		border-bottom:2px solid transparent ;margin-bottom: -2px;
+		&.active{color: var(--main-color);border-color: var(--main-color);}
+	}
+}
+
+.custom-table{background-color: white;border: 1px solid #DFE5EF;border-radius: 4px;font-size: 12px;line-height: 18px;
+	.table-row{padding: 10px 15px;display: flex;column-gap: 20px;
+		>*{width: 10%;display: inline-block;
+			&:first-child{width: auto;flex: 1;}
+		}
+	}
+	.table-section{border-bottom: 1px solid #DFE5EF;}
+	.table-head{
+		>*{font-weight: 600;}
+	}
+	.table-body{
+
 	}
 }
 
