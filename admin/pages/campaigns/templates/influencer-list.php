@@ -22,7 +22,7 @@
 		</div>
 	</div>
 </div>
-<div class="admin-section p-10 d-flex gap-10 align-items-center influencer-filter">
+<div class="admin-section p-10 d-flex gap-10 align-items-center admin-filter-btn">
 	<button class="btn btn-outline-light" type="button">
 		<span>전체</span>
 		<span class="text-primary">0 / 0</span>
