@@ -19,7 +19,7 @@ class UserModel {
     /**
      * Kiểm tra số điện thoại đã tồn tại chưa (trong bảng user_info)
      */
-    public function is_phone_exists($phone_number) {
+    public function isPhoneExists($phone_number) {
         $cleared_phone = clear_phone_number($phone_number);
         // Truy vấn bảng user_info để kiểm tra số điện thoại
         $query = $this->wpdb->prepare(
@@ -41,6 +41,44 @@ class UserModel {
         }
 
         return false; // Số điện thoại chưa tồn tại
+    }
+
+    /**
+     * Kiểm tra name đã tồn tại chưa (display_name trong bảng wp_users)
+     */
+    public function isNameExists($name) {
+        $query = $this->wpdb->prepare(
+            "SELECT ID FROM {$this->table} WHERE display_name = %s",
+            $name
+        );
+        $results = $this->wpdb->get_results($query);
+
+        return !empty($results);
+    }
+
+    /**
+     * Kiểm tra sự tồn tại của người dùng với tên và số điện thoại
+     * @param string $name Tên hiển thị (display_name trong bảng wp_users)
+     * @param string $phone Số điện thoại (trong bảng user_info)
+     * @return string|false Trả về email nếu tồn tại, ngược lại trả về false
+     */
+    public function findUserEmailByNameAndPhone($name, $phone) {
+        $cleared_phone = clear_phone_number($phone);
+        $query = $this->wpdb->prepare(
+            "SELECT u.ID, u.user_email
+            FROM {$this->table} u
+            INNER JOIN {$this->wpdb->prefix}user_info ui ON u.ID = ui.user_id
+            WHERE u.display_name = %s AND ui.phone = %s",
+            $name,
+            $cleared_phone
+        );
+        $results = $this->wpdb->get_row($query);
+
+        if (empty($results)) {
+            return false; // Người dùng không tồn tại
+        }
+
+        return $results->user_email;
     }
 
     /**

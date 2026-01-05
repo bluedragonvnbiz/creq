@@ -56,7 +56,7 @@ class DatabaseModel
     {
         // Check version và thực hiện cập nhật
         $current_version = get_option('custom_db_version', '0.0');
-        $target_version = '1.0'; // Cập nhật khi thay đổi schema
+        $target_version = '1.1'; // Cập nhật khi thay đổi schema
 
         if (version_compare($current_version, $target_version, '<')) {
             $this->initTables();

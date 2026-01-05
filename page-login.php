@@ -1,3 +1,11 @@
+<?php 
+	// Nếu người dùng đã đăng nhập, chuyển hướng họ đến trang chủ
+	if ( is_user_logged_in() ) {
+		wp_redirect( home_url() );
+		exit;
+	}
+?>
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -25,15 +33,15 @@
 				<div class="row g-3">
 					<div class="col-12">
 						<div class="field-group">
-							<label class="field-label required">이메일</label>
-							<input type="text" class="field-control" name="email" placeholder="이메일을 입력해주세요." required>
+							<label class="field-label required" for="email">이메일</label>
+							<input type="text" class="field-control" id="email" name="email" placeholder="이메일을 입력해주세요." required>
 						</div>
 					</div>
 					<div class="col-12">
 						<div class="field-group">
-							<label class="field-label required">비밀번호</label>
+							<label class="field-label required" for="password">비밀번호</label>
 							<div class="d-flex align-items-center gap-2">
-								<input type="password" class="field-control flex-grow-1" name="password" placeholder="비밀번호를 입력해주세요." required>
+								<input type="password" class="field-control flex-grow-1" id="password" name="password" placeholder="비밀번호를 입력해주세요." required>
 								<button type="button" class="btn-icon-input btn-show-password flex-shrink-0">
 									<span class="icon hide-password"></span>
 								</button>

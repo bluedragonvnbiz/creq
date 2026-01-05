@@ -1,3 +1,11 @@
+<?php 
+	// Nếu người dùng đã đăng nhập, chuyển hướng họ đến trang chủ
+	if ( is_user_logged_in() ) {
+		wp_redirect( home_url() );
+		exit;
+	}
+?>
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -7,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class(''); ?>>
 
 <?php get_template_part('template-parts/components/header-back'); ?>
 
@@ -61,15 +69,15 @@
 					<div class="row g-3">
 						<div class="col-12">
 							<div class="field-group">
-								<label class="field-label required">이메일 (로그인용 ID)</label>
-								<input type="text" class="field-control" name="email" autocomplete="off" placeholder="" required>
+								<label class="field-label required" for="email">이메일 (로그인용 ID)</label>
+								<input type="text" class="field-control" id="email" name="email" autocomplete="off" placeholder="" required>
 							</div>
 						</div>
 						<div class="col-12">
 							<div class="field-group">
-								<label class="field-label required">비밀번호</label>
+								<label class="field-label required" for="password">비밀번호</label>
 								<div class="d-flex align-items-center gap-2">
-									<input type="password" class="field-control flex-grow-1" name="password" autocomplete="new-password" placeholder="영문, 숫자 조합 6자리 이상" required>
+									<input type="password" class="field-control flex-grow-1" id="password" name="password" autocomplete="new-password" placeholder="영문, 숫자 조합 6자리 이상" required>
 									<button type="button" class="btn-icon-input btn-show-password flex-shrink-0">
 										<span class="icon hide-password"></span>
 									</button>
@@ -78,9 +86,9 @@
 						</div>
 						<div class="col-12">
 							<div class="field-group">
-								<label class="field-label required">비밀번호 확인</label>
+								<label class="field-label required" for="confirm_password">비밀번호 확인</label>
 								<div class="d-flex align-items-center gap-2">
-									<input type="password" class="field-control flex-grow-1" name="confirm_password" autocomplete="new-password" placeholder="" required>
+									<input type="password" class="field-control flex-grow-1" id="confirm_password" name="confirm_password" autocomplete="new-password" placeholder="" required>
 									<button type="button" class="btn-icon-input btn-show-password flex-shrink-0">
 										<span class="icon hide-password"></span>
 									</button>
@@ -89,27 +97,27 @@
 						</div>
 						<div class="col-12">
 							<div class="field-group">
-								<label class="field-label required">닉네임</label>
-								<input type="text" class="field-control" name="nickname" placeholder="" required>
+								<label class="field-label required" for="nickname">닉네임</label>
+								<input type="text" class="field-control" id="nickname" name="nickname" placeholder="" required>
 							</div>
 						</div>
 						<div class="col-12">
 							<div class="field-group">
-								<label class="field-label required">이름</label>
-								<input type="text" class="field-control" name="full_name" placeholder="" required>
+								<label class="field-label required" for="full_name">이름</label>
+								<input type="text" class="field-control" id="full_name" name="full_name" placeholder="" required>
 							</div>
 						</div>
 						<div class="col-12">
 							<div class="field-group">
-								<label class="field-label required">핸드폰번호</label>
-								<input type="tel" inputmode="numeric" class="field-control" name="phone_number" maxlength="13" autocomplete="off" placeholder="" required>
+								<label class="field-label required" for="phone_number">핸드폰번호</label>
+								<input type="tel" inputmode="numeric" class="field-control" id="phone_number" name="phone_number" maxlength="13" autocomplete="off" placeholder="" required>
 							</div>
 						</div>
 						<div class="col-12">
 							<div class="field-group field-datepicker">
-								<label class="field-label required">생년월일</label>
+								<label class="field-label required" for="birth_date">생년월일</label>
 								<div class="d-flex align-items-center gap-2">
-									<input type="text" class="field-control" name="birth_date" autocomplete="off" placeholder="" readonly required>
+									<input type="text" class="field-control" id="birth_date" name="birth_date" autocomplete="off" placeholder="" readonly required>
 									<button type="button" class="btn-icon-input btn-select-date flex-shrink-0">
 										<img width="20" height="20" src="<?= IMAGES_URL; ?>/icons/calendar.svg" alt="Calendar Icon">
 									</button>
@@ -118,8 +126,8 @@
 						</div>
 						<div class="col-12">
 							<div class="field-group">
-								<label class="field-label">추천인 코드</label>
-								<input type="text" class="field-control" name="referral_code" autocomplete="off" placeholder="">
+								<label class="field-label" for="referral_code">추천인 코드</label>
+								<input type="text" class="field-control" id="referral_code" name="referral_code" autocomplete="off" placeholder="">
 							</div>
 						</div>
 						<div class="col-12">
@@ -227,8 +235,8 @@
 					<div class="row g-3">
 						<div class="col-12">
 							<div class="field-group">
-								<label class="field-label required">입금은행</label>
-								<select class="field-select" name="bank_id" required>
+								<label class="field-label required" for="bank_id">입금은행</label>
+								<select class="field-select" id="bank_id" name="bank_id" required>
 									<option value="" disabled selected></option>
 									<option value="1">OO은행</option>
 								</select>
@@ -236,14 +244,14 @@
 						</div>
 						<div class="col-12">
 							<div class="field-group">
-								<label class="field-label required">계좌번호</label>
-								<input type="text" inputmode="numeric" class="field-control" name="account_number" autocomplete="off" placeholder="" required>
+								<label class="field-label required" for="account_number">계좌번호</label>
+								<input type="text" inputmode="numeric" class="field-control" id="account_number" name="account_number" autocomplete="off" placeholder="" required>
 							</div>
 						</div>
 						<div class="col-12">
 							<div class="field-group">
-								<label class="field-label required">예금주</label>
-								<input type="text" class="field-control" name="account_holder" autocomplete="off" placeholder="" required>
+								<label class="field-label required" for="account_holder">예금주</label>
+								<input type="text" class="field-control" id="account_holder" name="account_holder" autocomplete="off" placeholder="" required>
 							</div>
 						</div>
 						<div class="col-12">

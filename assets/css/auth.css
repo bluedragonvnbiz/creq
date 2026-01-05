@@ -28,7 +28,7 @@
   background-color: #F8F8FA;
 }
 .auth-wp .right {
-  padding: 92px 16px;
+  padding: 80px 16px;
 }
 .auth-wp .intro-text {
   font-weight: 600;
@@ -398,11 +398,64 @@
   color: var(--text-gray-color);
   margin: 0;
 }
-#successWrap .btn-submit {
-  background-color: var(--main-color);
+#successWrap .result-text {
+  position: relative;
+  width: 100%;
+  background-color: #F8F8FA;
+  padding: 16px 16px;
+  border-radius: 8px;
+  border: 1px solid #DFE5EF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.175px;
+  text-align: center;
+  color: var(--black-color);
+  margin: 0;
+}
+#successWrap .result-text #foundEmail {
+  font-weight: 600;
+  color: var(--main-color);
+}
+#successWrap .btn-mobi-fixed-bottom {
   margin-top: 32px;
 }
+#successWrap .btn-mobi-fixed-bottom .btn-submit {
+  background-color: var(--main-color);
+}
 
+.page-find-email .btn-mobi-fixed-bottom {
+  margin-top: 32px;
+}
+.page-find-email .btn-mobi-fixed-bottom button[type=submit],
+.page-find-email .btn-mobi-fixed-bottom .btn-submit {
+  background-color: var(--main-color);
+}
+
+@media (max-width: 991px) {
+  .page-find-email .auth-wp .right {
+    padding: 80px 16px 88px;
+  }
+  .page-find-email .btn-mobi-fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    padding: 8px 16px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    margin-top: 0;
+    box-shadow: 0px -1px 10px 0px rgba(0, 0, 0, 0.0784313725);
+  }
+  .page-find-email .btn-mobi-fixed-bottom button[type=submit],
+  .page-find-email .btn-mobi-fixed-bottom .btn-submit {
+    background-color: var(--main-color);
+  }
+}
 .field-group {
   position: relative;
   width: 100%;

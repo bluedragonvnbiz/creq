@@ -2,8 +2,8 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Don't load directly.
 
 add_action('wp_ajax_user_login', 'user_login');
-add_action('wp_ajax_nopriv_user_login', 'creq_user_login');
-function creq_user_login() {
+add_action('wp_ajax_nopriv_user_login', 'user_login');
+function user_login() {
     if ( empty($_POST['action_nonce']) || !wp_verify_nonce($_POST['action_nonce'], 'user_login_nonce') ) {
         wp_send_json_error([
             'message' => "잘못된 요청입니다.", // Invalid request.
@@ -125,7 +125,7 @@ function handle_register_step1() {
         $errors['phone_number'] = '핸드폰번호를 입력해주세요.'; // Please enter your phone number.
     } elseif ( !is_valid_korean_phone($phone_number) ) {
         $errors['phone_number'] = '올바른 핸드폰번호 형식이 아닙니다.'; // Invalid phone number format.
-    } elseif ( $user_model->is_phone_exists($phone_number) ) {
+    } elseif ( $user_model->isPhoneExists($phone_number) ) {
         $errors['phone_number'] = '이미 사용 중인 핸드폰번호입니다.'; // Phone number already in use.
     }
 
@@ -303,4 +303,50 @@ function handle_register_step4() {
     }
 
     wp_send_json_success();
+}
+
+add_action('wp_ajax_user_find_email', 'user_find_email');
+add_action('wp_ajax_nopriv_user_find_email', 'user_find_email');
+function user_find_email() {
+    if ( empty($_POST['action_nonce']) || !wp_verify_nonce($_POST['action_nonce'], 'user_find_email_nonce') ) {
+        wp_send_json_error([
+            'message' => "잘못된 요청입니다.", // Invalid request.
+            'debug' => 'Nonce verification failed.'
+        ]);
+    }
+
+    $user_model = new UserModel();
+
+    $errors = []; // Mảng chứa lỗi
+    $full_name = isset($_POST['full_name']) ? sanitize_text_field(trim($_POST['full_name'])) : '';
+    $phone_number = isset($_POST['phone_number']) ? sanitize_text_field(trim($_POST['phone_number'])) : '';
+
+    // Validate Full name (이름)
+    if ( empty($full_name) ) {
+        $errors['full_name'] = '이름을 입력해주세요.'; // Please enter your full name.
+    }
+
+    // Validate Phone number (핸드폰번호)
+    if ( empty($phone_number) ) {
+        $errors['phone_number'] = '핸드폰번호를 입력해주세요.'; // Please enter your phone number.
+    } elseif ( !is_valid_korean_phone($phone_number) ) {
+        $errors['phone_number'] = '올바른 핸드폰번호 형식이 아닙니다.'; // Invalid phone number format.
+    }
+
+    // Kiểm tra sự tồn tại của người dùng với tên và số điện thoại
+    $user_email = $user_model->findUserEmailByNameAndPhone($full_name, $phone_number);
+    if ( !$user_email ) {
+        $errors['full_name'] = '이름을 다시 확인해주세요.'; // Please check your full name again.
+        $errors['phone_number'] = '핸드폰번호를 다시 확인해주세요.'; // Please check your phone number again.
+    }
+
+    if ( !empty($errors) ) {
+        wp_send_json_error([
+            'fields' => $errors
+        ]);
+    }
+
+    wp_send_json_success([
+        'user_email' => $user_email
+    ]);
 }
