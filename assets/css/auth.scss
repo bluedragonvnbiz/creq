@@ -1,3 +1,9 @@
+.page-auth {
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	background-color: inherit;
+}
+
 #downloadBrochure {
 	position: absolute;
 	bottom: 32px;
@@ -21,14 +27,13 @@
 }
 
 .auth-wp{
-
 	min-height: 100vh;
 	.left{
 		padding: 24px 16px;
 		background-color: #F8F8FA;
 	}
 	.right {
-		padding: 92px 16px;
+		padding: 24px 16px;
 	}
 	.intro-text {
 		font-weight: 600;
@@ -50,27 +55,25 @@
 		width: 100%;
 		max-width: 343px;
 
-		form {
-			.btn-submit {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				width: 100%;
-				height: 48px;
-				background-color: var(--black-color);
-				border-radius: 8px;
-				color: #FFFFFF;
-				padding: 0 16px;
-				font-size: 12px;
-				font-weight: 600;
-				letter-spacing: -0.15px; // -1.25% của 12px
-				line-height: 18px;
-				border: 1px solid var(--main-color);
+		.btn-submit {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 48px;
+			background-color: var(--black-color);
+			border-radius: 8px;
+			color: #FFFFFF;
+			padding: 0 16px;
+			font-size: 12px;
+			font-weight: 600;
+			letter-spacing: -0.15px; // -1.25% của 12px
+			line-height: 18px;
+			border: 1px solid var(--main-color);
 
-				&:disabled {
-					opacity: 0.4;
-					pointer-events: none;
-				}
+			&:disabled {
+				opacity: 0.4;
+				pointer-events: none;
 			}
 		}
 
@@ -111,7 +114,7 @@
 
 .progess-bar {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(5, 1fr);
 	gap: 0;
 	margin-bottom: 64px;
 	.progress-step {
@@ -206,11 +209,356 @@
 }
 
 #registerForm {
-	button[type="submit"],
-	.btn-next-step {
+	.channel-item {
+		position: relative;
+		width: 100%;
+		box-shadow: 0px 2px 8px 0px #0000000D;
+		border-radius: 8px;
+		padding: 16px 16px;
+		border: 0;
+		.connect-box {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			.channel-icon {
+				max-width: 100%;
+				height: auto;
+				flex-shrink: 0;
+			}
+			.channel-name {
+				flex-grow: 1;
+				font-weight: 600;
+				font-size: 14px;
+				line-height: 20px;
+				letter-spacing: -0.175px; // -1.25% của 14px
+				color: var(--black-color);
+			}
+			.btn-channel-connect {
+				background-color: #705CFF26;
+				border: none;
+				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 37px;
+				height: 30px;
+				cursor: pointer;
+				&:disabled {
+					opacity: 0.4;
+					pointer-events: none;
+				}	
+			}
+		}
+		.connected-info {
+			position: relative;
+			width: 100%;
+			padding: 12px 12px;
+			border: 1px solid #DFE5EF;
+			border-radius: 8px;
+			margin-top: 4px;
+			.account-linked {
+				display: flex;
+				align-items: center;
+				gap: 0;
+				margin-bottom: 16px;
+				.account-avatar {
+					max-width: 100%;
+					width: 22px;
+					height: 22px;
+					border-radius: 50%;
+					object-fit: cover;
+					flex-shrink: 0;
+				}
+				.account-id {
+					display: inline-block;
+					font-weight: 600;
+					font-size: 12px;
+					line-height: 18px;
+					letter-spacing: -0.15px; // -1.25% của 12px
+					color: var(--black-color);
+					width: auto;
+					flex-shrink: 0;
+					margin-left: 8px;
+				}
+				.verified-icon {
+					width: 15px;
+					height: 15px;
+					margin-left: 5px;
+					flex-shrink: 0;
+				}
+			}
+			.channel-labels {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				flex-wrap: nowrap;
+				width: 100%;
+				overflow: auto;
+				white-space: nowrap;
+				-ms-overflow-style: none;
+				scrollbar-width: none;
+				&.is-hover {
+					cursor: grabbing;
+					user-select: none;
+				}
+				&::-webkit-scrollbar {
+					display: none;
+				}
+				.channel-label {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: max-content;
+					flex-shrink: 0;
+					font-weight: 600;
+					font-size: 10px;
+					line-height: 16px;
+					letter-spacing: -0.125px; // -1.25% của 10px
+					color: var(--text-gray-color);
+					background-color: #F8F8FA;
+					height: 28px;
+					padding: 0 12px;
+					border: 0;
+					border-radius: 4px;
+				}
+			}
+		}
+	}
+	.group-label {
+		position: relative;
+		display: inline-block;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		letter-spacing: -0.175px; // -1.25% của 14px
+		color: var(--black-color);
+		display: block;
+		&.required {
+			&::after {
+				content: "";
+				display: block;
+				width: 4px;
+				height: 4px;
+				background-color: var(--main-color);
+				border-radius: 100%;
+				position: absolute;
+				top: 2px;
+				right: -8px;
+			}
+		}
+	}
+	.radio-box {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		height: 36px;
+		padding: 0 16px;
+		border: 1px solid #DFE5EF;
+		border-radius: 8px;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 20px;
+		letter-spacing: -0.175px; // -1.25% của 14px
+		color: var(--black-color);
+		input[type="radio"] {
+			display: none;
+		}
+		&:has(input[type="radio"]:checked) {
+			background-color: #705CFF26;
+			border-color: var(--main-color);
+			color: var(--main-color);
+		}
+	}
+	.notice-wrap {
+		position: relative;
+		width: 100%;
+		padding: 16px 16px;
+		background-color: #F8F8FA;
+		border: 0;
+		border-radius: 8px;
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 18px;
+		letter-spacing: -0.15px; // -1.25% của 12px
+		text-align: center;
+		color: var(--black-color);
+	}
+	.btn-upload-file,
+	.btn-tax-info {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 34px;
 		background-color: var(--main-color);
+		border: 1px solid var(--main-color);
+		border-radius: 8px;
+		font-weight: 600;
+		font-size: 12px;
+		line-height: 18px;
+		letter-spacing: -0.15px; // -1.25% của 12px
+		padding: 0 12px;
+		color: #FFFFFF;
+		cursor: pointer;
+		input[type="file"] {
+			display: none;
+		}
+	}
+
+	.btn-tax-info {
+		gap: 4px;
+		background-color: var(--black-color);
+		border: 1px solid var(--black-color);
+	}
+	
+	.btn-mobi-fixed-bottom {
 		margin-top: 64px;
+		button[type="submit"],
+		.btn-next-step {
+			background-color: var(--main-color);
+		}
+	}
+}
+
+#successWrap {
+	.subhead {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 20px;
+		letter-spacing: -0.175px; // -1.25% của 14px
+		text-align: center;
+		color: var(--text-gray-color);
+		margin: 0;
+	}
+	.result-text {
+		position: relative;
+		width: 100%;
+		background-color: #F8F8FA;
+		padding: 16px 16px;
+		border-radius: 8px;
+		border: 1px solid #DFE5EF;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		gap: 10px;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 20px;
+		letter-spacing: -0.175px; // -1.25% của 14px
+		text-align: center;
+		color: var(--black-color);
+		margin: 0;
+
+		#foundEmail {
+			font-weight: 600;
+			color: var(--main-color);
+		}
+	}
+	.btn-mobi-fixed-bottom {
+		margin-top: 32px;
+		.btn-submit {
+			background-color: var(--main-color);
+		}
+	}
+	
+}
+
+.page-find-email {
+	.btn-mobi-fixed-bottom {
+		margin-top: 32px;
+		width: 100%;
+		button[type="submit"],
+		.btn-submit {
+			background-color: var(--main-color);
+		}
+	}
+}
+
+.menu-tab-bottom-mobile,
+.auth-header-mobile {
+    display: none !important;
+}
+
+@media (max-width: 991px) {
+	.menu-tab-bottom-mobile {
+		display: flex !important;
+	}
+
+	.progess-bar {
+		margin-bottom: 36px;
+	}
+
+	.auth-header-mobile {
+		position: fixed;
+		width: 100%;
+		top: 0;
+		left: 0;
+		height: 56px;
+		z-index: 1000;
+		background-color: #fff;
+		display: flex !important;
+		align-items: center;
+		.header-mobile-title {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 18px;
+			line-height: 24px;
+			font-weight: 600;
+			letter-spacing: -0.225px; // -1.25% của 18px
+			color: var(--black-color);
+			z-index: 1001;
+		}
+		.btn-header-mobile {
+			width: 56px;
+			height: 56px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-shrink: 0;
+			background-color: #fff;
+			border: none;
+			padding: 0;
+			margin: 0;
+			cursor: pointer;
+		}
+	}
+
+	.auth-wp {
+		.right {
+			margin-bottom: 64px;
+		}
+		.content-box {
+			max-width: 100%;
+		}
+	}
+
+	.page-find-email,
+	.page-register {
+		.auth-wp {
+			.right {
+				margin-top: 56px;
+			}
+		}
+		.btn-mobi-fixed-bottom {
+			position: fixed;
+			bottom: 0;
+			padding: 8px 16px;
+			left: 0;
+			width: 100%;
+			z-index: 1000;
+			margin-top: 0;
+			box-shadow: 0px -1px 10px 0px #00000014;
+			background-color: #FFFFFF;
+			button[type="submit"],
+			.btn-submit {
+				background-color: var(--main-color);
+			}
+		}
 	}
 }
 
 @import "components/form-fields";
+@import 'components/register-modals';

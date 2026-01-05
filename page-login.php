@@ -1,3 +1,11 @@
+<?php 
+	// Nếu người dùng đã đăng nhập, chuyển hướng họ đến trang chủ
+	if ( is_user_logged_in() ) {
+		wp_redirect( home_url() );
+		exit;
+	}
+?>
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -7,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class('page-auth page-login'); ?>>
 
 <div class="container-fluid d-flex auth-wp p-0">
 	<div class="w-100 left d-none d-lg-flex align-items-center justify-content-center position-relative">
@@ -25,15 +33,15 @@
 				<div class="row g-3">
 					<div class="col-12">
 						<div class="field-group">
-							<label class="field-label required">이메일</label>
-							<input type="text" class="field-control" name="email" placeholder="이메일을 입력해주세요." required>
+							<label class="field-label required" for="email">이메일</label>
+							<input type="text" class="field-control" id="email" name="email" placeholder="이메일을 입력해주세요." required>
 						</div>
 					</div>
 					<div class="col-12">
 						<div class="field-group">
-							<label class="field-label required">비밀번호</label>
+							<label class="field-label required" for="password">비밀번호</label>
 							<div class="d-flex align-items-center gap-2">
-								<input type="password" class="field-control flex-grow-1" name="password" placeholder="비밀번호를 입력해주세요." required>
+								<input type="password" class="field-control flex-grow-1" id="password" name="password" placeholder="비밀번호를 입력해주세요." required>
 								<button type="button" class="btn-icon-input btn-show-password flex-shrink-0">
 									<span class="icon hide-password"></span>
 								</button>
@@ -55,6 +63,7 @@
 </div>
 
 <?php get_template_part('template-parts/modals/alert-modal'); ?>
+<?php get_template_part("template-parts/components/mobile-tab-bottom"); ?>
 
 <?php wp_footer(); ?>
 </body>

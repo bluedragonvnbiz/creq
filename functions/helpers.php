@@ -5,7 +5,7 @@ function is_valid_korean_phone($phone_number) {
     // Chỉ lấy số từ chuỗi
     $phone_number = preg_replace('/[^\d]/', '', $phone_number);
     // Kiểm tra định dạng số điện thoại di động Hàn Quốc
-    return preg_match('/^01[016789]\d{7,8}$/', $phone_number);
+    return preg_match('/^01[0]\d{7,8}$/', $phone_number);
 }
 
 function is_valid_password($password) {
