@@ -1,12 +1,15 @@
 <div class="campaign-card d-flex flex-column gap-12 p-3">
-    <div class="campaign-card__header d-flex column-gap-2 align-items-center justify-content-between">
-        <div class="campaign-card__tags d-flex column-gap-2 align-items-center">
+    <div class="d-flex column-gap-2 align-items-center justify-content-between">
+        <div class="d-flex column-gap-2 align-items-center">
             <span class="campaign-tag campaign-tag--instagram">
                 <img src="<?= IMAGES_URL; ?>/icons/instagram.svg" alt="">
                 <span>인스타그램</span>
             </span>
             <span class="campaign-tag">
                 카테고리
+            </span>
+            <span class="campaign-tag disabled">
+                모집완료
             </span>
             <span class="campaign-tag campaign-tag--code">
                 D-93
@@ -38,7 +41,7 @@
 	    <span>2025.01.01 ~ 2025.12.01</span>
 	</p>
     <div class="campaign-card__footer d-flex column-gap-2">   	
-    	<button class="btn btn-outline-light w-100" type="button">보류하기</button>
-    	<button class="btn btn-outline-primary w-100" type="button">신청하기</button>
+    	<button class="btn btn-outline-light w-100 rounded-3" type="button" data-bs-toggle="modal" data-bs-target="#remove-modal">보류하기</button>
+    	<button class="btn btn-outline-primary w-100 rounded-3" type="button">신청하기</button>
     </div>
 </div>

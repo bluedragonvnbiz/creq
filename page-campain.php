@@ -31,7 +31,7 @@ get_template_part("template-parts/components/header","main",["title" => "캠페�
 				<span>채널</span>
 				<svg width="15" height="15"><use href="#icon-arrow-down"></use></svg>		
 			</button>
-			<button class="btn btn-outline-light" type="button">
+			<button class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="#category-modal">
 				<span>카테고리</span>
 				<svg width="15" height="15"><use href="#icon-arrow-down"></use></svg>		
 			</button>
@@ -48,23 +48,79 @@ get_template_part("template-parts/components/header","main",["title" => "캠페�
         ?> 
   	</div>
   </div>
-  <div class="tab-pane fade" id="campain-tab-2">...</div>
-  <div class="tab-pane fade" id="campain-tab-3">...</div>
-  <div class="tab-pane fade" id="campain-tab-4">...</div>
+  <div class="tab-pane fade" id="campain-tab-2"></div>
+  <div class="tab-pane fade" id="campain-tab-3"></div>
+  <div class="tab-pane fade" id="campain-tab-4"></div>
 </div>
 
 <div class="modal fade pv-modal" id="type-modal" tabindex="-1" >
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-body">
-                <h6 class="modal-title"></h6>
-                <div class="modal-message"></div>
-                <button type="button" class="btn-close-modal" data-bs-dismiss="modal" aria-label="Close">확인</button>
+            <div class="modal-body d-flex flex-column row-gap-3">
+                <p class="mb-0 fw-semibold fs-6 text-center">검색 채널을 선택해주세요.</p>
+                <div class="d-flex column-gap-3">
+                	<button class="btn h-auto w-100 p-3 d-flex flex-column row-gap-2 rounded-3 border-primary" type="button">
+                		<img src="<?= IMAGES_URL; ?>/icons/youtube-2.svg" alt="" width="30px">
+                		<span class="fw-semibold fs-11">Youtube</span>
+                	</button>
+                	<button class="btn h-auto w-100 p-3 d-flex flex-column row-gap-2 rounded-3 border-light" type="button">
+                		<img src="<?= IMAGES_URL; ?>/icons/instagram.svg" alt="" width="30px">
+                		<span class="fw-semibold fs-11">Instagram</span>
+                	</button>
+                	<button class="btn h-auto w-100 p-3 d-flex flex-column row-gap-2 rounded-3 border-light" type="button">
+                		<img src="<?= IMAGES_URL; ?>/icons/tiktok.svg" alt="" width="30px">
+                		<span class="fw-semibold fs-11">Tiktok</span>
+                	</button>
+                </div>
+                <div class="modal-group-btn d-flex align-items-center column-gap-2 justify-content-center">
+                	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">취소</button>
+                	<button type="button" class="btn btn-primary">확인</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
+<div class="modal fade pv-modal" id="category-modal" tabindex="-1" >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body d-flex flex-column row-gap-3">
+                <p class="mb-0 fw-semibold fs-6 text-center">검색 카테고리를 선택하세요.</p>
+                <div class="input-group-label">
+                <?php  
+                $arr = ["패션","뷰티","푸드","IT,테크","리빙","육아","헬스","맛집","여행","펫","자기개발","도서","게임"];
+                foreach ($arr as $key => $value) { ?>
+                	<input type="checkbox" name="" id="checkbox-<?= $key ?>">
+                	<label for="checkbox-<?= $key ?>"><?= $value ?></label>
+                <?php
+                }
+                ?>
+                </div>
+                <div class="modal-group-btn d-flex align-items-center column-gap-2 justify-content-center">
+                	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">취소</button>
+                	<button type="button" class="btn btn-primary">다음</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade pv-modal" id="remove-modal" tabindex="-1" >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="mb-2 fw-semibold fs-6 text-center">제안을 보류하시겠습니까?</p>
+                <div class="mb-3 fs-14 text-center" style="color:#9E9E9E">
+                보류된 캠페인은 ‘보류' 페이지에서 확인 가능하며,<br>
+모집기간 내  ‘보류 취소’를 통해<br>
+캠페인을 신청하실 수 있습니다.
+                </div>
+                <div class="modal-group-btn d-flex align-items-center column-gap-2 justify-content-center">
+                	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">확인</button>
+                	<button type="button" class="btn btn-primary">다음</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="d-none">
 	<svg id="icon-search" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 	<g clip-path="url(#clip0_888_11503)">
