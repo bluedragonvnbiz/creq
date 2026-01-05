@@ -29,6 +29,11 @@ function add_custom_scripts() {
             wp_enqueue_script('swiper', LIBS_URL . '/swiper/swiper-bundle.min.js', array(), false, true);
         }
 
+        if(is_page('find-email')) {
+            wp_enqueue_style('auth', ASSETS_URL . '/css/auth.css', array(), STYLE_VER, false);
+            wp_enqueue_script('find-email', ASSETS_URL . '/js/find-email.js', array('jquery'), STYLE_VER, true);
+        }
+
     } else {
 
         //Admin Pages

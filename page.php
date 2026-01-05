@@ -1,8 +1,11 @@
 <?php 
 get_header();
-$class = new Pv_Class();
-if(is_page("auth")){
-    $class->Controller("auth");
-}
+
+if ( have_posts() ) : 
+    while ( have_posts() ) : the_post(); 
+        the_content(); 
+    endwhile;
+endif;
+
 get_footer(); 
 ?>
