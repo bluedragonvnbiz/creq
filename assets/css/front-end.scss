@@ -1,16 +1,30 @@
 body{padding-top: 56px;background-color: #F8F8FA}
 .fs-10{font-size: 10px;line-height: 16px}
+.fs-6{line-height: 20px;}
 .p-15{padding: 15px}
 .gap-32{gap: 32px;}
 .rounded-9{border-radius: 9px;}
 
-.btn{padding: 8px;height: 36px;font-weight: 600;font-size: 13px;line-height: 20px}
+.btn{padding: 8px;height: 36px;font-weight: 600;font-size: 13px;line-height: 20px;display: flex;align-items: center;justify-content: center;}
 
 .fe-section{padding: 24px 16px;}
 .header-mobile{display: flex; justify-content: space-between;align-items: center;padding: 16px;
 	position: fixed;width: 100%;z-index: 10;top: 0;left: 0;background-color: white;
 	.open-notif-btn{
 		&.active:before{content: "";display: block;width: 6px;height: 6px;border-radius: 100%;background-color: var(--main-color);top: 0;right: 0;position: absolute;}
+	}
+}
+.form-control{border:none !important;box-shadow: none !important;border-radius: 8px;font-size: 12px;line-height: 18px;height: 36px;padding: 8px 12px;transition: none;
+	background-color: #F8F8FA !important;color: var(--black-color);
+}
+.form-select{border-color: #DFE5EF !important;box-shadow: none !important;font-size: 10px;line-height: 16px;color: var(--black-color);border-radius: 1000px;
+	padding: 5px 30px 5px 12px;background-position: right 11px center;
+	&:invalid { color: #D5D5D7;}
+	option{color: var(--black-color);}
+}
+.input-group{
+	.input-group-text{border: none;background-color: #F8F8FA;
+		&:last-child{border-radius: 0 8px 8px 0;}
 	}
 }
 .modal-backdrop{
@@ -40,6 +54,13 @@ body{padding-top: 56px;background-color: #F8F8FA}
 		>img{aspect-ratio: 1}
 	}
 }
+
+.campaign-card{background-color: white;box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.05);border-radius: 8px;
+	.campaign-card__body{
+		.campaign-card__thumbnail img{width: 80px;height: 80px}
+	}
+}
+
 .home-box-1{
 	.btn-outline-primary{height: 34px;padding-left: 17px;padding-right: 17px;}
 	.action-btn-box{
@@ -55,5 +76,18 @@ body{padding-top: 56px;background-color: #F8F8FA}
 .home-box-2{
 	a{padding-bottom: 12px;margin-bottom: 12px;border-bottom: 1px solid #DFE5EF;
 		&:last-child{border: none;margin-bottom: 0;padding-bottom: 0}
+	}
+}
+
+.pv-tabs{border-bottom: 3px solid #D5D5D7;
+	.nav-item{width: 100%;margin-bottom: -2px;}
+	.nav-link{border: none;width: 100%;font-weight: 600;font-size: 14px;color: #D5D5D7;padding-top: 9px;padding-bottom: 10px;
+		&.active{color: var(--black-color);border-bottom: 3px solid var(--black-color);}
+	}
+}
+
+.tab-content.campain{
+	.filter-box{
+		.btn-outline-light{border-radius: 1000px;font-weight: 400;font-size: 10px;line-height: 16px;display: flex;align-items: center;column-gap: 6px;height: 28px; padding: 5px 11px;}
 	}
 }
