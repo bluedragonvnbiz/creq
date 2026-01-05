@@ -15,17 +15,18 @@ function add_custom_scripts() {
     wp_enqueue_style('global-css', ASSETS_URL . '/css/global-css.css', array(), STYLE_VER, false);
     // Enqueue only on front-end pages (not in admin area)
     if( empty( get_query_var( 'custom_admin_page' ) ) ){
-
+        wp_enqueue_style('frontend-css', ASSETS_URL . '/css/front-end.css', array(), STYLE_VER, false);
         wp_enqueue_script('global-script', ASSETS_URL . '/js/global-script.js', array('jquery'), STYLE_VER, true);
 
         if(is_page('login')) {
             wp_enqueue_style('auth', ASSETS_URL . '/css/auth.css', array(), STYLE_VER, false);
             wp_enqueue_script('login', ASSETS_URL . '/js/login.js', array('jquery'), STYLE_VER, true);
-        }
-
-        if(is_page('register')) {
+        }elseif(is_page('register')) {
             wp_enqueue_style('auth', ASSETS_URL . '/css/auth.css', array(), STYLE_VER, false);
             wp_enqueue_script('register', ASSETS_URL . '/js/register.js', array('jquery'), STYLE_VER, true);
+        }elseif(is_page('home')){
+            wp_enqueue_style('swiper', LIBS_URL . '/swiper/swiper-bundle.min.css', array(), STYLE_VER, false);
+            wp_enqueue_script('swiper', LIBS_URL . '/swiper/swiper-bundle.min.js', array(), false, true);
         }
 
     } else {
