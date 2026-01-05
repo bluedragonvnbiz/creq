@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class('page-auth page-login'); ?>>
 
 <div class="container-fluid d-flex auth-wp p-0">
 	<div class="w-100 left d-none d-lg-flex align-items-center justify-content-center position-relative">
@@ -63,6 +63,7 @@
 </div>
 
 <?php get_template_part('template-parts/modals/alert-modal'); ?>
+<?php get_template_part("template-parts/components/mobile-tab-bottom"); ?>
 
 <?php wp_footer(); ?>
 </body>

@@ -1,3 +1,9 @@
+.page-auth {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  background-color: inherit;
+}
+
 #downloadBrochure {
   position: absolute;
   bottom: 32px;
@@ -28,7 +34,7 @@
   background-color: #F8F8FA;
 }
 .auth-wp .right {
-  padding: 80px 16px;
+  padding: 24px 16px;
 }
 .auth-wp .intro-text {
   font-weight: 600;
@@ -383,10 +389,12 @@
   background-color: var(--black-color);
   border: 1px solid var(--black-color);
 }
-#registerForm button[type=submit],
-#registerForm .btn-next-step {
-  background-color: var(--main-color);
+#registerForm .btn-mobi-fixed-bottom {
   margin-top: 64px;
+}
+#registerForm .btn-mobi-fixed-bottom button[type=submit],
+#registerForm .btn-mobi-fixed-bottom .btn-next-step {
+  background-color: var(--main-color);
 }
 
 #successWrap .subhead {
@@ -431,17 +439,73 @@
 
 .page-find-email .btn-mobi-fixed-bottom {
   margin-top: 32px;
+  width: 100%;
 }
 .page-find-email .btn-mobi-fixed-bottom button[type=submit],
 .page-find-email .btn-mobi-fixed-bottom .btn-submit {
   background-color: var(--main-color);
 }
 
+.menu-tab-bottom-mobile,
+.auth-header-mobile {
+  display: none !important;
+}
+
 @media (max-width: 991px) {
-  .page-find-email .auth-wp .right {
-    padding: 80px 16px 88px;
+  .menu-tab-bottom-mobile {
+    display: flex !important;
   }
-  .page-find-email .btn-mobi-fixed-bottom {
+  .progess-bar {
+    margin-bottom: 36px;
+  }
+  .auth-header-mobile {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 56px;
+    z-index: 1000;
+    background-color: #fff;
+    display: flex !important;
+    align-items: center;
+  }
+  .auth-header-mobile .header-mobile-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    letter-spacing: -0.225px;
+    color: var(--black-color);
+    z-index: 1001;
+  }
+  .auth-header-mobile .btn-header-mobile {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background-color: #fff;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  .auth-wp .right {
+    margin-bottom: 64px;
+  }
+  .auth-wp .content-box {
+    max-width: 100%;
+  }
+  .page-find-email .auth-wp .right,
+  .page-register .auth-wp .right {
+    margin-top: 56px;
+  }
+  .page-find-email .btn-mobi-fixed-bottom,
+  .page-register .btn-mobi-fixed-bottom {
     position: fixed;
     bottom: 0;
     padding: 8px 16px;
@@ -450,9 +514,12 @@
     z-index: 1000;
     margin-top: 0;
     box-shadow: 0px -1px 10px 0px rgba(0, 0, 0, 0.0784313725);
+    background-color: #FFFFFF;
   }
   .page-find-email .btn-mobi-fixed-bottom button[type=submit],
-  .page-find-email .btn-mobi-fixed-bottom .btn-submit {
+  .page-find-email .btn-mobi-fixed-bottom .btn-submit,
+  .page-register .btn-mobi-fixed-bottom button[type=submit],
+  .page-register .btn-mobi-fixed-bottom .btn-submit {
     background-color: var(--main-color);
   }
 }

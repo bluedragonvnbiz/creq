@@ -431,6 +431,8 @@ jQuery(document).ready(function($){
                         window.clearRegisterState();
                     }
                     $('#registerFormWrap').remove();
+                    $('.auth-header-mobile').remove();
+                    $('.auth-wp .right').css('margin-top', '0');
                     $('#successWrap').removeClass('d-none');
                 } else {
                     // Hiển thị feedback lỗi cho trường cụ thể nếu có
@@ -705,7 +707,16 @@ function activateRegisterStep(stepNumber) {
         if (currentStep === stepNumber && stepTitle !== '') {
             jQuery('.step-title').text(stepTitle);
         }
+        // Cập nhật tiêu đề header mobile
+        if(stepNumber === 1 || stepNumber === 2) {
+            jQuery('.header-mobile-title').text('회원가입');
+        } else if (stepNumber === 3) {
+            jQuery('.header-mobile-title').text('채널 유형 선택 및 연동');
+        } else if (stepNumber === 4) {
+            jQuery('.header-mobile-title').text('환전 계좌 정보 관리');
+        }
 
+        // Cập nhật trạng thái bước
         if (currentStep < stepNumber) {
             jQuery(this).removeClass('active').addClass('completed');
         } else if (currentStep === stepNumber) {

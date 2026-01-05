@@ -15,9 +15,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(''); ?>>
+<body <?php body_class('page-auth page-register'); ?>>
 
-<?php get_template_part('template-parts/components/header-back'); ?>
+<div class="auth-header-mobile">
+    <div class="header-mobile-title">회원가입</div>
+    <button type="button" class="btn-header-mobile btn-back">
+        <img width="24" height="24" src="<?= IMAGES_URL; ?>/icons/chev-back.svg" alt="Arrow Left Icon">
+    </button>
+</div>
 
 <div class="container-fluid d-flex auth-wp p-0">
 	<div class="w-100 left d-none d-lg-flex align-items-center justify-content-center position-sticky vh-100 top-0 start-0">
@@ -29,7 +34,7 @@
 			</a>
 		</div>
 	</div>
-	<div class="w-100 right d-flex align-items-center justify-content-center">
+	<div class="w-100 right d-flex align-items-lg-center justify-content-center">
 		<div id="registerFormWrap" class="content-box">
 			<div class="progess-bar">
 				<div class="progress-step active" data-title="로그인">
@@ -63,7 +68,7 @@
 					<span class="step-label">가입완료</span>
 				</div>
 			</div>
-			<h1 class="headline step-title text-black">로그인</h1>
+			<h1 class="headline step-title text-black d-none d-lg-block">로그인</h1>
 			<form id="registerForm" class="register-form" method="post">
 				<fieldset id="step1" class="form-fieldset">
 					<div class="row g-3">
@@ -153,10 +158,14 @@
 							</div>
 						</div>
 					</div>
-					<button type="button" class="btn-submit btn-next-step" disabled>다음</button>
+					<div class="btn-mobi-fixed-bottom">
+						<button type="button" class="btn-submit btn-next-step" disabled>다음</button>
+					</div>
 				</fieldset>
 				<fieldset id="step2" class="form-fieldset d-none">
-					<button type="button" class="btn-submit btn-next-step" disabled>다음</button>
+					<div class="btn-mobi-fixed-bottom">
+						<button type="button" class="btn-submit btn-next-step" disabled>다음</button>
+					</div>
 				</fieldset>
 				<fieldset id="step3" class="form-fieldset d-none">
 					<div class="row g-3">
@@ -206,7 +215,9 @@
 							</div>
 						</div>
 					</div>
-					<button type="button" class="btn-submit btn-next-step" disabled>다음</button>
+					<div class="btn-mobi-fixed-bottom">
+						<button type="button" class="btn-submit btn-next-step" disabled>다음</button>
+					</div>
 				</fieldset>
 				<fieldset id="step4" class="form-fieldset d-none">
 					<div class="field-group border-0 p-0 rounded-0 d-flex align-items-center gap-2">
@@ -282,19 +293,25 @@
 							<span>정보 확인</span>
 						</button>
 					</div>
-					<button type="button" class="btn-submit btn-next-step" disabled>확인</button>
+					<div class="btn-mobi-fixed-bottom">
+						<button type="button" class="btn-submit btn-next-step" disabled>확인</button>
+					</div>
 				</fieldset>
 				<?php wp_nonce_field('user_register_nonce', 'action_nonce'); ?>
 			</form>
 		</div>
 		<div id="successWrap" class="content-box d-none">
-			<img width="96" height="28" src="<?= IMAGES_URL; ?>/logo.svg" alt="Logo" class="d-block img-fluid mx-auto mb-3">
-			<h1 class="headline text-black">성공적으로 가입이 완료되었습니다.</h1>
-			<p class="subhead">
-				3시간 내로 계정 분석 완료될 예정입니다.<br/>
-				계정 분석 후 등급 선정이 완료되면 알림이 발송됩니다.
-			</p>
-			<a type="button" class="btn-submit" href="<?php echo esc_url(home_url('')); ?>">홈으로 이동</a>
+			<div class="d-flex h-100 flex-column align-items-center justify-content-center">
+				<img width="96" height="28" src="<?= IMAGES_URL; ?>/logo.svg" alt="Logo" class="d-block img-fluid mx-auto mb-3">
+				<h1 class="headline text-black">성공적으로 가입이 완료되었습니다.</h1>
+				<p class="subhead">
+					3시간 내로 계정 분석 완료될 예정입니다.<br/>
+					계정 분석 후 등급 선정이 완료되면 알림이 발송됩니다.
+				</p>
+				<div class="btn-mobi-fixed-bottom">
+					<a type="button" class="btn-submit" href="<?php echo esc_url(home_url('')); ?>">홈으로 이동</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
