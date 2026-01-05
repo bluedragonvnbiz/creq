@@ -1,6 +1,6 @@
-#pv-alert-modal {
+.pv-modal{backdrop-filter: blur(6px);
     .modal-dialog {
-        max-width: 335px;
+        max-width: 335px;margin: 0 auto;
         .modal-content {
             border-radius: 16px;
             box-shadow: 0px 10px 10px 0px #0000001A;
@@ -64,4 +64,8 @@
             }
         }
     }
+}
+
+@media screen and (max-width: 992px) {
+    .pv-modal .modal-dialog {max-width: inherit; margin-left: 20px;  margin-right: 20px;}
 }
