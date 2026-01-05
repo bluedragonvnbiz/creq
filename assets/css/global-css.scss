@@ -8,24 +8,32 @@
 :root{
 	--main-color:#705CFF;
 	--black-color:#373739;
-  --error-color: #FF383C;
-  --text-gray-color: #69696B;
+    --error-color: #FF383C;
+    --text-gray-color: #69696B;
     --bs-danger-rgb:255, 56, 60;
+    --bs-primary-rgb:112, 92, 255;
 }
 
 html{font-size: 16px;}
 img{max-width: 100%;height: auto;}
 a{text-decoration: none;}
 body{font-family: 'Pretendard', 'sans-serif';line-height: 1;letter-spacing: -0.0125em;color: var(--black-color);}
-
+.container {
+    max-width: calc(1440px + var(--bs-gutter-x));
+    --bs-gutter-x  : 32px;
+}
 .text-primary{color: var(--main-color) !important;}
 .text-black{color: var(--black-color) !important;}
+.text-gray{color: #69696B !important}
 
-
+.fs-12{font-size: 12px !important;line-height: 18px !important}
+.fs-13{font-size: 13px !important;line-height: 20px !important}
 .fs-14{font-size: 14px !important;line-height: 20px !important}
-.fs-18{font-size: 18px;line-height: 24px}
+.fs-18{font-size: 18px !important;line-height: 24px !important}
 
-.mb-32{margin-bottom: 32px}
+.mb-32{margin-bottom: 32px !important}
+.gap-10{gap: 10px !important;}
+.gap-12{gap: 12px !important;}
 
 .btn-custom{display: flex;align-items: center;justify-content: center;column-gap: 4px}
 .btn{
