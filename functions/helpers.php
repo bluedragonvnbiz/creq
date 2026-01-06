@@ -13,6 +13,16 @@ function is_valid_password($password) {
     return strlen($password) >= 6 && preg_match('/[A-Za-z]/', $password) && preg_match('/[0-9]/', $password);
 }
 
+function is_valid_nickname($nickname) {
+    // Kiểm tra có thích hợp làm user_login không (chỉ cho phép chữ cái latinh, số, dấu gạch dưới, không có dấu cách, không có ký tự đặc biệt)
+    return preg_match('/^[A-Za-z0-9_]+$/', $nickname);
+}
+
+function is_valid_korean_name($name) {
+    // Kiểm tra tên chỉ chứa ký tự Hàn Quốc, không có số, ký tự đặc biệt, khoảng trắng, phụ âm/nguyên âm đơn lẻ
+    return preg_match('/^[가-힣]+$/u', $name) && mb_strlen($name) >= 2 && mb_strlen($name) <= 5;
+}
+
 // Format phone number to Korean style XXX-XXXX-XXXX
 function format_phone_number($phone_number) {
     // Chỉ lấy số từ chuỗi

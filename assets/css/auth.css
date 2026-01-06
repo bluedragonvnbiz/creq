@@ -437,12 +437,15 @@
   background-color: var(--main-color);
 }
 
-.page-find-email .btn-mobi-fixed-bottom {
+.page-find-email .btn-mobi-fixed-bottom,
+.page-find-password .btn-mobi-fixed-bottom {
   margin-top: 32px;
   width: 100%;
 }
 .page-find-email .btn-mobi-fixed-bottom button[type=submit],
-.page-find-email .btn-mobi-fixed-bottom .btn-submit {
+.page-find-email .btn-mobi-fixed-bottom .btn-submit,
+.page-find-password .btn-mobi-fixed-bottom button[type=submit],
+.page-find-password .btn-mobi-fixed-bottom .btn-submit {
   background-color: var(--main-color);
 }
 
@@ -501,11 +504,13 @@
     max-width: 100%;
   }
   .page-find-email .auth-wp .right,
-  .page-register .auth-wp .right {
+  .page-register .auth-wp .right,
+  .page-find-password .auth-wp .right {
     margin-top: 56px;
   }
   .page-find-email .btn-mobi-fixed-bottom,
-  .page-register .btn-mobi-fixed-bottom {
+  .page-register .btn-mobi-fixed-bottom,
+  .page-find-password .btn-mobi-fixed-bottom {
     position: fixed;
     bottom: 0;
     padding: 8px 16px;
@@ -519,7 +524,9 @@
   .page-find-email .btn-mobi-fixed-bottom button[type=submit],
   .page-find-email .btn-mobi-fixed-bottom .btn-submit,
   .page-register .btn-mobi-fixed-bottom button[type=submit],
-  .page-register .btn-mobi-fixed-bottom .btn-submit {
+  .page-register .btn-mobi-fixed-bottom .btn-submit,
+  .page-find-password .btn-mobi-fixed-bottom button[type=submit],
+  .page-find-password .btn-mobi-fixed-bottom .btn-submit {
     background-color: var(--main-color);
   }
 }
