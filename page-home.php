@@ -2,7 +2,7 @@
 get_header(); ?>
 <header class="header-mobile">
     <img src="<?= IMAGES_URL; ?>/logo.svg" alt="Logo" style="height: 25px;">
-    <button class="btn border-0 p-0 open-notif-btn position-relative h-auto active">
+    <button class="btn border-0 p-0 open-notif-btn position-relative h-auto active" data-bs-toggle="modal" data-bs-target="#notif-modal">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M8.62196 19.4706C7.92609 19.4706 5.75808 19.4706 4.15183 19.4706C3.296 19.4706 2.74042 18.5502 3.12315 17.768L4.10643 15.7584C4.42615 15.1049 4.59259 14.3852 4.59259 13.6546C4.59259 12.7491 4.59259 11.404 4.59259 10.0588C4.59259 7.70588 5.74384 3 11.5001 3C17.2563 3 18.4076 7.70588 18.4076 10.0588C18.4076 11.404 18.4076 12.7491 18.4076 13.6546C18.4076 14.3852 18.574 15.1049 18.8937 15.7584L19.877 17.768C20.2597 18.5502 19.7031 19.4706 18.8473 19.4706H14.3782M8.62196 19.4706C8.62196 21.8235 9.7732 23 11.5001 23C13.2269 23 14.3782 21.8235 14.3782 19.4706M8.62196 19.4706C10.4203 19.4706 14.3782 19.4706 14.3782 19.4706" stroke="#373739" stroke-width="1.5" stroke-linejoin="round"/>
         <path d="M11.7 3V2V1" stroke="#373739" stroke-linecap="round" stroke-linejoin="round"/>
@@ -109,8 +109,8 @@ get_header(); ?>
 <div class="modal fade pv-modal" id="pv-alert-modal" tabindex="-1" >
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-body p-3">
-                <div class="text-end mb-2">
+            <div class="modal-body pt-3">
+                <div class="d-flex justify-content-end mb-2">
                     <button type="button" class="btn h-auto p-0 border-0" data-bs-dismiss="modal" aria-label="Close">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_195_26092)">
@@ -124,12 +124,66 @@ get_header(); ?>
                         </svg>
                     </button>
                 </div>
-                <div class="d-flex flex-column row-gap-3"></div>
+                <div class="d-flex flex-column row-gap-3">
+                    <div class="d-flex align-items-center justify-content-center column-gap-2">
+                        <img src="<?= IMAGES_URL; ?>/icons/youtube-2.svg" alt="" style="height: 25px;">
+                        <span class="fw-semibold d-inline-block" style="line-height:25px">Youtube</span>
+                    </div>
+                    <p class="mb-0 fs-14 text-center">
+                        Seed 멤버입니다.<br>
+                        기본급은 제품 무상 제공~50,000원입니다.<br><br>
+
+                        성과 보너스는 1점당 500원,<br>
+                        최대 50,000원까지 지급됩니다.
+                    </p>
+                    <div class="p-3 rounded-3" style="background-color: #F8F8FA;">
+                        <p class="mb-2 d-flex align-items-center justify-content-between text-primary fs-12">
+                            <span>등급 산정일</span>
+                            <span class="fw-semibold">2025.11.03</span>
+                        </p>
+                        <p class="mb-0 d-flex align-items-center justify-content-between text-primary fs-12">
+                            <span style="color:#5B5B5B">다음 등급 산정일</span>
+                            <span  style="color:#5B5B5B"class="fw-semibold">2025.12.03</span>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
+<div class="modal fade pv-modal" id="notif-modal" tabindex="-1" >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body pt-3">
+                <div class="d-flex justify-content-end mb-2">
+                    <button type="button" class="btn h-auto p-0 border-0" data-bs-dismiss="modal" aria-label="Close">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_195_26092)">
+                        <path d="M13.4099 12L17.7099 7.71C17.8982 7.5217 18.004 7.2663 18.004 7C18.004 6.7337 17.8982 6.47831 17.7099 6.29C17.5216 6.1017 17.2662 5.99591 16.9999 5.99591C16.7336 5.99591 16.4782 6.1017 16.2899 6.29L11.9999 10.59L7.70994 6.29C7.52164 6.1017 7.26624 5.99591 6.99994 5.99591C6.73364 5.99591 6.47824 6.1017 6.28994 6.29C6.10164 6.47831 5.99585 6.7337 5.99585 7C5.99585 7.2663 6.10164 7.5217 6.28994 7.71L10.5899 12L6.28994 16.29C6.19621 16.383 6.12182 16.4936 6.07105 16.6154C6.02028 16.7373 5.99414 16.868 5.99414 17C5.99414 17.132 6.02028 17.2627 6.07105 17.3846C6.12182 17.5064 6.19621 17.617 6.28994 17.71C6.3829 17.8037 6.4935 17.8781 6.61536 17.9289C6.73722 17.9797 6.86793 18.0058 6.99994 18.0058C7.13195 18.0058 7.26266 17.9797 7.38452 17.9289C7.50638 17.8781 7.61698 17.8037 7.70994 17.71L11.9999 13.41L16.2899 17.71C16.3829 17.8037 16.4935 17.8781 16.6154 17.9289C16.7372 17.9797 16.8679 18.0058 16.9999 18.0058C17.132 18.0058 17.2627 17.9797 17.3845 17.9289C17.5064 17.8781 17.617 17.8037 17.7099 17.71C17.8037 17.617 17.8781 17.5064 17.9288 17.3846C17.9796 17.2627 18.0057 17.132 18.0057 17C18.0057 16.868 17.9796 16.7373 17.9288 16.6154C17.8781 16.4936 17.8037 16.383 17.7099 16.29L13.4099 12Z" fill="#373739"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_195_26092">
+                        <rect width="24" height="24" fill="white"/>
+                        </clipPath>
+                        </defs>
+                        </svg>
+                    </button>
+                </div>
+                <div class="text-center">
+                   <p class="fw-semibold fs-6">캠페인에 참여할 <br>인플루언서로 선정되셨습니다.</p>
+                   <div class="d-flex column-gap-1 align-items-center mb-3 justify-content-center">
+                       <img class="object-fit-cover rounded-1" src="<?= IMAGES_URL; ?>/demo/demo-1.jpg" alt="" style="width: 14px;height: 14px;">
+                       <p class="mb-0 text-gray fs-10">[삼미푸드] 초코칩 아이스크림 쿠키 샌드위치 </p>
+                   </div>
+                   <div class="fs-14 mb-3">
+                       알림 내용입니다. 알림 내용입니다. 알림 내용입니다. 알림 내용입니다. 알림 내용입니다. 알림 내용입니다. 알림 내용입니다. 알림 내용입니다. 알림 내용입니다. 알림 내용입니다. 알림 내용입니다. 알림 내용입니다. 알림 내용입니다. 알림 내용입니다. 
+                   </div>
+                   <a href="#" class="btn btn-primary btn-lg w-100">일정 선택하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="d-none">
     <svg id="icon-link" width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
