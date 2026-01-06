@@ -9,3 +9,4 @@
 <div class="admin-wp d-flex">
 <?php get_template_part("admin/template-parts/layouts/sidebar") ?>
 <div class="admin-primary w-100">
+    <div class="main-content-wrapper">

@@ -16,7 +16,7 @@
 				<span>틱톡</span>
 			</button>
 		</div>
-		<a href="?mode=add" class="btn btn-primary">새 캠페인 시작</a>
+		<a href="<?php echo home_url('creq-admin/campaigns/add') ?>" class="btn btn-primary">새 캠페인 시작</a>
 	</div>
 	<div class="d-flex justify-content-end gap-15">
 		<select class="form-select max-content" name="">
