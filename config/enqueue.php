@@ -21,17 +21,21 @@ function add_custom_scripts() {
         if(is_page('login')) {
             wp_enqueue_style('auth', ASSETS_URL . '/css/auth.css', array(), STYLE_VER, false);
             wp_enqueue_script('login', ASSETS_URL . '/js/login.js', array('jquery'), STYLE_VER, true);
-        }elseif(is_page('register')) {
+        } elseif(is_page('register')) {
             wp_enqueue_style('auth', ASSETS_URL . '/css/auth.css', array(), STYLE_VER, false);
             wp_enqueue_script('register', ASSETS_URL . '/js/register.js', array('jquery'), STYLE_VER, true);
-        }elseif(is_page('home')){
+        } elseif(is_page('home')) {
             wp_enqueue_style('swiper', LIBS_URL . '/swiper/swiper-bundle.min.css', array(), STYLE_VER, false);
             wp_enqueue_script('swiper', LIBS_URL . '/swiper/swiper-bundle.min.js', array(), false, true);
-        }
-
-        if(is_page('find-email')) {
+        } elseif(is_page('find-email')) {
             wp_enqueue_style('auth', ASSETS_URL . '/css/auth.css', array(), STYLE_VER, false);
             wp_enqueue_script('find-email', ASSETS_URL . '/js/find-email.js', array('jquery'), STYLE_VER, true);
+        } elseif(is_page('find-password')) {
+            wp_enqueue_style('auth', ASSETS_URL . '/css/auth.css', array(), STYLE_VER, false);
+            wp_enqueue_script('find-password', ASSETS_URL . '/js/find-password.js', array('jquery'), STYLE_VER, true);
+        } elseif(is_page('reset-password')) {
+            wp_enqueue_style('auth', ASSETS_URL . '/css/auth.css', array(), STYLE_VER, false);
+            wp_enqueue_script('reset-password', ASSETS_URL . '/js/reset-password.js', array('jquery'), STYLE_VER, true);
         }
 
     } else {

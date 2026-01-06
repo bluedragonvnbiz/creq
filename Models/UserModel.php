@@ -82,6 +82,33 @@ class UserModel {
     }
 
     /**
+     * Lấy thông tin người dùng theo email, name, phone
+     * @param string $email Email người dùng (user_email trong bảng wp_users)
+     * @param string $name Tên hiển thị (display_name trong bảng wp_users)
+     * @param string $phone Số điện thoại (trong bảng user_info)
+     * @return WP_User|false Trả về đối tượng WP_User nếu tồn tại, ngược lại trả về false
+     */
+    public function getUserByEmailNameAndPhone($email, $name, $phone) {
+        $cleared_phone = clear_phone_number($phone);
+        $query = $this->wpdb->prepare(
+            "SELECT u.ID
+            FROM {$this->table} u
+            INNER JOIN {$this->wpdb->prefix}user_info ui ON u.ID = ui.user_id
+            WHERE u.user_email = %s AND u.display_name = %s AND ui.phone = %s",
+            $email,
+            $name,
+            $cleared_phone
+        );
+        $results = $this->wpdb->get_row($query);
+
+        if (empty($results)) {
+            return false; // Người dùng không tồn tại
+        }
+
+        return get_user_by('ID', $results->ID);
+    }
+
+    /**
      * Đăng nhập người dùng
      * @param WP_User $user Đối tượng người dùng WordPress
      */
@@ -156,5 +183,15 @@ class UserModel {
         wp_logout();
     }
 
+    /**
+     * Cập nhật mật khẩu người dùng
+     * @param int $user_id ID người dùng
+     * @param string $new_password Mật khẩu mới
+     */
+    public function updatePassword($user_id, $new_password) {
+        wp_set_password($new_password, $user_id);
+        // Xoá token 'reset_password_token' đổi mật khẩu nếu có
+        delete_user_meta($user_id, 'reset_password_token');
+    }
 
 }
