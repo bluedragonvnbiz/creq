@@ -464,7 +464,8 @@
 	
 }
 
-.page-find-email {
+.page-find-email,
+.page-find-password {
 	.btn-mobi-fixed-bottom {
 		margin-top: 32px;
 		width: 100%;
@@ -536,7 +537,8 @@
 	}
 
 	.page-find-email,
-	.page-register {
+	.page-register,
+	.page-find-password {
 		.auth-wp {
 			.right {
 				margin-top: 56px;
