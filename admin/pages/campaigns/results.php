@@ -1,6 +1,15 @@
+<?php get_admin_header(); ?>
+
 <style>
-	.camp-nav{margin-bottom: 0}
+	.camp-nav {
+        margin-bottom: 0
+    }
 </style>
+
+<?php get_admin_part("layouts/topbar", "", ["title" => "캠페인 관리"]); ?>
+<?php get_admin_part("components/campaigns/campaign-header"); ?>
+<?php get_admin_part("components/campaigns/campaign-navbar"); ?>
+
 <div class="admin-section bg-white" style="border-bottom: 2px solid #DFE5EF">
 	<div class="d-flex align-items-center justify-content-between p-10 px-0">
 		<div class="d-flex align-items-center gap-15">
@@ -25,3 +34,5 @@
 		</div>
 	</div>
 </div>
+
+<?php get_admin_footer(); ?>

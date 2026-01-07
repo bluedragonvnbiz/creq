@@ -43,6 +43,27 @@ function custom_admin_rewrite_rules() {
             'top'
         );
 
+        // Mode: influencers
+        add_rewrite_rule(
+            '^creq-admin/' . $page . '/influencers/([0-9]+)/?$',
+            'index.php?custom_admin_page=' . $page . '&mode=influencers&details_id=$matches[1]',
+            'top'
+        );
+
+        // Mode: seeding
+        add_rewrite_rule(
+            '^creq-admin/' . $page . '/seeding/([0-9]+)/?$',
+            'index.php?custom_admin_page=' . $page . '&mode=seeding&details_id=$matches[1]',
+            'top'
+        );
+
+        // Mode: results
+        add_rewrite_rule(
+            '^creq-admin/' . $page . '/results/([0-9]+)/?$',
+            'index.php?custom_admin_page=' . $page . '&mode=results&details_id=$matches[1]',
+            'top'
+        );
+
         // Mode: add
         add_rewrite_rule(
             '^creq-admin/' . $page . '/add/?$',
@@ -102,6 +123,21 @@ function custom_admin_template_include( $template ) {
 
             if ( $mode === 'details' && is_numeric(get_query_var('details_id')) ) {
                 $details_template = get_stylesheet_directory() . "/admin/pages/" . $custom_page . "/details.php";
+                if ( file_exists($details_template) ) return $details_template;
+            }
+
+            if ( $mode === 'influencers' && is_numeric(get_query_var('details_id')) ) {
+                $details_template = get_stylesheet_directory() . "/admin/pages/" . $custom_page . "/influencers.php";
+                if ( file_exists($details_template) ) return $details_template;
+            }
+
+            if ( $mode === 'seeding' && is_numeric(get_query_var('details_id')) ) {
+                $details_template = get_stylesheet_directory() . "/admin/pages/" . $custom_page . "/seeding.php";
+                if ( file_exists($details_template) ) return $details_template;
+            }
+
+            if ( $mode === 'results' && is_numeric(get_query_var('details_id')) ) {
+                $details_template = get_stylesheet_directory() . "/admin/pages/" . $custom_page . "/results.php";
                 if ( file_exists($details_template) ) return $details_template;
             }
 
