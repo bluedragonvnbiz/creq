@@ -2,7 +2,7 @@
 /**
  * Bảng `user_info`
  *
- * Nhiệm vụ: Đây là bảng lưu trữ cácc thông tin khác của user.
+ * Nhiệm vụ: Đây là bảng lưu trữ các thông tin khác của user.
  * Mỗi bản ghi đại diện cho một user duy nhất và chứa các thông tin bổ sung liên quan đến user đó.
  *
  * - `id`: ID tự tăng của bản ghi.
@@ -25,7 +25,7 @@ function create_table_user_info($db_model) {
     $charset_collate = $wpdb->get_charset_collate();
 
     $sql = "DROP TABLE IF EXISTS $table_name";
-    $wpdb->query($sql);
+    //$wpdb->query($sql);
 
     $sql = "CREATE TABLE $table_name (
         id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,

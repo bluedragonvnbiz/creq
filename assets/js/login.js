@@ -58,7 +58,7 @@ jQuery(document).ready(function($) {
                 } else if (xhr.status >= 500) {
                     showAlertModal('서버오류', '일시적인 오류가 발생했습니다.<br/>잠시 후 다시 시도해주세요.');
                 } else {
-                    showAlertModal('로그인 실패', '로그인에 실패했습니다.<br/>잠시 후 다시 시도해주세요.');
+                    showAlertModal('요청 실패', '요청을 처리하는 도중 오류가 발생했습니다.<br/>잠시 후 다시 시도해주세요.');
                 }
             },
             complete: function() {

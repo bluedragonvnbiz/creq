@@ -1,13 +1,10 @@
 jQuery(document).ready(function($){
-    // Xử lý sự kiện input để ẩn feedback lỗi
-    $(document).on('input change', '#resetPasswordForm input', function() {
-        const $field = $(this);
-        hideErrorFeedback($field);
+
+    $(document).on('input change', '#baseSalaryForm input', function() {
         validateForm();
     });
 
-    // Xử lý sự kiện submit form tìm mật khẩu
-    $(document).on('submit', '#resetPasswordForm', function(e) {
+    $(document).on('submit', '#baseSalaryForm', function(e) {
         e.preventDefault();
         const $this = $(this);
         let formData = new FormData(this);
@@ -24,23 +21,7 @@ jQuery(document).ready(function($){
                 $this.find('button[type="submit"]').prop('disabled', true);
             },
             success: function(response) {
-                if (response.success) {
-                    $('#resetPasswordFormWrap').remove();
-                    $('#successWrap').removeClass('d-none');
-                } else {
-                    // Hiển thị feedback lỗi cho trường cụ thể nếu có
-                    if ( response.data.fields ) {
-                        // Loop qua từng key trong object fields (full_name, phone_number)
-                        $.each(response.data.fields, function(fieldName, errorMessage) {
-                            const $field = $this.find(`input[name="${fieldName}"]`);
-                            if ($field.length > 0) {
-                                showErrorFeedback($field, errorMessage);
-                            }
-                        });
-                    } else if ( response.data.message ) {
-                        showAlertModal('비밀번호 변경 실패', response.data.message);
-                    }
-                }
+                showAlertModal(response.data.title, response.data.message);
             },
             error: function(xhr, status, error) {
                 if (xhr.status === 0) {
@@ -53,19 +34,19 @@ jQuery(document).ready(function($){
             },
             complete: function() {
                 unLoading();
+                $('#base-salary-modal').modal('hide');
                 $this.find('button[type="submit"]').prop('disabled', false);
             }
         });
     });
 
-    // Hàm kiểm tra form tìm mật khẩu
     function validateForm() {
         let isValid = true;
-        $('#resetPasswordForm [required]').each(function() {
+        $('#baseSalaryForm [required]').each(function() {
             if ($(this).val().trim() === '') {
                 isValid = false;
             }
         });
-        $('#resetPasswordForm button[type="submit"]').prop('disabled', !isValid);
+        $('#baseSalaryForm button[type="submit"]').prop('disabled', !isValid);
     }
 });
