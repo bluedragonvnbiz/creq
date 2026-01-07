@@ -1,5 +1,6 @@
 <?php get_admin_header(); ?>
-<?php get_template_part("admin/template-parts/layouts/topbar","",["title" => "새 캠페인"]) ?>
+<?php get_admin_part("layouts/topbar", "", ["title" => "새 캠페인"]); ?>
+
 <section class="admin-section mb-24">
 	<div class="admin-page-action d-flex justify-content-between align-items-center">
 		<strong class="fs-18">캠페인 개설하기</strong>

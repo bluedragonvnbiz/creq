@@ -1,3 +1,8 @@
+<?php get_admin_header(); ?>
+<?php get_admin_part("layouts/topbar", "", ["title" => "캠페인 관리"]); ?>
+<?php get_admin_part("components/campaigns/campaign-header"); ?>
+<?php get_admin_part("components/campaigns/campaign-navbar"); ?>
+
 <div class="admin-form-page admin-section mb-12">
 	<div class="d-flex gap-15">
 		<div class="card w-100">
@@ -136,6 +141,8 @@
 		</div>
 	</div>
 	<div class="text-end">
-		<a href="?edit_id=1&tab=edit" class="btn btn-primary">수정</a>
+		<a href="<?php echo home_url('creq-admin/campaigns/edit/' . get_query_var('details_id')); ?>" class="btn btn-primary d-inline-flex">수정</a>
 	</div>
 </div>
+
+<?php get_admin_footer(); ?>

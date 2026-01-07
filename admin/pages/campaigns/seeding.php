@@ -1,5 +1,15 @@
-<link rel="stylesheet" href="<?php echo LIBS_URL ?>/swiper/swiper-bundle.min.css"/>
-<style>.camp-nav{margin-bottom: 0}</style>
+<?php get_admin_header(); ?>
+
+<style>
+	.camp-nav {
+        margin-bottom: 0
+    }
+</style>
+
+<?php get_admin_part("layouts/topbar", "", ["title" => "캠페인 관리"]); ?>
+<?php get_admin_part("components/campaigns/campaign-header"); ?>
+<?php get_admin_part("components/campaigns/campaign-navbar"); ?>
+
 <div class="admin-section p-10 d-flex gap-10 align-items-center admin-filter-btn">
 	<?php  
 	$type_arr = [
@@ -269,7 +279,8 @@
 
 </div>
 
-<script src="<?php echo LIBS_URL ?>/swiper/swiper-bundle.min.js"></script>
+<?php get_admin_footer(); ?>
+
 <script>
 jQuery(document).ready(function($){
   // Initialize each gallery swiper individually

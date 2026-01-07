@@ -39,10 +39,17 @@ function add_custom_scripts() {
         }
 
     } else {
+        $page = get_query_var( 'custom_admin_page' );
+        $mode = get_query_var( 'mode' );
 
         //Admin Pages
         wp_enqueue_style('admin-global', ASSETS_ADMIN_URL . '/css/admin.css', array(), false, false);
         wp_enqueue_script('admin', ASSETS_ADMIN_URL . '/js/admin.js', array('jquery'), false, true);
+
+        if( $page === 'campaigns' ) {
+            wp_enqueue_style('swiper', LIBS_URL . '/swiper/swiper-bundle.min.css', array(), STYLE_VER, false);
+            wp_enqueue_script('swiper', LIBS_URL . '/swiper/swiper-bundle.min.js', array(), false, true);
+        }
 
     }
 
