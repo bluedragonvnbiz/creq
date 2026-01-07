@@ -51,10 +51,28 @@ function add_custom_scripts() {
             wp_enqueue_script('swiper', LIBS_URL . '/swiper/swiper-bundle.min.js', array(), false, true);
         }
 
+        if( $page === 'settings' ) {
+            wp_enqueue_style('settings', ASSETS_ADMIN_URL . '/css/settings.css', array(), false, false);
+            wp_enqueue_script('settings', ASSETS_ADMIN_URL . '/js/settings.js', array('jquery'), false, true);
+        }
+
     }
 
     wp_localize_script(
 		'global-script', 
+		'define', 
+		array(
+		    'home_url' => home_url(),
+			'ajax_url' 	=> admin_url('admin-ajax.php'),
+			'creq_nonce'		=> wp_create_nonce('creq_wpnonce'),
+			'assets_url' => ASSETS_URL,
+            'assets_admin_url' => ASSETS_ADMIN_URL,
+			'assets_admin_path' => get_stylesheet_directory() . '/admin/assets',
+		)
+	);
+
+    wp_localize_script(
+		'admin',
 		'define', 
 		array(
 		    'home_url' => home_url(),

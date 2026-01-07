@@ -18,7 +18,7 @@
 			["#","FAQ"],
 			["#","레퍼럴 코드 관리"],
 			["#","크레딧 관리"],
-			["#","설정"]
+			["settings","설정"]
 		];
 		foreach ($arr as $stt => $value) {
 			$class = $value[0] == $custom_page ? "class='active' " : "";
