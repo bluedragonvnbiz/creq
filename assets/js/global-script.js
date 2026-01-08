@@ -16,6 +16,7 @@ jQuery(document).ready(function($) {
         $(this).val(value);
     });
 
+
     var stackedZIndex = 100000;
     var backdropCount = 0;
 
@@ -46,8 +47,44 @@ jQuery(document).ready(function($) {
         }
     });
 
-}); //end jquery
+    $(document).on('input', '.input-numeric', function () {
+        const el = this;
+        let raw = el.value;
 
+        // có dấu phẩy ở cuối không?
+        const hasTrailingComma = raw.endsWith(',');
+
+        // bỏ tất cả ký tự không phải số hoặc phẩy
+        raw = raw.replace(/[^\d,]/g, '');
+
+        // bỏ phẩy, chỉ lấy số
+        let digits = raw.replace(/,/g, '');
+
+        // bỏ số 0 ở đầu nếu sau còn số
+        digits = digits.replace(/^0+(?=\d)/, '');
+
+        if (digits === '') {
+            el.value = hasTrailingComma ? ',' : '';
+            return;
+        }
+
+        // format số có dấu phẩy nghìn
+        let formatted = digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+        // logic giữ hoặc bỏ dấu phẩy cuối
+        if (hasTrailingComma) {
+            // cho phép nếu:
+            // - chỉ có 1 chữ số, hoặc
+            // - số chữ số chia hết cho 3
+            if (digits.length === 1 || digits.length % 3 === 0) {
+            formatted += ',';
+            }
+        }
+
+        el.value = formatted;
+    });
+
+}); //end jquery
 function addLoading() {
     jQuery('body').append(`<div id="page_load"><span class="loader"></span></div>`);
 }

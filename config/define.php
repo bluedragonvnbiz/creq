@@ -17,4 +17,5 @@ define('ADMIN_SINGLE_PAGES', [
 
 define('ADMIN_OPTION_PAGES', [
     'campaigns',
+    'settings'
 ]);

@@ -43,6 +43,11 @@ function clear_phone_number($phone_number) {
     return preg_replace('/[^\d]/', '', $phone_number);
 }
 
+function clear_price($price) {
+    // Bỏ tất cả ký tự không phải số
+    return preg_replace('/\D/', '', $price);
+}
+
 /**
  * Kiểm tra ngày có hợp lệ và ĐÚNG ĐỊNH DẠNG hay không
  * @param string $dateInput Ví dụ: '2025.03.12'
