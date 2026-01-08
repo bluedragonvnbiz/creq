@@ -22,7 +22,7 @@
 			</svg>
         </button>
     </div>
-    <div class="campaign-card__body d-flex column-gap-2">
+    <a class="campaign-card__body d-flex column-gap-2 text-black" href="?id">
         <div class="campaign-card__thumbnail flex-shrink-0">
             <img class="object-fit-cover rounded-3" src="<?= IMAGES_URL; ?>/demo/demo-1.jpg" alt="">
         </div>
@@ -35,13 +35,21 @@
                 캠페인 개요에 대한 내용입니다. 50자 이내만 입력할 수 있습니다.
             </p>            
         </div>
-    </div>
+    </a>
     <p class="campaign-card__date fs-12 d-flex align-items-center column-gap-2 mb-0">
 	    <span class="fw-semibold">업로드 기간</span>
 	    <span>2025.01.01 ~ 2025.12.01</span>
 	</p>
-    <div class="campaign-card__footer d-flex column-gap-2">   	
-    	<button class="btn btn-outline-light w-100 rounded-3" type="button" data-bs-toggle="modal" data-bs-target="#remove-modal">보류하기</button>
-    	<button class="btn btn-outline-primary w-100 rounded-3" type="button">신청하기</button>
+    <div class="campaign-card__footer d-flex column-gap-2">   
+        <?php  
+        if(isset($args["type"])){ ?>
+            <button class="btn btn-outline-light w-100 rounded-3" type="button" data-bs-toggle="modal" data-bs-target="#review-modal">보류하기</button>
+        <?php
+        }else{ ?>
+            <button class="btn btn-outline-light w-100 rounded-3" type="button" data-bs-toggle="modal" data-bs-target="#remove-modal">보류하기</button>
+            <button class="btn btn-outline-primary w-100 rounded-3" type="button" data-bs-toggle="modal" data-bs-target="#offer-modal">신청하기</button>
+        <?php
+        }
+        ?>	    	
     </div>
 </div>
