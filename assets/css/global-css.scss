@@ -26,10 +26,11 @@ body{font-family: 'Pretendard', 'sans-serif';line-height: 1;letter-spacing: -0.0
 .text-black{color: var(--black-color) !important;}
 .text-gray{color: #69696B !important}
 
-.fs-12{font-size: 12px !important;line-height: 18px !important; letter-spacing: -0.15px;}
-.fs-13{font-size: 13px !important;line-height: 20px !important; letter-spacing: -0.1625px;}
-.fs-14{font-size: 14px !important;line-height: 20px !important; letter-spacing: -0.175px;}
-.fs-18{font-size: 18px !important;line-height: 24px !important; letter-spacing: -0.225px;}
+.fs-10{font-size: 10px !important;line-height: 16px !important;}
+.fs-12{font-size: 12px !important;line-height: 18px !important;}
+.fs-13{font-size: 13px !important;line-height: 20px !important;}
+.fs-14{font-size: 14px !important;line-height: 20px !important;}
+.fs-18{font-size: 18px !important;line-height: 24px !important;}
 
 .mb-32{margin-bottom: 32px !important}
 .gap-10{gap: 10px !important;}
@@ -41,7 +42,9 @@ body{font-family: 'Pretendard', 'sans-serif';line-height: 1;letter-spacing: -0.0
 	&.btn-primary{background-color: var(--main-color) !important;border-color: var(--main-color) !important;}
 	&.btn-dark{background-color: var(--black-color) !important;border-color: var(--black-color) !important;}
     &.btn-outline-light{color: var(--black-color) !important;border-color: #DFE5EF !important;background-color: white !important;}
+    &.btn-outline-dark{color: var(--black-color) !important;border-color: var(--black-color) !important;background-color: white !important;}
     &.btn-outline-primary{color: var(--main-color) !important;border-color: var(--main-color) !important;background-color: white !important;}
+    &.btn-outline-danger{color: #FF383C !important;border-color: #FF383C !important;background-color: white !important;}
 	&.btn-lg{font-weight: 600;font-size: 12px;line-height: 18px;height: 48px;padding: 11px 15px}
 }
 .max-content{width: max-content !important}
@@ -104,7 +107,7 @@ body{font-family: 'Pretendard', 'sans-serif';line-height: 1;letter-spacing: -0.0
 
 #page_load {
     transition: 0.2s linear;
-    background: #ffffffb3;
+    background: rgba(255, 255, 255, 0.702);
     width: 100vw;
     height: 100vh;
     padding: 10px;
