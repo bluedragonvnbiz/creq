@@ -271,7 +271,7 @@
 								<div class="field-group flex-grow-1 p-0 border-0">
 									<input type="text" id="id_card_file_display" class="field-control text-end" placeholder="파일을 선택해주세요" readonly required>
 								</div>
-								<input type="file" id="id_card_file" name="id_card_file" accept=".jpg,.jpeg,.png,.pdf" hidden required>
+								<input type="file" id="id_card_file" name="id_card_file" accept=".jpg,.jpeg,.png,.heic,.webp,.pdf" hidden required>
 								<label for="id_card_file" class="btn-upload-file flex-shrink-0">파일 선택</label>
 							</div>
 						</div>
@@ -281,7 +281,7 @@
 								<div class="field-group flex-grow-1 p-0 border-0">
 									<input type="text" id="bankbook_file_display" class="field-control text-end" placeholder="파일을 선택해주세요" readonly required>
 								</div>
-								<input type="file" id="bankbook_file" name="bankbook_file" accept=".jpg,.jpeg,.png,.pdf" hidden required>
+								<input type="file" id="bankbook_file" name="bankbook_file" accept=".jpg,.jpeg,.png,.heic,.webp,.pdf" hidden required>
 								<label for="bankbook_file" class="btn-upload-file flex-shrink-0">파일 선택</label>
 							</div>
 						</div>

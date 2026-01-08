@@ -151,87 +151,98 @@ jQuery(document).ready(function ($) {
     //custom input number
     $.fn.numberstyle = function(options) {
 
-    var settings = $.extend({
-      value: 0,
-      step: undefined,
-      min: undefined,
-      max: undefined
-    }, options );
+        var settings = $.extend({
+            value: 0,
+            step: undefined,
+            min: undefined,
+            max: undefined
+        }, options);
 
-    return this.each(function(i) {
-        
-      var input = $(this);
-          
-      var container = document.createElement('div'),
-          btnAdd = document.createElement('div'),
-          btnRem = document.createElement('div'),
-          min = (settings.min) ? settings.min : (input.attr('min') ? parseFloat(input.attr('min')) : undefined),
-          max = (settings.max) ? settings.max : (input.attr('max') ? parseFloat(input.attr('max')) : undefined),
-          step = (settings.step) ? settings.step : (input.attr('step') ? parseFloat(input.attr('step')) : 1),
-          value = input.val() ? parseFloat(input.val()) : 0;
-      
-      container.className = 'numberstyle-qty';
-      btnAdd.className = (max !== undefined && value >= max ) ? 'qty-btn qty-add disabled' : 'qty-btn qty-add';
-      btnAdd.innerHTML = '+';
-      btnRem.className = (min !== undefined && value <= min) ? 'qty-btn qty-rem disabled' : 'qty-btn qty-rem';
-      btnRem.innerHTML = '-';
-      input.wrap(container);
-      input.closest('.numberstyle-qty').prepend(btnRem).append(btnAdd);
+        return this.each(function(i) {
 
-      $(document).off('click','.qty-btn').on('click','.qty-btn',function(e){
-        
-        var input = $(this).siblings('input'),
-            sibBtn = $(this).siblings('.qty-btn'),
-            step = (settings.step) ? parseFloat(settings.step) : (input.attr('step') ? parseFloat(input.attr('step')) : 1),
-            min = (settings.min) ? settings.min : (input.attr('min') ? parseFloat(input.attr('min')) : undefined),
-            max = (settings.max) ? settings.max : (input.attr('max') ? parseFloat(input.attr('max')) : undefined),
-            oldValue = input.val() === '' ? 0 : parseFloat(input.val()),
-            newVal;
-        
-        if ( $(this).hasClass('qty-add') ) {   
-          
-          newVal = (max !== undefined && oldValue >= max) ? oldValue : oldValue + step;
-          newVal = (max !== undefined && newVal > max) ? max : newVal;
-          
-          if (max !== undefined && newVal >= max) {
-            $(this).addClass('disabled');
-          }
-          sibBtn.removeClass('disabled');
-         
-        } else {
-          
-          newVal = (min !== undefined && oldValue <= min) ? oldValue : oldValue - step;
-          newVal = (min !== undefined && newVal < min) ? min : newVal; 
-          
-          if (min !== undefined && newVal <= min) {
-            $(this).addClass('disabled');
-          }
-          sibBtn.removeClass('disabled');
-          
-        }
-          
-        input.val(newVal).trigger('change');
+            var input = $(this);
+
+            // Tạo container và các nút
+            var container = document.createElement('div'),
+                btnAdd = document.createElement('div'),
+                btnRem = document.createElement('div'),
+                min = (settings.min) ? settings.min : (input.attr('min') ? parseFloat(input.attr('min')) : undefined),
+                max = (settings.max) ? settings.max : (input.attr('max') ? parseFloat(input.attr('max')) : undefined),
+                step = (settings.step) ? settings.step : (input.attr('step') ? parseFloat(input.attr('step')) : 1),
+                value = input.val() ? parseFloat(input.val()) : 0;
+
+            container.className = 'numberstyle-qty';
+            btnAdd.className = (max !== undefined && value >= max) ? 'qty-btn qty-add disabled' : 'qty-btn qty-add';
+            btnAdd.innerHTML = '+';
+            btnRem.className = (min !== undefined && value <= min) ? 'qty-btn qty-rem disabled' : 'qty-btn qty-rem';
+            btnRem.innerHTML = '-';
+
+            input.wrap(container);
+            input.closest('.numberstyle-qty').prepend(btnRem).append(btnAdd);
+
+            // --- PHẦN SỬA ĐỔI QUAN TRỌNG ---
+            // Thay vì $(document).off... thì dùng $(container).on...
+            // Để đảm bảo biến 'settings' và các biến cục bộ là của chính input này
+            var $container = input.closest('.numberstyle-qty');
             
-      });
-      
-      input.on('change',function(){
-        
-        const val = input.val() === '' ? 0 : parseFloat(input.val()),
-              min = (settings.min) ? settings.min : (input.attr('min') ? parseFloat(input.attr('min')) : undefined),
-              max = (settings.max) ? settings.max : (input.attr('max') ? parseFloat(input.attr('max')) : undefined);
-        
-        if ( max !== undefined && val > max ) {
-          input.val(max);   
-        }
-        
-        if ( min !== undefined && val < min ) {
-          input.val(min);
-        }
-      });
-      
-    });
-  };
-  $('.numberstyle').numberstyle();
+            $container.on('click', '.qty-btn', function(e) {
+
+                var input = $(this).siblings('input'),
+                    sibBtn = $(this).siblings('.qty-btn'),
+                    // Lấy lại step/min/max từ settings (scope chính xác) hoặc attribute
+                    step = (settings.step) ? parseFloat(settings.step) : (input.attr('step') ? parseFloat(input.attr('step')) : 1),
+                    min = (settings.min) ? settings.min : (input.attr('min') ? parseFloat(input.attr('min')) : undefined),
+                    max = (settings.max) ? settings.max : (input.attr('max') ? parseFloat(input.attr('max')) : undefined),
+                    oldValue = input.val() === '' ? 0 : parseFloat(input.val()),
+                    newVal;
+
+                if ($(this).hasClass('qty-add')) {
+
+                    newVal = (max !== undefined && oldValue >= max) ? oldValue : oldValue + step;
+                    newVal = (max !== undefined && newVal > max) ? max : newVal;
+
+                    if (max !== undefined && newVal >= max) {
+                        $(this).addClass('disabled');
+                    }
+                    sibBtn.removeClass('disabled');
+
+                } else {
+
+                    // Logic trừ
+                    newVal = (min !== undefined && oldValue <= min) ? oldValue : oldValue - step;
+                    newVal = (min !== undefined && newVal < min) ? min : newVal;
+
+                    if (min !== undefined && newVal <= min) {
+                        $(this).addClass('disabled');
+                    }
+                    sibBtn.removeClass('disabled');
+
+                }
+
+                input.val(newVal).trigger('change');
+
+            });
+            // --- HẾT PHẦN SỬA ---
+
+            input.on('change', function() {
+
+                const val = input.val() === '' ? 0 : parseFloat(input.val()),
+                    min = (settings.min) ? settings.min : (input.attr('min') ? parseFloat(input.attr('min')) : undefined),
+                    max = (settings.max) ? settings.max : (input.attr('max') ? parseFloat(input.attr('max')) : undefined);
+
+                if (max !== undefined && val > max) {
+                    input.val(max);
+                }
+
+                if (min !== undefined && val < min) {
+                    input.val(min);
+                }
+            });
+
+        });
+    };
+
+    $('.numberstyle').numberstyle();
 
 }) //end jquery
 
