@@ -1,5 +1,6 @@
 <?php 
 get_header(); ?>
+<style>body{background-color: #F8F8FA}</style>
 <header class="header-mobile">
     <img src="<?= IMAGES_URL; ?>/logo.svg" alt="Logo" style="height: 25px;">
     <button class="btn border-0 p-0 open-notif-btn position-relative h-auto active" data-bs-toggle="modal" data-bs-target="#notif-modal">
@@ -80,7 +81,7 @@ get_header(); ?>
             <?php  
             for ($i=0; $i < 5; $i++) { 
                 echo '<div class="swiper-slide">';
-                    get_template_part('template-parts/items/campaign');
+                    get_template_part('template-parts/campaigns/item');
                 echo '</div>';
             }
             ?>                      
@@ -98,7 +99,7 @@ get_header(); ?>
             <?php  
             for ($i=0; $i < 5; $i++) { 
                 echo '<div class="swiper-slide">';
-                    get_template_part('template-parts/items/campaign');
+                    get_template_part('template-parts/campaigns/item');
                 echo '</div>';
             }
             ?>                      

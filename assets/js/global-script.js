@@ -15,7 +15,38 @@ jQuery(document).ready(function($) {
         }
         $(this).val(value);
     });
-});
+
+    var stackedZIndex = 100000;
+    var backdropCount = 0;
+
+    $(document).on('show.bs.modal', '.modal[data-stack="true"]', function () {
+        backdropCount = $('.modal-backdrop').length;
+    });
+
+    $(document).on('shown.bs.modal', '.modal[data-stack="true"]', function () {
+        var $modal = $(this);
+
+        stackedZIndex += 10;
+        $modal.css('z-index', stackedZIndex);
+
+        var $newBackdrop = $('.modal-backdrop').eq(backdropCount);
+
+        if ($newBackdrop.length) {
+            $newBackdrop
+                .css('z-index', stackedZIndex - 5)
+                .addClass('stacked-backdrop');
+        }
+    });
+
+    $(document).on('hidden.bs.modal', '.modal[data-stack="true"]', function () {
+        $('.modal-backdrop.stacked-backdrop').last().remove();
+
+        if ($('.modal.show[data-stack="true"]').length === 0) {
+            stackedZIndex = 100000;
+        }
+    });
+
+}); //end jquery
 
 function addLoading() {
     jQuery('body').append(`<div id="page_load"><span class="loader"></span></div>`);
@@ -48,3 +79,16 @@ function hideAlertModal() {
     const $alertModal = jQuery('#pv-alert-modal');
     $alertModal.modal('hide');
 }
+
+function backFunc(){
+    let referrer = document.referrer;
+    let currentHost = window.location.hostname;
+
+    if ( referrer === "" || history.length <= 1 ||  !referrer.includes(currentHost) ) {
+        window.location.href = "/";
+    } else {
+       history.back();
+    }
+    return false;
+}
+
