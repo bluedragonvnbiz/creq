@@ -39,6 +39,10 @@ function add_new_campaign() {
     $campaign_status = !empty($_POST['campaign_status']) ? sanitize_text_field(wp_unslash(trim($_POST['campaign_status']))) : 'draft';
     $draft_id = !empty($_POST['draft_id']) ? intval($_POST['draft_id']) : 0;
 
+    $seoul_now = new DateTime('now', new DateTimeZone('Asia/Seoul'));
+    $seoul_today = ($seoul_now->setTime(0, 0, 0))->format('Y-m-d H:i:s');
+    $current_time = $seoul_now->format('Y-m-d H:i:s');
+
     if ( $campaign_status === 'pending' ) { 
         // Validate required fields
         if ( 
@@ -95,9 +99,6 @@ function add_new_campaign() {
         }
 
         // Format datetime
-        $seoul_now = new DateTime('now', new DateTimeZone('Asia/Seoul'));
-        $seoul_today = ($seoul_now->setTime(0, 0, 0))->format('Y-m-d H:i:s');
-        $current_time = $seoul_now->format('Y-m-d H:i:s');
         $recruitment_starttime_dt = (new DateTime($recruitment_starttime))->setTime(0, 0, 0)->format('Y-m-d H:i:s');
         $recruitment_endtime_dt = (new DateTime($recruitment_endtime))->setTime(0, 0, 0)->format('Y-m-d H:i:s');
         $upload_starttime_dt = (new DateTime($upload_starttime))->setTime(0, 0, 0)->format('Y-m-d H:i:s');
@@ -306,6 +307,6 @@ function add_new_campaign() {
     wp_send_json_success([
         'message' => $campaign_status === 'pending' ? "새로운 캠페인이 성공적으로 추가되었습니다." : "캠페인 임시 저장이 성공적으로 완료되었습니다.", // New campaign has been successfully added | Draft campaign has been successfully saved.
         'redirect_url' => home_url('/creq-admin/campaigns/details/' . $new_campaign_id),
-        'draft_id' => $draft_id,
+        'draft_id' => $new_campaign_id,
     ]);
 }
