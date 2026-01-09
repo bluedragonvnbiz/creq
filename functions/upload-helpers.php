@@ -13,7 +13,7 @@ function creq_ensure_upload_subdir($subdir) {
     $url = trailingslashit($base_url . ltrim($subdir, '/'));
 
     if (!wp_mkdir_p($dir)) {
-        return new WP_Error('upload_error', "Cannot create upload directory: {$dir}");
+        return new WP_Error('upload_error', "업로드 디렉토리를 생성할 수 없습니다.");
     }
     return ['dir' => $dir, 'url' => $url];
 }
@@ -59,13 +59,13 @@ if (!function_exists('creq_upload_error_message')) {
         switch ($code) {
             case UPLOAD_ERR_OK: return 'OK';
             case UPLOAD_ERR_INI_SIZE: 
-            case UPLOAD_ERR_FORM_SIZE: return 'File exceeds the allowed size.';
-            case UPLOAD_ERR_PARTIAL:  return 'File upload is incomplete.';
-            case UPLOAD_ERR_NO_FILE:  return 'No file selected.';
-            case UPLOAD_ERR_NO_TMP_DIR: return 'Missing temporary folder on server.';
-            case UPLOAD_ERR_CANT_WRITE: return 'Failed to write file to disk.';
-            case UPLOAD_ERR_EXTENSION: return 'Upload blocked by extension.';
-            default: return 'Unknown upload error.';
+            case UPLOAD_ERR_FORM_SIZE: return '파일 용량이 제한을 초과했습니다.'; // Vượt quá dung lượng
+            case UPLOAD_ERR_PARTIAL:   return '파일 업로드가 중단되었습니다.'; // Upload bị gián đoạn
+            case UPLOAD_ERR_NO_FILE:   return '업로드할 파일을 선택해주세요.'; // Chưa chọn file
+            case UPLOAD_ERR_NO_TMP_DIR: return '서버 임시 폴더 오류가 발생했습니다.';
+            case UPLOAD_ERR_CANT_WRITE: return '파일 쓰기에 실패했습니다.';
+            case UPLOAD_ERR_EXTENSION: return '허용되지 않는 확장자입니다.'; // Đuôi file không được phép
+            default: return '알 수 없는 업로드 오류가 발생했습니다.';
         }
     }
 }
@@ -127,7 +127,7 @@ function creq_custom_store_files($field, $opts = []) {
 
     if (empty($_FILES[$field])) {
         if ($o['required']) {
-            return new WP_Error('upload_error', "Field '{$field}' is required.");
+            return new WP_Error('upload_error', "파일을 업로드해주세요.");
         }
         return ['files' => []];
     }
@@ -141,7 +141,7 @@ function creq_custom_store_files($field, $opts = []) {
         if ($nf['error'] !== UPLOAD_ERR_NO_FILE) { $hasRealFile = true; break; }
     }
     if ($o['required'] && !$hasRealFile) {
-        return new WP_Error('upload_error', "Field '{$field}' is required.");
+        return new WP_Error('upload_error', "파일을 업로드해주세요.");
     }
 
     // Giới hạn số file
@@ -150,12 +150,12 @@ function creq_custom_store_files($field, $opts = []) {
         if ($nf['error'] !== UPLOAD_ERR_NO_FILE) $countReal++;
     }
     if ($o['max_files'] !== null && $countReal > $o['max_files']) {
-        return new WP_Error('upload_error', "Too many files for '{$field}'. Max is {$o['max_files']}.");
+        return new WP_Error('upload_error', "최대 {$o['max_files']}개까지 업로드 가능합니다.");
     }
 
     // Chuẩn bị thư mục đích
     if (empty($o['dest_subdir'])) {
-        return new WP_Error('upload_error', 'Destination subdir is required.');
+        return new WP_Error('upload_error', '저장 경로 설정이 필요합니다.');
     }
     $dest = creq_ensure_upload_subdir($o['dest_subdir']);
     if (is_wp_error($dest)) return $dest;
@@ -175,17 +175,17 @@ function creq_custom_store_files($field, $opts = []) {
 
         if (!is_uploaded_file($f['tmp_name'])) {
             if ($o['rollback_on_fail']) { foreach ($savedPaths as $p) @unlink($p); }
-            return new WP_Error('upload_error', 'Potential file upload attack detected.', ['debug' => $f]);
+            return new WP_Error('upload_error', '유효하지 않은 업로드 요청입니다.', ['debug' => $f]);
         }
 
         // Size
         if ($o['min_size'] && $f['size'] < $o['min_size']) {
             if ($o['rollback_on_fail']) { foreach ($savedPaths as $p) @unlink($p); }
-            return new WP_Error('upload_error', "File '{$f['name']}' is smaller than allowed.");
+            return new WP_Error('upload_error', "파일 용량이 너무 작습니다.");
         }
         if ($o['max_size'] && $f['size'] > $o['max_size']) {
             if ($o['rollback_on_fail']) { foreach ($savedPaths as $p) @unlink($p); }
-            return new WP_Error('upload_error', "File '{$f['name']}' exceeds maximum size.");
+            return new WP_Error('upload_error', "파일 용량이 너무 큽니다.");
         }
 
         // MIME thực
@@ -195,7 +195,7 @@ function creq_custom_store_files($field, $opts = []) {
 
         if (!empty($o['allowed_mimes']) && !isset($o['allowed_mimes'][$realMime])) {
             if ($o['rollback_on_fail']) { foreach ($savedPaths as $p) @unlink($p); }
-            return new WP_Error('upload_error', "File '{$f['name']}' has disallowed type: {$realMime}.");
+            return new WP_Error('upload_error', "허용되지 않는 파일 형식입니다.");
         }
 
         // WP check (extension/type)
@@ -203,7 +203,7 @@ function creq_custom_store_files($field, $opts = []) {
         // Nếu WP không xác định được ext hợp lệ cho file này -> CHẶN NGAY
         if ( empty($wpType['ext']) ) {
             if ($o['rollback_on_fail']) { foreach ($savedPaths as $p) @unlink($p); }
-            return new WP_Error('upload_error', "Security: File extension does not match file type.");
+            return new WP_Error('upload_error', "파일 확장자가 올바르지 않습니다.");
         }
 
         // Ảnh: kiểm tra dimension
@@ -211,14 +211,14 @@ function creq_custom_store_files($field, $opts = []) {
             $dim = @getimagesize($f['tmp_name']);
             if (!$dim) {
                 if ($o['rollback_on_fail']) { foreach ($savedPaths as $p) @unlink($p); }
-                return new WP_Error('upload_error', "File '{$f['name']}' is not a valid image.");
+                return new WP_Error('upload_error', "유효하지 않은 이미지 파일입니다.");
             }
             list($w, $h) = $dim;
             $ic = $o['image_constraints'];
-            if (!empty($ic['min_w']) && $w < $ic['min_w']) return new WP_Error('upload_error', "Image '{$f['name']}' width too small.");
-            if (!empty($ic['min_h']) && $h < $ic['min_h']) return new WP_Error('upload_error', "Image '{$f['name']}' height too small.");
-            if (!empty($ic['max_w']) && $w > $ic['max_w']) return new WP_Error('upload_error', "Image '{$f['name']}' width too large.");
-            if (!empty($ic['max_h']) && $h > $ic['max_h']) return new WP_Error('upload_error', "Image '{$f['name']}' height too large.");
+            if (!empty($ic['min_w']) && $w < $ic['min_w']) return new WP_Error('upload_error', "이미지 해상도가 너무 낮습니다.");
+            if (!empty($ic['min_h']) && $h < $ic['min_h']) return new WP_Error('upload_error', "이미지 해상도가 너무 낮습니다.");
+            if (!empty($ic['max_w']) && $w > $ic['max_w']) return new WP_Error('upload_error', "이미지 해상도가 너무 높습니다.");
+            if (!empty($ic['max_h']) && $h > $ic['max_h']) return new WP_Error('upload_error', "이미지 해상도가 너무 높습니다.");
         }
 
         // Tên file duy nhất & move
@@ -228,7 +228,7 @@ function creq_custom_store_files($field, $opts = []) {
         // move_uploaded_file (không dùng wp_handle_upload để tránh vào Media)
         if (!@move_uploaded_file($f['tmp_name'], $target_path)) {
             if ($o['rollback_on_fail']) { foreach ($savedPaths as $p) @unlink($p); }
-            return new WP_Error('upload_error', "Cannot move uploaded file '{$f['name']}'.");
+            return new WP_Error('upload_error', "파일 저장에 실패했습니다.");
         }
 
         // Set permission "an toàn"
@@ -246,4 +246,18 @@ function creq_custom_store_files($field, $opts = []) {
     }
 
     return ['files' => $out];
+}
+
+/**
+ * Lấy đường dẫn file từ URL (trong uploads)
+ */
+function creq_get_file_path_from_url($file_url) {
+    $uploads = wp_upload_dir();
+    $base_url = trailingslashit($uploads['baseurl']);
+    $base_dir = trailingslashit($uploads['basedir']);
+    if (strpos($file_url, $base_url) === 0) {
+        $relative_path = substr($file_url, strlen($base_url));
+        return $base_dir . $relative_path;
+    }
+    return null;
 }

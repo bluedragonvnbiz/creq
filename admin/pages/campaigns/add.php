@@ -51,7 +51,7 @@
 								<div class="col-label required"><span class="label">캠페인명</span> <span class="text-danger">*</span></div>
 								<div class="col-input w-100">
 									<div class="input-group count-box">
-										<input type="text" class="form-control count-input border-end-0" data-max="20" name="campaign_name" id="campaignName" placeholder="내용입력" required>
+										<input type="text" class="form-control count-input border-end-0 field-required" data-max="20" name="campaign_name" id="campaignName" placeholder="내용입력">
 										<div class="input-group-text"><span class="count-result">0</span>/20</div>
 									</div>
 								</div>
@@ -60,7 +60,7 @@
 								<div class="col-label required"><span class="label">캠페인 개요</span> <span class="text-danger">*</span></div>
 								<div class="col-input w-100">
 									<div class="textarea-group count-box">
-										<textarea class="form-control count-input auto-height" data-max="50" name="campaign_overview" id="campaignOverview" placeholder="내용입력" required></textarea>
+										<textarea class="form-control count-input auto-height field-required" data-max="50" name="campaign_overview" id="campaignOverview" placeholder="내용입력"></textarea>
 										<label for="campaignOverview" class="input-group-text"><span class="count-result">0</span>/50</label>
 									</div>
 								</div>
@@ -70,38 +70,39 @@
 								<div class="col-input w-100 column-gap-2">
 									<div class="date-input-wrapper">
 										<span class="text-label">시작일</span>
-										<input type="date" class="form-control date-input" name="recruitment_starttime" id="recruitmentStarttime" placeholder="시작일" required>
+										<input type="date" class="form-control date-input field-required" name="recruitment_starttime" id="recruitmentStarttime" placeholder="시작일">
 									</div>
 									<span style="color:#D5D5D7">~</span>
 									<div class="date-input-wrapper">
 										<span class="text-label">마감일</span>
-										<input type="date" class="form-control date-input" name="recruitment_endtime" id="recruitmentEndtime" placeholder="마감일" required>
+										<input type="date" class="form-control date-input field-required" name="recruitment_endtime" id="recruitmentEndtime" placeholder="마감일">
 									</div>
 								</div>
 							</div>
 							<div class="row-section">
 								<div class="col-label required"><span class="label">업로드 기간</span> <span class="text-danger">*</span></div>
 								<div class="col-input w-100 column-gap-2">
-									<div class="date-input-wrapper invalid">
+									<div class="date-input-wrapper">
 										<span class="text-label">시작일</span>
-										<input type="date" class="form-control date-input" name="upload_starttime" id="uploadStarttime" placeholder="시작일" required>
+										<input type="date" class="form-control date-input field-required" name="upload_starttime" id="uploadStarttime" placeholder="시작일">
 									</div>
 									<span style="color:#D5D5D7">~</span>
-									<div class="date-input-wrapper invalid">
+									<div class="date-input-wrapper">
 										<span class="text-label">마감일</span>
-										<input type="date" class="form-control date-input" name="upload_endtime" id="uploadEndtime" placeholder="마감일" required>
+										<input type="date" class="form-control date-input field-required" name="upload_endtime" id="uploadEndtime" placeholder="마감일">
 									</div>
-									<p class="mb-0 fs-13 text-danger ps-2">모집기간 종료 후 업로드 기간을 설정하실 수 있습니다.</p>
+									<p class="error-alert mb-0 fs-13 text-danger ps-2 d-none">모집기간 종료 후 업로드 기간을 설정하실 수 있습니다.</p>
 								</div>
 							</div>
 							<div class="row-section">
 								<div class="col-label required"><span class="label">업로드 인원 제한</span> <span class="text-danger">*</span></div>
 								<div class="col-input column-gap-2">
-									<select class="form-select" name="upload_limit_type" id="uploadLimitType" required style="width: max-content;">
+									<select class="form-select field-required" name="upload_limit_type" id="uploadLimitType" style="width: max-content;">
 										<option value="daily">일일</option>
+										<option value="weekly">주간</option>
 									</select>
 									<div class="input-group" style="max-width:144px">
-										<input type="number" class="form-control text-end pe-0 border-end-0" name="upload_limit" id="uploadLimit" placeholder="0" required>
+										<input type="number" class="form-control text-end pe-0 border-end-0 field-required" name="upload_limit" id="uploadLimit" placeholder="0" min="1">
 										<div class="input-group-text fs-14">명</div>
 									</div>
 								</div>
@@ -134,7 +135,7 @@
 										</td>
 										<td><?php echo number_format($level->base_salary); ?></td>
 										<td class="d-flex justify-content-end">
-											<input class="numberstyle" type="number" min="0" step="1" name="influencer_count[<?php echo $level->level_en_name; ?>]" id="influencerCount<?php echo $level->level_en_name; ?>" placeholder="0" readonly required>
+											<input class="numberstyle field-required" type="number" min="0" step="1" name="influencer_count[<?php echo $level->level_en_name; ?>]" id="influencerCount<?php echo $level->level_en_name; ?>" placeholder="0" readonly>
 										</td>
 									</tr>
 								<?php } ?>
@@ -152,13 +153,13 @@
 								<span>이미지</span>
 							</div>
 							<label class="btn img-action btn-primary btn-sm">변경
-								<input type="file" class="d-none" name="product_thumbnail" id="productThumbnail" accept=".jpg,.jpeg,.png,.heic,.webp,.pdf" required>
+								<input type="file" class="d-none field-required" name="product_thumbnail" id="productThumbnail" accept=".jpg,.jpeg,.png,.heic,.webp,.pdf">
 							</label>
 						</div>
 						<div class="row-section">
 							<div class="col-label"><span class="label">제품 카테고리</span> <span class="text-danger">*</span></div>
 							<div class="col-input w-100">
-								<select class="form-select" name="product_category" id="productCategory" required>
+								<select class="form-select field-required" name="product_category" id="productCategory">
 									<option value="" selected disabled>카테고리 선택</option>
 									<?php foreach (PRODUCT_CATEGORIES as $category_key => $category_name) { ?>
 										<option value="<?= $category_key; ?>"><?= $category_name['kr']; ?></option>
@@ -169,20 +170,20 @@
 						<div class="row-section">
 							<div class="col-label"><span class="label">제품명</span> <span class="text-danger">*</span></div>
 							<div class="col-input w-100">
-								<input type="text" class="form-control" name="product_name" id="productName" placeholder="제품명 입력" required>
+								<input type="text" class="form-control field-required" name="product_name" id="productName" placeholder="제품명 입력">
 							</div>
 						</div>
 						<div class="row-section">
 							<div class="col-label"><span class="label">제품판매링크</span> <span class="text-danger">*</span></div>
 							<div class="col-input w-100">
-								<input type="text" class="form-control" name="product_sales_link" id="productSalesLink" placeholder="링크 입력" required>
+								<input type="url" class="form-control field-required" name="product_sales_link" id="productSalesLink" placeholder="링크 입력">
 							</div>
 						</div>
 						<div class="row-section align-items-start">
 							<div class="col-label required"><span class="label">제품설명</span> <span class="text-danger">*</span></div>
 							<div class="col-input w-100">
 								<div class="textarea-group count-box _120">
-									<textarea id="productDescription" name="product_description" class="form-control count-input auto-height" data-max="1000" placeholder="내용입력" required></textarea>
+									<textarea id="productDescription" name="product_description" class="form-control count-input auto-height field-required" data-max="1000" placeholder="내용입력"></textarea>
 									<label for="productDescription" class="input-group-text"><span class="count-result">0</span>/1000</label>
 								</div>
 							</div>
@@ -237,7 +238,7 @@
 							<div class="col-label required"><span class="label">콘텐츠 가이드 </span> <span class="text-danger">*</span></div>
 							<div class="col-input w-100">
 								<div class="textarea-group count-box _120">
-									<textarea name="content_guide" id="contentGuide" class="form-control count-input auto-height" data-max="1000" placeholder="내용입력" required></textarea>
+									<textarea name="content_guide" id="contentGuide" class="form-control count-input auto-height field-required" data-max="1000" placeholder="내용입력"></textarea>
 									<label for="contentGuide" class="input-group-text"><span class="count-result">0</span>/1000</label>
 								</div>
 							</div>
@@ -261,7 +262,7 @@
 						<div class="row-section">
 							<div class="col-label"><span class="label">필수 해시태그</span> <span class="text-danger">*</span></div>
 							<div class="col-input w-100">
-								<input type="text" name="required_hashtags" id="requiredHashtags" class="form-control" placeholder="#포함하여 입력, 예) #크리크 #CREQ #인플루언서 #브랜드" required>
+								<input type="text" name="required_hashtags" id="requiredHashtags" class="form-control field-required" placeholder="#포함하여 입력, 예) #크리크 #CREQ #인플루언서 #브랜드">
 							</div>
 						</div>
 					</div>
@@ -282,6 +283,10 @@
 						</ul>
 					</div>
 					<div class="wiget-footer">
+						<?php wp_nonce_field('add_new_campaign_nonce', 'action_nonce'); ?>
+						<input type="hidden" name="action" value="add_new_campaign">
+						<input type="hidden" name="campaign_status" value="pending">
+						<input type="hidden" name="draft_id" value="">
 						<button class="btn btn-primary w-100" type="submit" disabled>저장 및 캠페인 생성</button>
 					</div>
 				</div>

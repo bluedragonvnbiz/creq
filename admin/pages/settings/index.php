@@ -33,7 +33,6 @@
     </button>
 </div>
 
-<?php get_admin_part("modals/alert-modal"); ?>
 <?php get_admin_part("modals/setting-base-salary-modal", null, ["instagram_base_salaries" => $instagram_base_salaries]); ?>
 
 <?php get_admin_footer(); ?>

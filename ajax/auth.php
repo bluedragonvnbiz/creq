@@ -13,7 +13,7 @@ function user_login() {
 
     $errors = []; // Khởi tạo mảng chứa lỗi
     $is_valid = true;
-    $user_email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+    $user_email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
     $user_pass  = isset($_POST['password']) ? $_POST['password'] : '';
 
     // Validate
@@ -59,13 +59,13 @@ function handle_register_step1() {
     $user_model = new UserModel();
 
     $errors = []; // Mảng chứa lỗi
-    $user_email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+    $user_email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
     $user_pass  = isset($_POST['password']) ? $_POST['password'] : '';
     $user_confirm_pass  = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
-    $user_login = isset($_POST['nickname']) ? sanitize_user($_POST['nickname']) : '';
-    $full_name = isset($_POST['full_name']) ? sanitize_text_field(trim($_POST['full_name'])) : '';
-    $phone_number = isset($_POST['phone_number']) ? sanitize_text_field(trim($_POST['phone_number'])) : '';
-    $birth_date = isset($_POST['birth_date']) ? sanitize_text_field($_POST['birth_date']) : '';
+    $user_login = isset($_POST['nickname']) ? sanitize_user(wp_unslash(trim($_POST['nickname']))) : '';
+    $full_name = isset($_POST['full_name']) ? sanitize_text_field(wp_unslash(trim($_POST['full_name']))) : '';
+    $phone_number = isset($_POST['phone_number']) ? sanitize_text_field(wp_unslash(trim($_POST['phone_number']))) : '';
+    $birth_date = isset($_POST['birth_date']) ? sanitize_text_field(wp_unslash(trim($_POST['birth_date']))) : '';
     $agree_privacy = isset($_POST['agree_privacy']) ? $_POST['agree_privacy'] : '';
     $agree_terms = isset($_POST['agree_terms']) ? $_POST['agree_terms'] : '';
 
@@ -149,19 +149,19 @@ function handle_register_step4() {
     $user_email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
     $user_pass  = isset($_POST['password']) ? $_POST['password'] : '';
     $user_confirm_pass  = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
-    $user_login = isset($_POST['nickname']) ? sanitize_user($_POST['nickname']) : '';
-    $full_name = isset($_POST['full_name']) ? sanitize_text_field(trim($_POST['full_name'])) : '';
-    $phone_number = isset($_POST['phone_number']) ? sanitize_text_field(trim($_POST['phone_number'])) : '';
-    $birth_date = isset($_POST['birth_date']) ? sanitize_text_field($_POST['birth_date']) : '';
+    $user_login = isset($_POST['nickname']) ? sanitize_user(wp_unslash(trim($_POST['nickname']))) : '';
+    $full_name = isset($_POST['full_name']) ? sanitize_text_field(wp_unslash(trim($_POST['full_name']))) : '';
+    $phone_number = isset($_POST['phone_number']) ? sanitize_text_field(wp_unslash(trim($_POST['phone_number']))) : '';
+    $birth_date = isset($_POST['birth_date']) ? sanitize_text_field(wp_unslash(trim($_POST['birth_date']))) : '';
     $agree_privacy = isset($_POST['agree_privacy']) ? $_POST['agree_privacy'] : '';
     $agree_terms = isset($_POST['agree_terms']) ? $_POST['agree_terms'] : '';
-    $referral_code = isset($_POST['referral_code']) ? sanitize_text_field(trim($_POST['referral_code'])) : '';
+    $referral_code = isset($_POST['referral_code']) ? sanitize_text_field(wp_unslash(trim($_POST['referral_code']))) : '';
 
     // dữ liệu ở bước 4
-    $exchange_entity = isset($_POST['exchange_entity']) ? sanitize_text_field($_POST['exchange_entity']) : null;
+    $exchange_entity = isset($_POST['exchange_entity']) ? sanitize_text_field(wp_unslash(trim($_POST['exchange_entity']))) : null;
     $bank_id = isset($_POST['bank_id']) ? intval($_POST['bank_id']) : 0;
-    $account_number = isset($_POST['account_number']) ? sanitize_text_field(trim($_POST['account_number'])) : '';
-    $account_holder = isset($_POST['account_holder']) ? sanitize_text_field(trim($_POST['account_holder'])) : '';
+    $account_number = isset($_POST['account_number']) ? sanitize_text_field(wp_unslash(trim($_POST['account_number']))) : '';
+    $account_holder = isset($_POST['account_holder']) ? sanitize_text_field(wp_unslash(trim($_POST['account_holder']))) : '';
     $id_card_file = isset($_FILES['id_card_file']) ? $_FILES['id_card_file'] : null;
     $bankbook_file = isset($_FILES['bankbook_file']) ? $_FILES['bankbook_file'] : null;
 
@@ -204,6 +204,8 @@ function handle_register_step4() {
     $allowed_mimes = [
         'image/jpeg' => ['jpg', 'jpeg'],
         'image/png'  => ['png'],
+        'image/heic' => ['heic'],
+        'image/webp' => ['webp'],
         'application/pdf' => ['pdf'],
     ];
 
@@ -297,8 +299,8 @@ function user_find_email() {
 
     $errors = []; // Mảng chứa lỗi
     $is_valid = true;
-    $full_name = isset($_POST['full_name']) ? sanitize_text_field(trim($_POST['full_name'])) : '';
-    $phone_number = isset($_POST['phone_number']) ? sanitize_text_field(trim($_POST['phone_number'])) : '';
+    $full_name = isset($_POST['full_name']) ? sanitize_text_field(wp_unslash(trim($_POST['full_name']))) : '';
+    $phone_number = isset($_POST['phone_number']) ? sanitize_text_field(wp_unslash(trim($_POST['phone_number']))) : '';
 
     // Validate
     if ( empty($full_name) || empty($phone_number) || !is_valid_korean_phone($phone_number) ) {
@@ -343,9 +345,9 @@ function user_find_password() {
 
     $errors = []; // Mảng chứa lỗi
     $is_valid = true;
-    $user_email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
-    $full_name = isset($_POST['full_name']) ? sanitize_text_field(trim($_POST['full_name'])) : '';
-    $phone_number = isset($_POST['phone_number']) ? sanitize_text_field(trim($_POST['phone_number'])) : '';
+    $user_email = isset($_POST['email']) ? sanitize_email(wp_unslash(trim($_POST['email']))) : '';
+    $full_name = isset($_POST['full_name']) ? sanitize_text_field(wp_unslash(trim($_POST['full_name']))) : '';
+    $phone_number = isset($_POST['phone_number']) ? sanitize_text_field(wp_unslash(trim($_POST['phone_number']))) : '';
 
     // Validate
     if ( empty($user_email) || !is_email($user_email) || empty($full_name) || empty($phone_number) || !is_valid_korean_phone($phone_number) ) {

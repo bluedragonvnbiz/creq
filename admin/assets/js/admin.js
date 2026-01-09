@@ -83,18 +83,19 @@ jQuery(document).ready(function ($) {
 
     // custom input file 
     $(".input-file-upload").on("change",function(){
+        let el = $(this).closest(".upload-box._name");
         let files = this.files;
         if (!files || files.length === 0) {
+            el.find(".file-name").val("");
             return;
         }
-        let el = $(this).closest(".upload-box._name");
         let fileName = files[0].name;
         el.find(".file-name").val(fileName);
     })
 
 
     // custom input file img
-     $(".upload-single-file-wp input[type='file']").change(function(e){       
+    $(".upload-single-file-wp input[type='file']").change(function(e){       
         let el = $(this).closest(".upload-single-file-wp");
         let file = e.target.files[0];
         let button = el.find(".img-action");    
@@ -107,8 +108,10 @@ jQuery(document).ready(function ($) {
                 $preview.append('<img src="'+event.target.result+'" />');
             }
             reader.readAsDataURL(file);
+        } else {
+            el.find('.img-preview img').remove();
         }
-    })
+    });
 
 
 

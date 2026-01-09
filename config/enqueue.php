@@ -53,7 +53,7 @@ function add_custom_scripts() {
             }elseif($mode == "results"){
                 wp_enqueue_script('swiper', LIBS_URL . '/chartjs/chart.js', array(), false, true);
             }
-            
+            wp_enqueue_script('campaigns', ASSETS_ADMIN_URL . '/js/campaigns.js', array('jquery'), false, true);
         }
 
         if( $page === 'settings' ) {

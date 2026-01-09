@@ -21,7 +21,7 @@ jQuery(document).ready(function($){
                 $this.find('button[type="submit"]').prop('disabled', true);
             },
             success: function(response) {
-                showAlertModal(response.data.title, response.data.message);
+                showAlertModal(response.success ? '처리 완료' : '오류 발생', response.data.message);
             },
             error: function(xhr, status, error) {
                 if (xhr.status === 0) {
