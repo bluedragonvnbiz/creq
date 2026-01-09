@@ -17,13 +17,16 @@ a{color: var(--black-color);}
 .opacity-40{opacity: 0.4}
 
 .mb-12{margin-bottom: 12px;}
+.mb-15{margin-bottom: 15px;}
 .mb-24{margin-bottom: 24px;}
 .gap-05{gap: 5px;}
 
+.gap-10{gap: 10px;}
 .gap-15{gap: 15px;}
 
 .p-10{padding: 10px}
-.bg-gray{background-color: #F8F8FA}
+.p-15{padding: 15px}
+.bg-gray{background-color: #F8F8FA !important}
 .w-140{width: 140px}
 
 .btn{
@@ -59,6 +62,7 @@ a{color: var(--black-color);}
 			}
 		}
 	}
+	.table.table-bordered tbody td{line-height: 17px;}
 }
 
 .badge{border-radius: 4px;padding: 5px 10px;font-size: 12px;line-height: 18px;font-weight: 400;
@@ -76,7 +80,7 @@ a{color: var(--black-color);}
 .admin-sidebar{min-height: 100vh;padding-left: 20px;padding-right:20px;background-color: var(--black-color);
 	box-shadow: 0px 0px 2px 0px #919EAB33,0px 12px 24px -4px #919EAB1F;
 	&.sidebar-collapsed{padding-left: 24px;padding-right: 24px;
-		>div.position-sticky{width: 47px;}
+		>div.position-sticky{width: 48px;}
 		span{display: none;}
 	}
 	>div.position-sticky{width: 210px;transition: 0.2s all;}
@@ -140,6 +144,11 @@ a{color: var(--black-color);}
   input[type="date"] {position: absolute;left: 0;top: 0; width: 100%; height: 100%; opacity: 0;cursor: pointer;}
 }
 
+.table-primary{
+	--bs-table-bg: rgba(112, 92, 255, 0.1);
+	--bs-table-border-color:#DFE5EF;
+	--bs-table-color: var(--black-color)
+}
 .table{
 	--bs-table-color:var(--black-color);
 	--bs-table-border-color:#DFE5EF;
@@ -150,7 +159,7 @@ a{color: var(--black-color);}
 			th{font-weight: 600;font-size: 14px;line-height: 20px;background-color: #F8F8FA;padding: 5px 10px;border-bottom: 5px solid transparent;}
 		}
 	}
-	&.table-striped{
+	&.table-bordered{
 		thead{
 			th{font-weight: 600;font-size: 12px;line-height: 18px;padding: 10px 15px;}
 		}
@@ -159,6 +168,7 @@ a{color: var(--black-color);}
 		}
 		>:not(caption)>*{
 			>th:not(:first-child),>td:not(:first-child){border: none;}
+			>th:last-child,>td:last-child{border-right: 1px solid #DFE5EF;}
 		}
 	}
 
@@ -366,6 +376,19 @@ tr.seeding-detail{
 	}
 	.swiper-pagination{padding-bottom: 15px;margin-bottom: 15px;}
 }
+
+.chart-wp{
+	&.campaign.resutls{
+		 .stats {           
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+	}
+}
+
+
+
 
 $inputBg: #FFFFFF;
 $inputText: var(--main-color);
