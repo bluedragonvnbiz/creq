@@ -47,8 +47,13 @@ function add_custom_scripts() {
         wp_enqueue_script('admin', ASSETS_ADMIN_URL . '/js/admin.js', array('jquery'), false, true);
 
         if( $page === 'campaigns' ) {
-            wp_enqueue_style('swiper', LIBS_URL . '/swiper/swiper-bundle.min.css', array(), STYLE_VER, false);
-            wp_enqueue_script('swiper', LIBS_URL . '/swiper/swiper-bundle.min.js', array(), false, true);
+            if($mode == "seeding"){
+                wp_enqueue_style('swiper', LIBS_URL . '/swiper/swiper-bundle.min.css', array(), STYLE_VER, false);
+                wp_enqueue_script('swiper', LIBS_URL . '/swiper/swiper-bundle.min.js', array(), false, true);
+            }elseif($mode == "results"){
+                wp_enqueue_script('swiper', LIBS_URL . '/chartjs/chart.js', array(), false, true);
+            }
+            
         }
 
         if( $page === 'settings' ) {

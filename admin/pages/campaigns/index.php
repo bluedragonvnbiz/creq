@@ -58,7 +58,7 @@
 			<tbody>
 				<tr>
 					<td>
-						<a class="campaign-item" href="?edit_id=1">
+						<a class="campaign-item" href="details/1/">
 							<img src="<?= IMAGES_URL ?>/demo/demo-1.jpg" alt="">
 							<div class="d-flex flex-column fs-12 justify-content-center">
 								<strong class="fw-semibold">캠페인명</strong>
@@ -85,7 +85,7 @@
 				</tr>
 				<tr>
 					<td>
-						<a class="campaign-item" href="?edit_id=1">
+						<a class="campaign-item" href="details/1/">
 							<img src="<?= IMAGES_URL ?>/demo/demo-2.jpg" alt="">
 							<div class="d-flex flex-column fs-12 justify-content-center">
 								<strong class="fw-semibold">캠페인명</strong>
@@ -130,7 +130,7 @@
 				</tr>
 				<tr>
 					<td>
-						<a class="campaign-item" href="?edit_id=1">
+						<a class="campaign-item" href="details/1/">
 							<img src="<?= IMAGES_URL ?>/demo/demo-2.jpg" alt="">
 							<div class="d-flex flex-column fs-12 justify-content-center">
 								<strong class="fw-semibold">캠페인명</strong>
@@ -157,7 +157,7 @@
 				</tr>
 				<tr>
 					<td>
-						<a class="campaign-item" href="?edit_id=1">
+						<a class="campaign-item" href="details/1/">
 							<img src="<?= IMAGES_URL ?>/demo/demo-2.jpg" alt="">
 							<div class="d-flex flex-column fs-12 justify-content-center">
 								<strong class="fw-semibold">캠페인명</strong>
