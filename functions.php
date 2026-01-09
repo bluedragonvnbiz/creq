@@ -70,3 +70,6 @@ foreach ( glob( get_stylesheet_directory() . "/functions/*.php" ) as $file ) {
 foreach ( glob( get_stylesheet_directory() . "/ajax/*.php" ) as $file ) {
     include_once( $file );
 }
+foreach ( glob( get_stylesheet_directory() . "/ajax/admin/*.php" ) as $file ) {
+    include_once( $file );
+}

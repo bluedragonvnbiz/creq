@@ -49,6 +49,8 @@ function add_custom_scripts() {
         if( $page === 'campaigns' ) {
             wp_enqueue_style('swiper', LIBS_URL . '/swiper/swiper-bundle.min.css', array(), STYLE_VER, false);
             wp_enqueue_script('swiper', LIBS_URL . '/swiper/swiper-bundle.min.js', array(), false, true);
+
+            wp_enqueue_script('campaigns', ASSETS_ADMIN_URL . '/js/campaigns.js', array('jquery'), false, true);
         }
 
         if( $page === 'settings' ) {

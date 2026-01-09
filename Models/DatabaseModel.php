@@ -11,6 +11,8 @@ class DatabaseModel
         $this->file_list = [
             'user_info.php',
             'base_salaries.php',
+            'campaigns.php',
+            'campaign_quotas.php',
             // Thêm các file schema khác nếu cần
         ];
     }
@@ -57,7 +59,7 @@ class DatabaseModel
     {
         // Check version và thực hiện cập nhật
         $current_version = get_option('custom_db_version', '0.0');
-        $target_version = '1.4'; // Cập nhật khi thay đổi schema
+        $target_version = '1.5'; // Cập nhật khi thay đổi schema
 
         if (version_compare($current_version, $target_version, '<')) {
             $this->initTables();
