@@ -13,9 +13,9 @@
             "details" => "캠페인 정보",
             "influencers" => "인플루언서 리스트",
             "seeding" => "시딩 진행 관리",
-            "result" => "캠페인 결과",
-            "#" => "정산관리",
-            "##" => "계약 관리"
+            "results" => "캠페인 결과",
+            "settlement" => "정산관리",
+            "contract" => "계약 관리"
         ];
 
         foreach ($arr as $key => $value) { 

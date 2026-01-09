@@ -76,7 +76,7 @@
 	      </td>
 	      <td>
 	      	CJ대한통운<br>
-					1234-5678-9012 <button class="btn p-0 border-0 open-seeding-detail-btn"><svg width="20" height="20"><use href="#icon-edit"></use></svg></button>
+					1234-5678-9012 <button class="btn p-0 border-0" data-bs-toggle="modal" data-bs-target="#delivery-modal"><svg width="20" height="20"><use href="#icon-edit"></use></svg></button>
 	      </td>
 	      <td>미수령</td>
 	      <td>2025.10.29</td>
@@ -217,6 +217,27 @@
   </div>
 </div>
 
+<div class="modal fade admin-modal" id="delivery-modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    	<div class="modal-body text-center">
+    		<strong class="fw-semibold fs-18 mb-15 d-block">배송지 정보 입력</strong>
+    		<div class="d-flex align-items-center gap-10">
+    			<select class="form-select max-content" required>
+    				<option value="" selected disabled>택배사 선택</option>
+    				<option value="CJ대한통운">CJ대한통운</option>
+    			</select>
+    			<input type="text" class="form-control" value="" name="" placeholder="운송장 번호입력 ‘-’ 제외">
+    		</div>
+    	</div>
+    	<div class="modal-footer">
+    		<button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">취소</button>
+    		<button type="button" class="btn btn-primary" disabled>확인</button>
+    	</div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade admin-modal" id="gallery-modal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
@@ -307,8 +328,13 @@ jQuery(document).ready(function($){
 
   let galleryThumbs, galleryMain;
 
-  // Click handler for open seeding detail button
-  $(document).on('click', '.open-seeding-detail-btn', function(e) {
+  // Click handler for table row (td) - excluding button clicks
+  $(document).on('click', 'tbody tr td', function(e) {
+    // Ignore clicks on buttons or their children
+    if ($(e.target).closest('button').length) {
+      return;
+    }
+    
     e.preventDefault();
     let $parentTr = $(this).closest('tr');
     let $detailContent = $parentTr.next('tr.seeding-detail').find('.seeding-detail-content');

@@ -64,6 +64,20 @@ function custom_admin_rewrite_rules() {
             'top'
         );
 
+        // Mode: settlement
+        add_rewrite_rule(
+            '^creq-admin/' . $page . '/settlement/([0-9]+)/?$',
+            'index.php?custom_admin_page=' . $page . '&mode=settlement&details_id=$matches[1]',
+            'top'
+        );
+
+        // Mode: contract
+        add_rewrite_rule(
+            '^creq-admin/' . $page . '/contract/([0-9]+)/?$',
+            'index.php?custom_admin_page=' . $page . '&mode=contract&details_id=$matches[1]',
+            'top'
+        );
+
         // Mode: add
         add_rewrite_rule(
             '^creq-admin/' . $page . '/add/?$',
@@ -138,6 +152,17 @@ function custom_admin_template_include( $template ) {
 
             if ( $mode === 'results' && is_numeric(get_query_var('details_id')) ) {
                 $details_template = get_stylesheet_directory() . "/admin/pages/" . $custom_page . "/results.php";
+                if ( file_exists($details_template) ) return $details_template;
+            }
+
+            if ( $mode === 'settlement' && is_numeric(get_query_var('details_id')) ) {
+                $file_name = isset($_GET['id']) ? "/settlement-detail.php" : "/settlement-list.php";
+                $details_template = get_stylesheet_directory() . "/admin/pages/" . $custom_page . $file_name;
+                if ( file_exists($details_template) ) return $details_template;
+            }
+
+            if ( $mode === 'contract' && is_numeric(get_query_var('details_id')) ) {
+                $details_template = get_stylesheet_directory() . "/admin/pages/" . $custom_page . "/contract.php";
                 if ( file_exists($details_template) ) return $details_template;
             }
 
