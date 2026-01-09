@@ -12,9 +12,7 @@
                             <div class="label">기본급</div>
                         </div>
                         
-                        <?php
-                            foreach ($instagram_base_salaries as $level) {
-                        ?>
+                        <?php foreach ($instagram_base_salaries as $level) { ?>
                             <div class="salary-box">
                                 <label class="label" for="baseSalary<?php echo $level->level_en_name; ?>"><?php echo $level->level_en_name; ?></label>
                                 <div class="input-group">
